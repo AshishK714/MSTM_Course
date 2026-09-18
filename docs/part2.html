@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Part 2. What one row is</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+ --ink:#1B1720;--soft:#584F5E;--paper:#F8F6F8;--card:#FFFFFF;--rule:#DFD8E0;--rule-soft:#EDE8EE;
+ --accent:#6B2D52;--accent-wash:#F3E9EF;--accent-soft:#A8749A;
+ --lost:#B9AEBE;--lost-wash:#F1EDF2;
+ --ok-bg:#CBEBD5;--ok-ink:#0C5E2D;--no-bg:#F7E0DD;--no-ink:#9A3226;
+ --serif:"Newsreader",Georgia,serif;--sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:19px;line-height:1.66}
+@media (max-width:640px){body{font-size:17.5px}}
+.bar{position:sticky;top:0;z-index:60;background:rgba(248,246,248,.95);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:1160px;margin:0 auto;padding:.55rem 1rem;display:flex;align-items:center;gap:.7rem}
+.bar-t{font-family:var(--sans);font-size:.83rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-t span{color:var(--soft);font-weight:400}
+.bar-sp{flex:1}
+.btn{font-family:var(--sans);font-size:.79rem;font-weight:500;color:var(--ink);background:var(--card);border:1px solid var(--rule);
+ border-radius:5px;padding:.34rem .66rem;cursor:pointer;line-height:1.3}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:absolute;left:0;bottom:-1px;height:2px;background:var(--accent);width:0}
+@media (max-width:560px){.bar-t span{display:none}.btn{padding:.3rem .5rem;font-size:.73rem}}
+.shell{max-width:1160px;margin:0 auto;padding:0 1rem;display:grid;grid-template-columns:214px minmax(0,1fr);gap:2.6rem;align-items:start}
+@media (max-width:980px){.shell{grid-template-columns:minmax(0,1fr);gap:0}}
+nav.toc{position:sticky;top:3.6rem;padding:1.7rem 0 3rem;font-family:var(--sans);font-size:.78rem;
+ max-height:calc(100vh - 5rem);overflow-y:auto;overscroll-behavior:contain}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc a{display:block;padding:.26rem .5rem;color:var(--soft);text-decoration:none;border-left:2px solid transparent;border-radius:0 3px 3px 0;line-height:1.35}
+nav.toc a:hover{color:var(--ink);background:#F0EAF1}
+nav.toc a.on{color:var(--accent);border-left-color:var(--accent);background:var(--accent-wash);font-weight:500}
+@media (max-width:980px){nav.toc{position:fixed;inset:0 0 0 auto;width:min(305px,86vw);background:var(--card);border-left:1px solid var(--rule);
+ padding:1rem 1rem 3rem;z-index:70;transform:translateX(100%);transition:transform .22s ease;box-shadow:-14px 0 34px rgba(27,23,32,.12);max-height:none}
+ nav.toc.open{transform:none}}
+.scrim{display:none}
+@media (max-width:980px){.scrim.on{display:block;position:fixed;inset:0;background:rgba(27,23,32,.34);z-index:65}}
+main{padding:2.2rem 0 6rem;max-width:70ch}
+h1{font-weight:500;font-size:2.5rem;line-height:1.12;letter-spacing:-.015em;margin:.4rem 0 .3rem}
+@media (max-width:640px){h1{font-size:1.95rem}}
+.dek{font-size:1.18rem;color:var(--soft);margin:0 0 1.3rem;line-height:1.45}
+h2{font-weight:500;font-size:1.62rem;line-height:1.22;margin:3rem 0 .9rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+h2 .n{font-family:var(--sans);font-size:.71rem;font-weight:600;color:var(--accent);display:block;margin-bottom:.28rem;letter-spacing:.04em}
+h3{font-weight:600;font-size:1.13rem;margin:1.9rem 0 .5rem;line-height:1.3}
+h4{font-family:var(--sans);font-weight:600;font-size:.86rem;margin:1.35rem 0 .45rem;color:var(--soft)}
+p{margin:0 0 1.05rem} ul{margin:0 0 1.1rem;padding-left:1.15rem} li{margin:0 0 .5rem}
+.box{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:1rem 1.1rem;margin:1.7rem 0;background:var(--card)}
+.box h4{margin:0 0 .5rem;font-size:.82rem;color:var(--accent);letter-spacing:.02em}
+.box p{font-size:.96rem;margin-bottom:.6rem} .box p:last-child{margin-bottom:0}
+.box.principle{background:var(--accent-wash)}
+.box.warn{background:#FBF1E6;border-left-color:#A9772A} .box.warn h4{color:#A9772A}
+.tw{overflow-x:auto;margin:1.3rem 0}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.84rem;font-variant-numeric:tabular-nums;background:var(--card)}
+@media (max-width:640px){table{font-size:.77rem}}
+th{background:var(--accent-wash);font-weight:600;text-align:left;padding:.46rem .6rem;border:1px solid var(--rule);white-space:nowrap;color:var(--accent)}
+td{padding:.42rem .6rem;border:1px solid var(--rule)}
+table.txt td{white-space:normal}
+caption{caption-side:bottom;font-family:var(--sans);font-size:.74rem;color:var(--soft);text-align:left;padding-top:.45rem;line-height:1.4}
+td.win{background:var(--ok-bg);color:var(--ok-ink);font-weight:600}
+td.lose{background:var(--no-bg);color:var(--no-ink);font-weight:600}
+/* signature device: what the summary threw away */
+.lostbox{border:1px dashed var(--lost);background:var(--lost-wash);border-radius:6px;padding:.6rem .8rem;margin:.9rem 0;
+ font-family:var(--sans);font-size:.82rem;color:var(--soft);line-height:1.5}
+.lostbox b{font-family:var(--sans);font-size:.67rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+ color:var(--lost);display:block;margin-bottom:.25rem}
+.demo{background:var(--card);border:1px solid var(--rule);border-radius:8px;margin:1.9rem 0;overflow:hidden}
+.demo-h{padding:.9rem 1.1rem .2rem}
+.demo-h h4{margin:0 0 .25rem;font-size:.83rem;color:var(--ink)}
+.demo-h p{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:0 0 .75rem;line-height:1.45}
+.pick{display:flex;flex-wrap:wrap;gap:.38rem;padding:0 1.1rem .85rem}
+.pk{font-family:var(--sans);font-size:.77rem;font-weight:500;padding:.42rem .7rem;border-radius:5px;border:1px solid var(--rule);
+ background:var(--paper);color:var(--soft);cursor:pointer;line-height:1.25}
+.pk:hover{color:var(--ink)}
+.pk[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.pk:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.demo-body{padding:0 1.1rem}
+.demo-out{border-top:1px solid var(--rule);background:var(--paper);padding:.85rem 1.1rem}
+.demo-out .k{font-family:var(--sans);font-size:.68rem;font-weight:600;color:var(--soft);margin-bottom:.3rem}
+.demo-out .v{font-size:1rem;line-height:1.5}
+.flag{font-family:var(--sans);font-size:.82rem;line-height:1.5;padding:.55rem .7rem;border-radius:5px;margin-top:.6rem}
+.flag.bad{background:var(--no-bg);color:var(--no-ink)}
+.flag.good{background:var(--ok-bg);color:var(--ok-ink)}
+.flag.neutral{background:var(--accent-wash);color:var(--accent)}
+svg.hist{width:100%;height:160px;display:block}
+.kc{background:var(--card);border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:.95rem 1.05rem;margin:1.8rem 0}
+.kc .tag{font-family:var(--sans);font-size:.66rem;font-weight:600;color:var(--accent);letter-spacing:.05em;display:block;margin-bottom:.35rem}
+.kc .q{font-size:1rem;line-height:1.45;margin:0 0 .7rem;font-weight:500}
+.opts{display:grid;gap:.34rem;margin-bottom:.5rem}
+.opt{display:flex;gap:.55rem;align-items:flex-start;font-family:var(--sans);font-size:.87rem;line-height:1.42;text-align:left;
+ padding:.5rem .65rem;border:1px solid var(--rule);border-radius:5px;background:var(--paper);color:var(--ink);cursor:pointer;width:100%}
+.opt:hover:not([disabled]){border-color:var(--accent-soft)}
+.opt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.opt .ltr{font-weight:600;color:var(--soft);flex:0 0 auto}
+.opt.right{background:var(--ok-bg);border-color:#8CCBA1;color:var(--ok-ink)} .opt.right .ltr{color:var(--ok-ink)}
+.opt.wrong{background:var(--no-bg);border-color:#DDA79E;color:var(--no-ink)} .opt.wrong .ltr{color:var(--no-ink)}
+.opt[disabled]{cursor:default}
+.fb{display:none;font-family:var(--sans);font-size:.84rem;line-height:1.5;padding:.55rem .7rem;border-radius:5px;background:var(--accent-wash);color:var(--ink)}
+.fb.on{display:block} .fb b{color:var(--accent)}
+.resp{border:1px solid var(--rule);border-radius:6px;background:var(--card);margin:0 0 .7rem;overflow:hidden}
+.resp .p{padding:.65rem .8rem .35rem;font-size:.97rem;line-height:1.5}
+.resp textarea{width:100%;border:none;border-top:1px solid var(--rule-soft);padding:.6rem .8rem;font-family:var(--serif);font-size:.95rem;
+ line-height:1.5;resize:vertical;min-height:3.4rem;background:transparent;color:var(--ink);display:block}
+.resp textarea:focus{outline:2px solid var(--accent);outline-offset:-2px;background:#FEFDFE}
+.resp .f{padding:.35rem .8rem .5rem;border-top:1px solid var(--rule-soft)}
+.rev{font-family:var(--sans);font-size:.75rem;font-weight:500;color:var(--accent);background:none;border:none;cursor:pointer;
+ padding:.15rem 0;text-decoration:underline;text-underline-offset:2px}
+.rev:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ans{display:none;padding:.55rem .8rem .7rem;background:var(--accent-wash);border-top:1px solid var(--rule-soft);font-size:.93rem;line-height:1.5}
+.ans.on{display:block}
+.ans .k{font-family:var(--sans);font-size:.66rem;font-weight:600;color:var(--accent);display:block;margin-bottom:.2rem}
+.score{font-family:var(--sans);font-size:.82rem;color:var(--soft);background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:.6rem .8rem;margin:1.6rem 0}
+.score b{color:var(--accent);font-size:1.05rem}
+.end{font-family:var(--sans);font-size:.78rem;color:var(--soft);border-top:1px solid var(--rule);margin-top:3.4rem;padding-top:1rem;line-height:1.5}
+.ref{font-family:var(--sans);font-size:.72rem;color:var(--soft);vertical-align:super}
+@media print{.bar,nav.toc,.scrim,.rev,.pick,.opt,.btn{display:none!important}
+ body{background:#fff;font-size:11pt}.shell{display:block;max-width:none;padding:0}main{max-width:none;padding:0}
+ .resp textarea{border:1px solid #999;background:#fff;min-height:3.2rem}
+ table,.box,.demo,.kc,.lostbox{break-inside:avoid}h2{break-after:avoid}}
+
+/* ---- study guide additions ---- */
+.gnav{font-family:var(--sans);font-size:.78rem;color:var(--soft);display:flex;flex-wrap:wrap;gap:.2rem .9rem;margin:0 0 1.4rem;padding:0 0 .8rem;border-bottom:1px solid var(--rule)}
+.gnav a{color:var(--soft);text-decoration:none;padding:.15rem 0;border-bottom:2px solid transparent}
+.gnav a:hover{color:var(--ink)}
+.gnav a.here{color:var(--accent);border-bottom-color:var(--accent);font-weight:500}
+.pn{display:flex;justify-content:space-between;gap:1rem;font-family:var(--sans);font-size:.84rem;margin:2.6rem 0 0;padding-top:1rem;border-top:1px solid var(--rule)}
+.pn a{color:var(--accent);text-decoration:none}
+.pn a:hover{text-decoration:underline}
+.pn span{color:var(--soft);display:block;font-size:.7rem;margin-bottom:.15rem}
+.date{font-family:var(--sans);font-size:.92rem;font-weight:500;color:var(--accent);background:var(--accent-wash);border:1px solid var(--rule);border-radius:6px;padding:.6rem .9rem;margin:0 0 1.6rem}
+.grid{display:grid;grid-template-columns:1fr;gap:.7rem;margin:1.2rem 0 1.6rem}
+.part{display:block;border:1px solid var(--rule);border-radius:6px;padding:.8rem 1rem;background:var(--card);text-decoration:none;color:var(--ink)}
+.part:hover{border-color:var(--accent)}
+.part b{display:block;font-family:var(--sans);font-size:.72rem;color:var(--accent);letter-spacing:.04em;margin-bottom:.2rem}
+.part strong{font-weight:500;font-size:1.05rem;display:block;margin-bottom:.25rem}
+.part span{font-family:var(--sans);font-size:.84rem;color:var(--soft);line-height:1.45}
+.part ul{font-family:var(--sans);font-size:.8rem;color:var(--soft);margin:.5rem 0 0;padding-left:1.1rem}
+.part li{margin:0 0 .18rem}
+.src{font-family:var(--sans);font-size:.76rem;color:var(--soft);margin:-.4rem 0 1rem}
+.gnav .soon{color:var(--lost);padding:.15rem 0}
+.pn em{font-style:normal;color:var(--soft)}
+.part.soon{opacity:.62;pointer-events:none}
+.part .tag{font-family:var(--sans);font-size:.7rem;color:var(--lost);display:block;margin-top:.4rem}
+.note{font-family:var(--sans);font-size:.84rem;color:var(--soft);margin:-1rem 0 1.6rem;line-height:1.5}
+
+</style>
+</head>
+<body>
+<div class="bar"><div class="bar-in">
+ <div class="bar-t">Midterm Study Guide <span>&nbsp;Part 2</span></div>
+ <div class="bar-sp"></div>
+ <button class="btn" id="printBtn" type="button">Print or save PDF</button>
+ <button class="btn" id="tocBtn" type="button" aria-expanded="false">Contents</button>
+</div><div class="prog" id="prog"></div></div>
+<div class="scrim" id="scrim"></div>
+<div class="shell">
+<nav class="toc" id="toc" aria-label="Contents"><ol>
+<li><a href="#s1">2.1 The unit chain</a></li>
+<li><a href="#s2">2.2 The comparison decides the level</a></li>
+<li><a href="#s3">2.3 The ladder</a></li>
+<li><a href="#s4">2.4 Conditioning: grand, column and row percent</a></li>
+<li><a href="#s5">2.5 Grain in a file somebody else built</a></li>
+<li><a href="#s6">2.6 Two things are called granularity</a></li>
+<li><a href="#practice">Practice</a></li>
+</ol></nav>
+<main>
+<div class="gnav"><a href="index.html">Start</a><span class="soon" title="Not yet posted">Part 1</span><a href="part2.html" class="here">Part 2</a><span class="soon" title="Not yet posted">Part 3</span><a href="part4.html">Part 4</a><span class="soon" title="Not yet posted">Part 5</span><span class="soon" title="Not yet posted">Closing</span><span class="soon" title="Not yet posted">Appendix</span><span class="soon" title="Not yet posted">Practice set</span></div>
+
+<h1>Part 2. What one row is</h1>
+<p class="dek">What does one row represent, and did the comparison choose it?</p>
+
+<p>Part 1 asked what job a column is doing. This part asks what one row is. The two questions are separate, and this one comes first, because a column can only measure something about whatever the row represents.</p>
+<p>The answer is never a property of the data. Somebody chose it, usually years before anyone thought about analysis, and that choice fixed the set of comparisons that can ever be made from the file. This part is about how the choice is made, how to recognise it in a file you did not build, and what it costs when the choice and the question do not agree.</p>
+<section id="s1"><h2><span class="n">Section 2.1</span>The unit chain: decision, analysis, observation</h2>
+
+<p>Begin with the decision rather than the data. Every decision has a unit attached to it, and that unit is fixed by what the organisation can act on separately.</p>
+<p>A retailer wants to personalise its advertising. If it can assign one advertising policy per customer, the decision unit is the customer. If it can show one advertisement in the morning and a different one in the evening, the decision unit becomes the customer within a time of day. The same person is now two decision units, because there are two separate choices to make about that person.</p>
+<p>The decision unit fixes the unit of analysis, which is what has to be compared. That in turn fixes the unit of observation, which is what has to appear as a row. Three questions, in order: what can the business act on separately, what has to be compared to inform that, and what therefore has to be a row.</p>
+<p>The chain runs one way. Rows recorded by customer and day can be folded into rows by customer whenever you want. The reverse is impossible. Once the file holds one row per customer, the days are gone, and no technique can recover them.</p>
+<p>The FuturePath Foundation file is an example of what this costs in practice. It holds 5,000 rows, one per participant. Suppose the programme runs ten modules and mentorship could be offered to each participant for each module separately. That decision has 50,000 participant-module pairs attached to it. Every value in the file is constant within a participant, so nothing in it separates one module from another. The file cannot support that decision, and its size is beside the point.</p>
+<div class="box principle"><h4>The question to ask</h4><p>What can this organisation act on separately, and does the file vary at that level?</p></div>
+<p class="src">Where this was covered: Reading Note 2, section 2, on the unit chain and one-way folding; recapped in class before the pivot exercise.</p>
+</section>
+<section id="s2"><h2><span class="n">Section 2.2</span>The comparison decides the level</h2>
+
+<p>Three questions were asked of the FPF file in class. All three are about the same 5,000 learners, and each one requires a different table.</p>
+<div class="tw"><table><thead><tr><th>The question</th><th>What varies</th><th>The table it needs</th></tr></thead><tbody><tr><td>Do mentored learners place better?</td><td>Between mentored and unmentored learners</td><td>One row per mentorship value (2 rows)</td></tr><tr><td>Which track places best?</td><td>Between tracks</td><td>One row per track (3 rows)</td></tr><tr><td>Does partnership strength relate to placement?</td><td>Between partnership levels</td><td>One row per level (4 rows)</td></tr></tbody></table></div>
+
+<p>The second table is the three-row one. Of the 738 learners in the AI track, 37.0 percent were placed; of the 2,091 in Hybrid, 40.0 percent; of the 2,171 in Traditional, 36.9 percent.</p>
+<p>Now put the first question to that second table. Do mentored learners place better? The three-row table cannot answer it. Each of its rows holds mentored and unmentored learners together, and the summary was taken across both, so the difference the question asks about was averaged away when the table was made. You put in 5,000 learner rows and got back three, which is the one-way property from 2.1.</p>
+<p>This is the practical form of the rule. A table is adequate for a comparison when the thing being compared still varies inside it. The mentorship question needs learner rows, because mentorship varies between learners. The track question needs track rows for the reporting, although those rows are themselves built from learner rows. Each level supports a comparison the others cannot, and no level is the correct one in general.</p>
+<div class="box principle"><h4>The question to ask</h4><p>Does the thing I am comparing still vary inside the table in front of me?</p></div>
+<p class="src">Where this was covered: the in-class exercise that built three tables from one file; Reading Note 2, section 3, on declaring the grain.</p>
+</section>
+<section id="s3"><h2><span class="n">Section 2.3</span>The ladder: programme, group, individual</h2>
+
+<p>Once the level follows from the comparison, the question becomes which level a decision about mentorship should be made at. There are three levels, and the file supports two of them.</p>
+<p>At programme level FPF decides one thing: run mentorship for everyone, or for nobody. Two numbers are enough to decide it. Among the 4,363 mentored participants, 38.90 percent ended up employed, against 33.75 percent of the 637 unmentored, a gap of 5.15 percentage points. Every participant is affected by that decision, and no fact about any particular participant was used in making it.</p>
+<p>At group level the decision is still made per participant, by virtue of the group they belong to. Splitting the participants by education gives three separate gaps.</p>
+<div class="tw"><table><thead><tr><th>Highest education</th><th>Unmentored rate</th><th>Mentored rate</th><th>Gap</th><th>Unmentored / mentored</th></tr></thead><tbody><tr><td>High School</td><td>24.30%</td><td>33.98%</td><td>+9.68</td><td>251 / 2,072</td></tr><tr><td>Masters</td><td>41.21%</td><td>46.16%</td><td>+4.95</td><td>182 / 1,081</td></tr><tr><td>Bachelors</td><td>38.73%</td><td>40.83%</td><td>+2.10</td><td>204 / 1,210</td></tr></tbody></table></div>
+
+<p>At individual level the file cannot support a decision. To decide correctly for one named participant you would need to know what happened to that participant both with mentorship and without it. Only one of the two was ever observed, so there is nothing to compare.</p>
+<p>There is one condition on deciding at group level, and it rules out several groups here. A group is usable only if it contains both mentored and unmentored members. All 637 unmentored participants are urban, all have one to three years of prior experience, and all have mid-level AI exposure. Rural learners, those with four years or more, and those at low or high AI exposure therefore have no unmentored members at all. For those groups the file contains no comparison.</p>
+<div class="lostbox"><b>What this leaves out</b>Slicing until a difference appears will always succeed, because with enough slices differences arise from noise alone. A gap of nine points among 251 people and the same gap among twenty are not the same finding. Check each gap against the size of the groups behind it.</div>
+<div class="box principle"><h4>The question to ask</h4><p>At which level does the file still hold both sides of the comparison?</p></div>
+<p class="src">Where this was covered: the in-class work on the decision unit and on nesting a context variable; the education and track figures were recomputed for this guide.</p>
+</section>
+<section id="s4"><h2><span class="n">Section 2.4</span>Conditioning: grand, column and row percent</h2>
+
+<p>Put mentorship on the rows and employment on the columns and you get four counts: 1,697 mentored and employed, 2,666 mentored and not, 215 unmentored and employed, 422 unmentored and not. Those four counts can be shown as percentages three ways. All three appear in the same menu in a spreadsheet, they look alike on screen, and they answer different questions.</p>
+<div class="tw"><table><thead><tr><th>Direction</th><th>The denominator</th><th>What the employed cells read</th></tr></thead><tbody><tr><td>Grand percent</td><td>all 5,000 participants</td><td>33.94% mentored and employed, 4.30% unmentored and employed</td></tr><tr><td>Column percent</td><td>the 1,912 employed and the 3,088 not</td><td>88.76% of the employed were mentored, 86.33% of the not employed were mentored</td></tr><tr><td>Row percent</td><td>the 4,363 mentored and the 637 not</td><td>38.90% of the mentored were employed, 33.75% of the unmentored were employed</td></tr></tbody></table></div>
+
+<p>The grand percentages describe the composition of the cohort and compare nothing, since every cell is divided by the same 5,000. The column percentages are close together, 88.76 against 86.33, and the reason has nothing to do with mentorship: 87.26 percent of everybody was mentored, so almost any group drawn from this file is about 87 percent mentored.</p>
+<p>The row percentages answer FPF's question. The reason is what FPF controls. FPF decides who receives mentorship. It does not decide who becomes employed. A percentage is useful for a decision when its denominator is the group you can act on, because you can then read it forward: set mentorship this way for this group, and here is what tends to follow. The column percentage is read backward, from an outcome to what those people had received, and you can observe an outcome after the fact but never assign one.</p>
+<p>The direction is decided by which variable you put on the rows, which is a layout choice made in a menu. The data does not record which direction was chosen.</p>
+<div class="box principle"><h4>The rule</h4><p>Condition on the thing you control, and read the percentage forward from it. If the denominator is an outcome, the number describes who ended up there, which is a different question from what to do next.</p></div>
+<div class="box principle"><h4>The question to ask</h4><p>Which group is the denominator here, and is it the group I can act on?</p></div>
+<p class="src">Where this was covered: the in-class pivot exercise on the three ways to show a percentage; Reading Note 2 on denominators.</p>
+</section>
+<section id="s5"><h2><span class="n">Section 2.5</span>Grain in a file somebody else built</h2>
+
+<p>Homework 2 gave you 41,188 rows of telemarketing records from a Portuguese bank, with the instruction that every call is one row. That description is worth testing, because the file was built by someone else and the description came with it.</p>
+<p>The test is in the columns. One column, campaign, records how many times this customer was contacted during this campaign. Read that against the stated grain. If one row were one call, a customer contacted five times would occupy five rows, and the contact count would run from one to five across them. Instead the count appears once, as a single value on a single row, which is only sensible if the row already stands for the whole sequence of calls to that customer. One row is one customer's last contact of the campaign, with the earlier attempts summarised into a column rather than recorded as rows of their own.</p>
+<p>Getting this right changes which questions the file can answer. You can ask whether mobile beats landline for a customer, because channel and outcome are both recorded at customer level. You cannot ask whether the third call converts better than the first, because the first two calls are not rows. They were folded into a count before you received the file, and the rule in 2.1 applies: the folding cannot be undone.</p>
+<p>The general habit is to treat the stated grain as a claim to be checked rather than a fact. Look for a column that counts something, or repeats where you expected uniqueness, or an identifier that appears more than once. From those columns you can work out what the row really is.</p>
+<div class="box principle"><h4>The question to ask</h4><p>What does one row represent here, and do the columns agree with what I was told?</p></div>
+<p class="src">Where this was covered: Homework 2, part 1, on stating what one row is.</p>
+</section>
+<section id="s6"><h2><span class="n">Section 2.6</span>Two things are called granularity</h2>
+
+<p>The word granularity is used for two separate choices, and confusing them causes trouble later.</p>
+<p>Row granularity is what one row represents. Everything above is about that. It follows from the comparison, as in 2.2, and once fixed it limits which questions the file can answer.</p>
+<p>Column granularity is how finely a value is recorded inside a row. The FPF file has three settings of it at once. Salary is recorded to the currency unit, which is why 1,912 employed participants have 1,884 distinct salaries between them. Attendance is recorded to the whole percentage point, so 5,000 participants share only 25 distinct attendance values, from 76 to 100. Prior experience is recorded as one of two bands, one to three years or four years and over, so a participant with eighteen months and a participant with thirty-four months are identical in the file.</p>
+<p>These are recording choices, made by whoever designed the form or the system, and they were made for reasons of cost and convenience. Someone decided that attendance to the nearest percent was close enough and that exact months of experience were not worth collecting.</p>
+<p>The one-way property holds for both kinds of granularity. A salary recorded to the unit can be banded into ranges at any point. A band cannot be turned back into a salary. What separates them is who decides and why. You choose the row granularity from the comparison you need, and whoever built the system chose the column granularity for reasons of cost and convenience.</p>
+<p>What a coarse column costs you, and when a band is the honest way to record something, belongs to Part 5.</p>
+<div class="box principle"><h4>The question to ask</h4><p>Was this value recorded finely enough for the distinction I am about to draw with it?</p></div>
+<p class="src">Where this was covered: this section draws the two ideas together; the recording side is taken up again in Part 5.</p>
+</section>
+
+<section id="practice">
+<h2><span class="n">Practice</span>Check yourself</h2>
+<p>Six questions that mark themselves, then three to write out.</p>
+<div class="kc" data-id="p2-k1" data-h="c019edf0"><span class="tag">Practice 1</span><p class="q">A retailer can show one advertisement in the morning and a different one in the evening. Its file holds one row per customer. What does that file support?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>One policy per customer, and nothing finer</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>One policy per customer for each time of day</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>Only a single policy for the whole customer base</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>Any policy, once the rows are split by time of day</span></button></div><div class="fb"><b>Why:</b> Folding runs one way. Customer rows can be built from customer-and-time rows, never the reverse, so the time-of-day decision has no data underneath it.</div></div>
+<div class="kc" data-id="p2-k2" data-h="e0aa9182"><span class="tag">Practice 2</span><p class="q">You have a three-row table of placement rates by track. Can that table answer whether mentored learners place better?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>Yes, provided the table also lists the mentorship counts</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>No, the track rows no longer separate mentored learners</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>Yes, because all 5,000 learners are still represented in it</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>No, because three rows are too few for a fair comparison</span></button></div><div class="fb"><b>Why:</b> Each track row was summarised across mentored and unmentored learners together, so the difference the question asks about is no longer in the table.</div></div>
+<div class="kc" data-id="p2-k3" data-h="f7dfdee8"><span class="tag">Practice 3</span><p class="q">All 637 unmentored participants in the FPF file are urban. What follows for a comparison by location?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>Rural learners must have been excluded from the programme</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>The rural placement rate of 41.51 percent is unreliable</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>Rural learners have no unmentored group to compare with</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>Location has to be dropped from the analysis altogether</span></button></div><div class="fb"><b>Why:</b> A group supports the comparison only if it contains both mentored and unmentored members. No rural learner went unmentored, so there is nothing to compare rural mentored learners against.</div></div>
+<div class="kc" data-id="p2-k4" data-h="7c487d76"><span class="tag">Practice 4</span><p class="q">FPF decides who receives mentorship. It does not decide who becomes employed. Which direction answers its question?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>The grand percentage, because its denominator is all 5,000</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>The column percentage, read down the employed column</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>Either one, since both describe the same four counts</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>The row percentage, read across the mentorship rows</span></button></div><div class="fb"><b>Why:</b> The denominator has to be the group FPF can act on. Mentorship is assigned; employment is observed afterwards.</div></div>
+<div class="kc" data-id="p2-k5" data-h="a5cea1d7"><span class="tag">Practice 5</span><p class="q">Of the 1,912 employed, 88.76 percent had been mentored. Of the 3,088 not employed, 86.33 percent had been mentored. Why are these so close?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>Mentorship made almost no difference to who was employed</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>87.26 percent of the whole cohort had been mentored</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>The two groups being compared are of very different sizes</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>The percentages were computed with the wrong denominator</span></button></div><div class="fb"><b>Why:</b> Almost any group drawn from this file is about 87 percent mentored, so both column percentages are close to the cohort figure whatever mentorship did.</div></div>
+<div class="kc" data-id="p2-k6" data-h="24fa0599"><span class="tag">Practice 6</span><p class="q">Salary is recorded to the currency unit, attendance to the whole percentage point, prior experience as one of two bands. What kind of choice is this?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>How finely each value was recorded, which somebody chose</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>What one row of the file is taken to represent</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>A fixed property of the quantity being measured</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>A defect that should have been repaired before the analysis</span></button></div><div class="fb"><b>Why:</b> This is column granularity, a recording decision made for reasons of cost and convenience, separate from the choice of what a row is.</div></div>
+<div class="score">Practice questions answered: <b id="scoreN">0</b>. Correct first time: <b id="scoreC">0</b>.</div>
+
+<h3>Write it out</h3>
+<p>There is no single correct answer to these. Write yours first, then compare.</p>
+<div class="resp"><div class="p">State what one row must be for each of these three decisions, and say why. (a) A hospital decides which of its clinics to extend opening hours at. (b) A hospital decides whether to send each patient a reminder before each appointment. (c) A regulator decides whether to license the hospital.</div><textarea rows="3" placeholder="Write your answer"></textarea><div class="f"><button class="rev" type="button">Compare with a model answer</button></div><div class="ans"><span class="k">Model answer</span>Begin from what can be acted on separately. (a) One row per clinic, because opening hours are set per clinic. The comparison is between clinics, and patient rows would work only if they could be folded up to clinics. (b) One row per patient and appointment, because a reminder is sent or withheld for each appointment separately. A file with one row per patient cannot support it, since nothing in it varies across that patient's appointments. (c) One row per hospital, because the licence is granted or refused to the hospital as a whole. Note that (b) is finer than (a), and that a file built for (b) could be folded to answer either of the others, while the reverse is impossible.</div></div>
+<div class="resp"><div class="p">Using the education table in 2.3, say what the lowest level the FPF file supports for a mentorship decision is, and state what is lost by moving up to the programme level.</div><textarea rows="3" placeholder="Write your answer"></textarea><div class="f"><button class="rev" type="button">Compare with a model answer</button></div><div class="ans"><span class="k">Model answer</span>The lowest supported level is the group, and education is one workable grouping, because each education level contains both mentored and unmentored participants. Moving up to the programme level replaces three gaps with one: a single figure of 5.15 points stands in for +9.68 among High School participants, +4.95 among Masters and +2.10 among Bachelors. What is lost is the ordering. A reader given only the programme figure would take mentorship to be worth a similar amount to everyone, when in fact the largest gap is among the participants with the least education and the smallest is among those with a Bachelors degree. If mentorship is limited and has to be rationed, there is no basis in the programme figure for choosing who receives it.</div></div>
+<div class="resp"><div class="p">A charity runs a job club. Its crosstab puts attendance at the job club on the columns and employment six months later on the rows. It reports that 71 percent of those now employed had attended the job club. The trustees are deciding whether to fund the club for another year. Say what is wrong with the reported figure and what you would ask for instead.</div><textarea rows="3" placeholder="Write your answer"></textarea><div class="f"><button class="rev" type="button">Compare with a model answer</button></div><div class="ans"><span class="k">Model answer</span>The 71 percent is a column percentage read from an outcome. Its denominator is the people who ended up employed, so it describes who those people turn out to be, and it would be high whenever most of the charity's clients attend the job club, whatever the club achieved. The trustees control attendance at the club and do not control employment, so the number they need runs the other way: of those who attended, what share were employed six months later, and of those who did not attend, what share were employed. I would ask for the two row percentages with the counts behind them, and I would check that the non-attenders are a group that exists in usable numbers rather than a handful of people.</div></div>
+
+</section>
+
+<div class="pn"><div><em><span>Previous</span>Part 1. The decision and the roles (not yet posted)</em></div><div style="text-align:right"><em><span>Next</span>Part 3. What a column measures (not yet posted)</em></div></div>
+<div class="end">Nothing you type on this page is stored. Use Print or save PDF to keep your answers.</div>
+</main>
+</div>
+<script>
+var toc=document.getElementById('toc'),scrim=document.getElementById('scrim'),tb=document.getElementById('tocBtn');
+function closeToc(){toc.classList.remove('open');scrim.classList.remove('on');tb.setAttribute('aria-expanded','false');}
+tb.addEventListener('click',function(){var o=toc.classList.toggle('open');scrim.classList.toggle('on',o);
+ tb.setAttribute('aria-expanded',o?'true':'false');});
+scrim.addEventListener('click',closeToc);
+toc.addEventListener('click',function(e){if(e.target.tagName==='A'&&window.innerWidth<=980)closeToc();});
+document.getElementById('printBtn').addEventListener('click',function(){window.print();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeToc();});
+var links=[].slice.call(toc.querySelectorAll('a')),
+    secs=links.map(function(a){var h=a.getAttribute('href');return h.charAt(0)==='#'?document.getElementById(h.slice(1)):null;}),
+    prog=document.getElementById('prog');
+function onScroll(){var h=document.documentElement,sc=h.scrollTop||document.body.scrollTop,max=h.scrollHeight-h.clientHeight;
+ prog.style.width=(max>0?sc/max*100:0)+'%';
+ var cur=0;for(var i=0;i<secs.length;i++){if(secs[i]&&secs[i].getBoundingClientRect().top<140)cur=i;}
+ links.forEach(function(a,i){a.classList.toggle('on',i===cur);});}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ---- knowledge checks. The correct option is stored as a hash, not as an index. ---- */
+function fnv(s){var h=0x811c9dc5;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=(h+((h<<1)+(h<<4)+(h<<7)+(h<<8)+(h<<24)))>>>0;}return ('0000000'+h.toString(16)).slice(-8);}
+var answered=0,correct=0;
+document.querySelectorAll('.kc').forEach(function(card){
+ var want=card.dataset.h,id=card.dataset.id,done=false;
+ card.querySelectorAll('.opt').forEach(function(btn){btn.addEventListener('click',function(){
+  if(done)return;done=true;
+  var ok=fnv(id+':'+btn.dataset.a)===want;
+  card.querySelectorAll('.opt').forEach(function(b){b.disabled=true;if(fnv(id+':'+b.dataset.a)===want)b.classList.add('right');});
+  if(!ok)btn.classList.add('wrong');
+  card.querySelector('.fb').classList.add('on');
+  answered++;if(ok)correct++;
+  var n=document.getElementById('scoreN'),c=document.getElementById('scoreC');
+  if(n)n.textContent=answered;if(c)c.textContent=correct;});});});
+document.querySelectorAll('.rev').forEach(function(b){b.addEventListener('click',function(){
+ var a=b.closest('.resp').querySelector('.ans'),on=a.classList.toggle('on');
+ b.textContent=on?'Hide the model answer':'Compare with a model answer';});});
+
+</script>
+</body>
+</html>
