@@ -67,12 +67,6 @@ body = f"""
 <p>Everything in the five parts is examinable. The closing page is short and shows how the five parts are connected. Read it last.</p>
 </section>
 
-<section id="not">
-<h2><span class="n">Scope</span>What the midterm does not cover</h2>
-<p>Sampling, standard error, confidence intervals and hypothesis testing. These come after the midterm.</p>
-<p>The appendix on many trials is included because it was discussed in class and shows where the course goes next. It is not examinable.</p>
-<p>The midterm does not test software. No question requires PyAnalytica or Excel. Where a question gives you a table, the arithmetic can be done by hand.</p>
-</section>
 
 <section id="answers">
 <h2><span class="n">Standard</span>What a good answer looks like</h2>
@@ -92,7 +86,7 @@ PAGE = {
     'title': 'Midterm Study Guide', 'sub': 'Start here',
     'dek': 'Analytics for Management Decision Making',
     'toc': [('how', 'How to use this guide'), ('covers', 'What the midterm covers'),
-            ('not', 'What it does not cover'), ('answers', 'What a good answer looks like'),
+            ('answers', 'What a good answer looks like'),
             ('contents', 'Contents')],
     'body': body,
     'prev': None, 'next': ('part1.html', 'Part 1. The decision and the roles'),
