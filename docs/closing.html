@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Appendix. Many trials</title>
+<title>Closing. One move, four times</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -174,7 +174,7 @@ svg.hist{width:100%;height:160px;display:block}
 </head>
 <body>
 <div class="bar"><div class="bar-in">
- <div class="bar-t">Midterm Study Guide <span>&nbsp;Appendix</span></div>
+ <div class="bar-t">Midterm Study Guide <span>&nbsp;Closing</span></div>
  <div class="bar-sp"></div>
  <button class="btn" id="printBtn" type="button">Print or save PDF</button>
  <button class="btn" id="tocBtn" type="button" aria-expanded="false">Contents</button>
@@ -182,96 +182,41 @@ svg.hist{width:100%;height:160px;display:block}
 <div class="scrim" id="scrim"></div>
 <div class="shell">
 <nav class="toc" id="toc" aria-label="Contents"><ol>
-<li><a href="#s1">A.1 Many trials</a></li>
-<li><a href="#sim">Run it yourself</a></li>
+<li><a href="#s1">C.1 Conditioning, in four places</a></li>
+<li><a href="#s2">C.2 The five questions</a></li>
 </ol></nav>
 <main>
-<div class="gnav"><a href="index.html">Start</a><a href="part1.html">Part 1</a><a href="part2.html">Part 2</a><a href="part3.html">Part 3</a><a href="part4.html">Part 4</a><a href="part5.html">Part 5</a><a href="closing.html">Closing</a><a href="appendix.html" class="here">Appendix</a><span class="soon" title="Not yet posted">Practice set</span></div>
+<div class="gnav"><a href="index.html">Start</a><a href="part1.html">Part 1</a><a href="part2.html">Part 2</a><a href="part3.html">Part 3</a><a href="part4.html">Part 4</a><a href="part5.html">Part 5</a><a href="closing.html" class="here">Closing</a><a href="appendix.html">Appendix</a><span class="soon" title="Not yet posted">Practice set</span></div>
 
-<h1>Appendix. Many trials</h1>
-<p class="dek">What many trials do to an average. Examinable. What comes after it is not.</p>
+<h1>Closing. One move, four times</h1>
+<p class="dek">What the five parts have in common, and the questions to carry into the exam.</p>
 
-<p>What happens to an average over many trials is examinable. What comes after it is not: sampling error, confidence intervals and hypothesis testing are for the second half of the course, and no midterm question needs them.</p>
-<section id="s1"><h2><span class="n">Section A.1</span>Many trials</h2>
+<p>Five parts, and one move used in all of them.</p>
+<section id="s1"><h2><span class="n">Section C.1</span>Conditioning, in four places</h2>
 
-<p>One throw of a fair die gives a whole number from 1 to 6, and the six values are equally likely. The average of all six is 3.5, a value the die itself can never show.</p>
-<p>Now throw the die several times and take the average of those throws. Do that again and again, and look at how far apart the highest and lowest averages are. The table was started in class with the first row and left for the simulator to finish. Below is one run of the simulator, a thousand averages at each setting.</p>
-<div class="tw"><table><thead><tr><th>Throws in each average</th><th>Lowest average</th><th>Highest average</th><th>Difference</th></tr></thead><tbody><tr><td>1</td><td>1.00</td><td>6.00</td><td>5.00</td></tr><tr><td>10</td><td>1.90</td><td>5.40</td><td>3.50</td></tr><tr><td>100</td><td>2.91</td><td>4.02</td><td>1.11</td></tr><tr><td>1,000</td><td>3.33</td><td>3.65</td><td>0.32</td></tr></tbody><caption>One run of the simulator below. Because each row is the extreme of a thousand averages, your own run will differ, and the wider the setting the more it will differ.</caption></table></div>
+<p>Conditioning is choosing what to hold constant so that what varies becomes visible. It appears four times in this guide, under a different name each time.</p>
+<div class="tw"><table><thead><tr><th>Where it appeared</th><th>What is held constant</th><th>What becomes visible</th></tr></thead><tbody><tr><td>Choosing what one row is (2.1)</td><td>everything folded into the row</td><td>differences between rows, and nothing finer</td></tr><tr><td>Choosing the level to decide at (2.3)</td><td>the group a participant belongs to</td><td>whether mentorship works differently inside different groups</td></tr><tr><td>Choosing the percentage direction (2.4)</td><td>the group you can act on</td><td>what tends to follow when you act on it</td></tr><tr><td>Holding a third column still (5.7)</td><td>a column distributed unevenly across the groups compared</td><td>whether the first comparison survives</td></tr></tbody></table></div>
 
-<p>Two things change together as the number of throws goes up. The averages lie closer to 3.5, so the difference between the highest and the lowest falls from 5.00 to 0.32. At the same time the averages themselves get finer. With ten throws an average is a multiple of one tenth, with a hundred throws a multiple of one hundredth, so the possible values are closer and closer together.</p>
-<p>That second change is the same idea as 2.6, seen from the other side. A single throw is recorded on a coarse scale with six values on it. Averaging many throws of the same coarse thing produces a quantity that behaves as though it were continuous. Recording decides how fine a single value is, and averaging decides how fine a summary of many values is.</p>
-<p>The class ended on what that means away from dice. Over a short run a person can be lucky or unlucky, and the luck is most of what you see. Over many trials the good and the bad luck cancel, and what is left is the thing you were trying to measure. Reading one quarter, one cohort or one trainer's year is reading a short run.</p>
-<div class="box principle"><h4>The question to ask</h4><p>If I repeated this whole exercise tomorrow, how different would my answer be?</p></div>
-<p class="src">Where this was covered: the die-throw table worked in class, and the discussion of what happens when many trials are averaged.</p>
+<p>In each case something is deliberately frozen. Choosing a row, you freeze whatever was folded into it. Comparing within one education level, you freeze education, so the difference you read is not a difference in schooling. Reading a row percentage, you freeze the row group and read across it. Splitting by tier, you freeze the difficulty of the work.</p>
+<p>Three of the four fail in the same way: you hold the first column constant and the second does not vary inside it. Hold location at rural, and mentorship does not vary, because all 637 unmentored participants are urban. Take a row percentage across a group whose members all had the same outcome, and there is nothing to read. Hold the tier still, and a team that handled only one tier has an empty cell in the other.</p>
+<p>The first fails differently. A comparison between modules has no row to stand on, because folding runs one way and the finer row was never recorded. Check for the variation before running the comparison, because a comparison computed on an empty cell looks like any other comparison.</p>
+<p>A question that looks like four topics is usually one topic asked four ways, and you begin the answer the same way each time: name what is being held constant, and ask what that choice makes invisible.</p>
+<div class="box principle"><h4>The question to ask</h4><p>What am I holding constant here, and does the thing I want to see actually vary once I have?</p></div>
+<p class="src">Where this was covered: this draws together 2.1, 2.3, 2.4 and 5.7.</p>
+</section>
+<section id="s2"><h2><span class="n">Section C.2</span>The five questions</h2>
+
+<p>Reading Note 1 closes with five questions to ask before applying any technique. Reading Note 3 extends the third and the fourth. This guide adds a line to the first, the second and the fifth.</p>
+<div class="tw"><table class="txt"><thead><tr><th>The question</th><th>What it establishes</th><th>What is added, and by whom</th></tr></thead><tbody><tr><td>1. What slice of reality is this dataset a record of?</td><td>the time window, the setting, and which units are included or excluded</td><td>ask what filtered the rows in, and whether the decision applies to people who passed that filter (this guide, Part 4)</td></tr><tr><td>2. What is a row, exactly?</td><td>the unit of analysis and the level of granularity</td><td>the comparison chooses it, and folding runs one way (this guide, Part 2)</td></tr><tr><td>3. What do the numbers mean?</td><td>units and scaling conventions, and whether baseline differences require normalising</td><td>establish the type of each column before summarising it, because the type decides which summaries are legal; ordered categories can be ranked but not safely averaged; where a metric had to be chosen, say what claim about the world that choice makes (Reading Note 3)</td></tr><tr><td>4. What is the pattern, and what story are we tempted to tell?</td><td>observed association separated from causal interpretation, and the alternative explanations that fit the same data</td><td>a two-column pattern is not settled until you have tried the third columns that could overturn it; when a summary and its parts disagree, the summary is usually measuring the composition of the groups rather than the thing you named (Reading Note 3)</td></tr><tr><td>5. What is measured directly, and what is inferred?</td><td>the proxies in use, what they are assumed to represent, and what they might miss</td><td>name the four decisions behind the column, and write them down where the next person will find them (this guide, Part 3)</td></tr></tbody></table></div>
+
+<p>Reading Note 3 adds one more. This guide places it after the other five: before reporting any summary, say what it left out. If you cannot say what was lost, you do not yet understand what you computed.</p>
+<p>Questions 1 and 2 are the ones that cannot be repaired later. If the rows are the wrong people, or at the wrong grain, no amount of care with questions 3 to 5 recovers anything. That is why Part 2 comes early, and why a question that looks like it is about a number is so often answered by looking at the rows instead.</p>
+<p>In an exam answer, naming the question you are applying is worth as much as the answer itself, because a marker can then see which of the five you think the situation depends on.</p>
+<div class="box principle"><h4>The question to ask</h4><p>Can I say, in one sentence, what this number left out?</p></div>
+<p class="src">Where this was covered: Reading Note 1, section 12; Reading Note 3, section 12, which extends the third and the fourth and adds the last.</p>
 </section>
 
-<section id="sim">
-<h2><span class="n">Simulator</span>Run it yourself</h2>
-<p>Pick how many throws go into each average and how many averages to take, then run it. Nothing is sent anywhere; the throws happen in this page.</p>
-<div class="sim">
-  <div class="sim-row">
-    <label for="simN">Throws in each average</label>
-    <select id="simN">
-      <option value="1">1</option>
-      <option value="10" selected>10</option>
-      <option value="100">100</option>
-      <option value="1000">1,000</option>
-    </select>
-    <label for="simR">How many averages</label>
-    <select id="simR">
-      <option value="100">100</option>
-      <option value="1000" selected>1,000</option>
-      <option value="5000">5,000</option>
-    </select>
-    <button class="btn" id="simGo" type="button">Run</button>
-  </div>
-  <div class="sim-out" id="simOut" aria-live="polite"></div>
-  <div class="sim-chart" id="simChart"></div>
-  <p class="sim-note" id="simNote"></p>
-</div>
-<script>
-(function(){
-  var go=document.getElementById('simGo');
-  if(!go)return;
-  function run(){
-    var n=+document.getElementById('simN').value, r=+document.getElementById('simR').value;
-    var means=new Array(r), lo=Infinity, hi=-Infinity, sum=0;
-    for(var i=0;i<r;i++){
-      var t=0;
-      for(var j=0;j<n;j++) t+=1+Math.floor(Math.random()*6);
-      var m=t/n; means[i]=m; sum+=m;
-      if(m<lo)lo=m; if(m>hi)hi=m;
-    }
-    var mean=sum/r;
-    document.getElementById('simOut').innerHTML=
-      '<span><b>'+lo.toFixed(2)+'</b>lowest average</span>'+
-      '<span><b>'+hi.toFixed(2)+'</b>highest average</span>'+
-      '<span><b>'+(hi-lo).toFixed(2)+'</b>difference</span>'+
-      '<span><b>'+mean.toFixed(3)+'</b>average of them all</span>';
-    var B=24, w=(6-1)/B, counts=new Array(B).fill(0), max=0;
-    for(i=0;i<r;i++){
-      var b=Math.floor((means[i]-1)/w); if(b<0)b=0; if(b>=B)b=B-1;
-      counts[b]++; if(counts[b]>max)max=counts[b];
-    }
-    var bars='';
-    for(i=0;i<B;i++){
-      var h=max?Math.round(counts[i]/max*100):0;
-      var from=(1+i*w).toFixed(2), to=(1+(i+1)*w).toFixed(2);
-      bars+='<i style="height:'+h+'%" title="'+from+' to '+to+': '+counts[i]+'"></i>';
-    }
-    document.getElementById('simChart').innerHTML=
-      '<div class="bars">'+bars+'</div><div class="axis"><span>1</span><span>3.5</span><span>6</span></div>';
-    document.getElementById('simNote').textContent=
-      'With '+n.toLocaleString('en-GB')+' throw'+(n===1?'':'s')+' in each average, an average can only be a multiple of '+
-      (1/n).toFixed(n===1?0:(n===10?1:(n===100?2:3)))+', so the possible values are that far apart.';
-  }
-  go.addEventListener('click',run);
-  run();
-})();
-</script>
-</section>
-
-<div class="pn"><div><a href="closing.html"><span>Previous</span>Closing</a></div><div style="text-align:right"><em><span>Next</span>Practice set (not yet posted)</em></div></div>
+<div class="pn"><div><a href="part5.html"><span>Previous</span>Part 5. Summarising, and what it costs</a></div><div style="text-align:right"><a href="appendix.html"><span>Next</span>Appendix. Many trials</a></div></div>
 <div class="end">Nothing you type on this page is stored. Use Print or save PDF to keep your answers.</div>
 </main>
 </div>

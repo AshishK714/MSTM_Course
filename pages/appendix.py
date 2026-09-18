@@ -3,7 +3,7 @@ from build import sec, ask, src, box, table
 P = 'ap'
 
 intro = """
-<p>This appendix is where the course goes next, and none of it is on the midterm.</p>
+<p>What happens to an average over many trials is examinable. What comes after it is not: sampling error, confidence intervals and hypothesis testing are for the second half of the course, and no midterm question needs them.</p>
 """
 
 s1 = sec('s1', 'A.1', 'Many trials', """
@@ -20,6 +20,7 @@ s1 = sec('s1', 'A.1', 'Many trials', """
 <p>The class ended on what that means away from dice. Over a short run a person can be lucky or unlucky, and the luck is most of what you see. Over many trials the good and the bad luck cancel, and what is left is the thing you were trying to measure. Reading one quarter, one cohort or one trainer's year is reading a short run.</p>
 """ + ask('If I repeated this whole exercise tomorrow, how different would my answer be?')
 + src('the die-throw table worked in class, and the discussion of what happens when many trials are averaged.'))
+
 
 sim = """
 <section id="sim">
@@ -92,7 +93,7 @@ sim = """
 PAGE = {
     'file': 'appendix.html', 'nav': 'appendix',
     'title': 'Appendix. Many trials', 'sub': 'Appendix',
-    'dek': 'Where the course goes next. None of this is on the midterm.',
+    'dek': 'What many trials do to an average. Examinable. What comes after it is not.',
     'toc': [('s1', 'A.1 Many trials'), ('sim', 'Run it yourself')],
     'body': intro + s1 + sim,
     'prev': ('closing.html', 'Closing'),

@@ -43,7 +43,7 @@ for f, p, t, q, secs in PARTS:
 grid += card('closing.html', 'CLOSING', 'One move, four times',
              'Conditioning, and the questions to ask of any dataset before applying a technique.')
 grid += card('appendix.html', 'APPENDIX', 'Many trials',
-             'The die-throw table and a simulation. Discussed in class. Not on the midterm.')
+             'The die-throw table and a simulation. What many trials do to an average is examinable; sampling error and inference are not.')
 grid += card('practice.html', 'PRACTICE SET', 'A full practice paper',
              'One dataset you have not seen, with questions in the same forms the midterm uses.')
 grid += '</div>'
