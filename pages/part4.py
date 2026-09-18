@@ -13,7 +13,7 @@ s1 = sec('s1', '4.1', 'A blank cell and a missing person are different things', 
 <p>There is no information in the file about a person who is not in it. There is no row to look at, no cell to count, and nothing in the data that shows the person was ever a candidate for a row. Three groups of people matter to FPF and never appear.</p>
 """ + table(['Who never appears', 'Why it matters'], [
     ['People who considered FPF and did not enrol', 'This is the most useful thing FPF could know about its own recruiting, and the file contains nothing about it.'],
-    ['People who enrolled and left before an outcome was recorded', 'Whether they are in the file at all depends on when the file was built and on a rule nobody wrote down.'],
+    ['People who enrolled and left before an outcome was recorded', 'They are not rows: the file holds only participants who were still in contact when employment was recorded. What became of them is not recoverable from it.'],
     ['Employers that FPF approached and that declined', 'Partnership strength is measured only among the employers who agreed.'],
 ], txt=True) + """
 <p>The check that takes seconds answers a question that does not matter much. The question that matters cannot be answered from inside the file. You have to find out how the file was built, and usually that means asking the people who built it.</p>
@@ -37,7 +37,7 @@ s3 = sec('s3', '4.3', 'Survivorship: cases that were resolved earlier never beca
     ['Team B (enterprise)', '72', '40', '32'],
 ]) + """
 <p>The self-service portal answers simple questions. So the contacts the portal closes are the simple ones, and the contacts that get past it and become tickets are the harder ones. Team B's tickets are not a fair sample of enterprise contacts. They are what remained after the easy cases were removed. Team A's tickets went through no such step.</p>
-<p>Any comparison of the two teams on their tickets is therefore a comparison of all retail contacts against only the hard enterprise contacts. Team B looks slower and less successful in the ticket file. Part of that may be a real difference in the work, and part of it is the portal, and you cannot separate the two from the ticket file alone.</p>
+<p>The ticket file bears this out. Team A resolved 71.9 percent of its tickets within the service level and Team B 65.6 percent, so on the headline figure Team A looks better. Any comparison of the two on their tickets is a comparison of all retail contacts against only the hard enterprise contacts. Part of the 6.3 point gap may be a real difference in the work, and part of it is the portal, and you cannot separate the two from the ticket file alone.</p>
 <p>This is called survivorship bias. The name comes from situations where only the survivors of some process are available to study, and the cases that did not survive are not there to be counted. The mechanism is the same as in 4.2: some cases were removed before the file was built, and which cases were removed depended on the thing being measured.</p>
 <p>The two situations differ in one useful way. In 4.2 the filter let unusual people in. Here the filter took ordinary cases out. In both cases the file describes a narrower group than its name suggests.</p>
 """ + ask('Was there a step before this file where some cases were resolved, dropped or turned away, and were those cases like the ones that remain?')

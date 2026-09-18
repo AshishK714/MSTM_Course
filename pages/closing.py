@@ -3,7 +3,7 @@ from build import sec, ask, src, box, table
 P = 'cl'
 
 intro = """
-<p>Five parts, and one move used in all of them.</p>
+<p>One move runs through Parts 2 and 5, and the five questions below run through all five parts.</p>
 """
 
 s1 = sec('s1', 'C.1', 'Conditioning, in four places', """
@@ -15,7 +15,7 @@ s1 = sec('s1', 'C.1', 'Conditioning, in four places', """
     ['Holding a third column still (5.7)', 'a column distributed unevenly across the groups compared', 'whether the first comparison survives'],
 ]) + """
 <p>In each case something is deliberately frozen. Choosing a row, you freeze whatever was folded into it. Comparing within one education level, you freeze education, so the difference you read is not a difference in schooling. Reading a row percentage, you freeze the row group and read across it. Splitting by tier, you freeze the difficulty of the work.</p>
-<p>Three of the four fail in the same way: you hold the first column constant and the second does not vary inside it. Hold location at rural, and mentorship does not vary, because all 637 unmentored participants are urban. Take a row percentage across a group whose members all had the same outcome, and there is nothing to read. Hold the tier still, and a team that handled only one tier has an empty cell in the other.</p>
+<p>Three of the four fail in the same way: you hold the first column constant and the second does not vary inside it. Hold location at rural, and mentorship does not vary, because all 637 of the participants who went without mentorship are urban. Take a row percentage across a group whose members all had the same outcome, and there is nothing to read. Hold the tier still, and a team that handled only one tier has an empty cell in the other.</p>
 <p>The first fails differently. A comparison between modules has no row to stand on, because folding runs one way and the finer row was never recorded. Check for the variation before running the comparison, because a comparison computed on an empty cell looks like any other comparison.</p>
 <p>A question that looks like four topics is usually one topic asked four ways, and you begin the answer the same way each time: name what is being held constant, and ask what that choice makes invisible.</p>
 """ + ask('What am I holding constant here, and does the thing I want to see actually vary once I have?')

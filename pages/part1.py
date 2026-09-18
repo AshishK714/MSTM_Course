@@ -45,7 +45,7 @@ s4 = sec('s4', '1.4', 'Facts and dimensions', """
     ['Facts', 'employed, salary, attendance_pct, digital_lit_score'],
     ['Dimensions', 'track, education, gender, mentorship, location_category, employer_partnership_strength'],
 ], txt=True) + """
-<p>The rule that follows is about what may be added. Facts add: two salaries make a total, two placements make a count. Dimensions do not: adding a track to an education level produces nothing. Ratios and rates were already divided once, and adding two of them gives a number whose denominator is nobody's, which is why a rate is a fact you may not total.</p>
+<p>The rule that follows is about what may be added. Counts and amounts add: two salaries make a total, two placements make a count. Dimensions do not: adding a track to an education level produces nothing. Rates are the case to watch, because they are facts you may not total. A group of 20 attending 90 percent and a group of 5 attending 80 percent do not make 170 percent, which is nobody's attendance. The denominator, the group a percentage is about, differs between them, so you have to go back to the counts: 18 sessions and 4 give 22 out of 25, which is 88 percent.</p>
 <p>Partnership strength needs care. Its levels are ordered from very low to very high, so it can be put in order, and being able to rank it does not make the steps between its levels equal. Two further columns, employment type and sector, were recorded only for participants who were employed, so those blanks follow from the value in another column rather than from anything going wrong.</p>
 <p>Both of those are taken further in Part 3. What belongs here is the habit of asking, of any column, whether it is the thing being measured or the thing you are cutting by, because the answer decides what arithmetic is allowed on it.</p>
 """ + ask('Is this column the thing being measured, or the thing I am cutting by, and what does that permit?')
@@ -123,7 +123,7 @@ practice = """
    ['Its levels are ordered, so they can be ranked, and nothing establishes that the step from low to high is the same size as the step from high to very high.',
     "A percentage was already divided once. Adding two of them gives a number whose denominator is nobody's.",
     'Rural and urban have no order, so codes of one and two are arbitrary and their total counts nothing.',
-    'Salary is an amount on a common scale with a real zero, so two of them add to a third amount that means something.']) \
+    'Salary is an amount, so two of them add to a third amount that means something. What disqualifies attendance is not its units but the division already inside it.']) \
 + kc(P, 6,
    'FPF switches from the mentorship decision to the reporting decision. Which of these items now does no work?',
    ['salary, because funders are not told what participants earn',
