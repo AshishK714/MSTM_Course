@@ -8,13 +8,13 @@ intro = """
 
 s1 = sec('s1', 'A.1', 'Many trials', """
 <p>One throw of a fair die gives a whole number from 1 to 6, and the six values are equally likely. The average of all six is 3.5, which is a value the die itself can never show.</p>
-<p>Now throw the die several times and take the average of those throws. Do that again and again, and look at how far apart the highest and lowest averages are. The table below is one run of a thousand averages at each setting.</p>
+<p>Now throw the die several times and take the average of those throws. Do that again and again, and look at how far apart the highest and lowest averages are. The table was started in class with the first row and left for the simulator to finish. Below is one run of the simulator, a thousand averages at each setting.</p>
 """ + table(['Throws in each average', 'Lowest average', 'Highest average', 'Difference'], [
     ['1', '1.00', '6.00', '5.00'],
     ['10', '1.90', '5.40', '3.50'],
     ['100', '2.91', '4.02', '1.11'],
     ['1,000', '3.33', '3.65', '0.32'],
-], caption='One thousand averages at each setting. Your own run will differ a little.') + """
+], caption='One run of the simulator below. Because each row is the extreme of a thousand averages, your own run will differ, and the wider the setting the more it will differ.') + """
 <p>Two things change together as the number of throws goes up. The averages lie closer to 3.5, so the difference between the highest and the lowest falls from 5.00 to 0.32. At the same time the averages themselves get finer. With ten throws an average is a multiple of one tenth, with a hundred throws a multiple of one hundredth, so the possible values are closer and closer together.</p>
 <p>That second change is the same idea as 2.6, seen from the other side. A single throw is recorded on a coarse scale with six values on it. Averaging many throws of the same coarse thing produces a quantity that behaves as though it were continuous. Recording decides how fine a single value is, and averaging decides how fine a summary of many values is.</p>
 """ + ask('If I repeated this whole exercise tomorrow, how different would my answer be?')
