@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Part 1. The decision and the roles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+ --ink:#1B1720;--soft:#584F5E;--paper:#F8F6F8;--card:#FFFFFF;--rule:#DFD8E0;--rule-soft:#EDE8EE;
+ --accent:#6B2D52;--accent-wash:#F3E9EF;--accent-soft:#A8749A;
+ --lost:#B9AEBE;--lost-wash:#F1EDF2;
+ --ok-bg:#CBEBD5;--ok-ink:#0C5E2D;--no-bg:#F7E0DD;--no-ink:#9A3226;
+ --serif:"Newsreader",Georgia,serif;--sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:19px;line-height:1.66}
+@media (max-width:640px){body{font-size:17.5px}}
+.bar{position:sticky;top:0;z-index:60;background:rgba(248,246,248,.95);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:1160px;margin:0 auto;padding:.55rem 1rem;display:flex;align-items:center;gap:.7rem}
+.bar-t{font-family:var(--sans);font-size:.83rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-t span{color:var(--soft);font-weight:400}
+.bar-sp{flex:1}
+.btn{font-family:var(--sans);font-size:.79rem;font-weight:500;color:var(--ink);background:var(--card);border:1px solid var(--rule);
+ border-radius:5px;padding:.34rem .66rem;cursor:pointer;line-height:1.3}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:absolute;left:0;bottom:-1px;height:2px;background:var(--accent);width:0}
+@media (max-width:560px){.bar-t span{display:none}.btn{padding:.3rem .5rem;font-size:.73rem}}
+.shell{max-width:1160px;margin:0 auto;padding:0 1rem;display:grid;grid-template-columns:214px minmax(0,1fr);gap:2.6rem;align-items:start}
+@media (max-width:980px){.shell{grid-template-columns:minmax(0,1fr);gap:0}}
+nav.toc{position:sticky;top:3.6rem;padding:1.7rem 0 3rem;font-family:var(--sans);font-size:.78rem;
+ max-height:calc(100vh - 5rem);overflow-y:auto;overscroll-behavior:contain}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc a{display:block;padding:.26rem .5rem;color:var(--soft);text-decoration:none;border-left:2px solid transparent;border-radius:0 3px 3px 0;line-height:1.35}
+nav.toc a:hover{color:var(--ink);background:#F0EAF1}
+nav.toc a.on{color:var(--accent);border-left-color:var(--accent);background:var(--accent-wash);font-weight:500}
+@media (max-width:980px){nav.toc{position:fixed;inset:0 0 0 auto;width:min(305px,86vw);background:var(--card);border-left:1px solid var(--rule);
+ padding:1rem 1rem 3rem;z-index:70;transform:translateX(100%);transition:transform .22s ease;box-shadow:-14px 0 34px rgba(27,23,32,.12);max-height:none}
+ nav.toc.open{transform:none}}
+.scrim{display:none}
+@media (max-width:980px){.scrim.on{display:block;position:fixed;inset:0;background:rgba(27,23,32,.34);z-index:65}}
+main{padding:2.2rem 0 6rem;max-width:70ch}
+h1{font-weight:500;font-size:2.5rem;line-height:1.12;letter-spacing:-.015em;margin:.4rem 0 .3rem}
+@media (max-width:640px){h1{font-size:1.95rem}}
+.dek{font-size:1.18rem;color:var(--soft);margin:0 0 1.3rem;line-height:1.45}
+h2{font-weight:500;font-size:1.62rem;line-height:1.22;margin:3rem 0 .9rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+h2 .n{font-family:var(--sans);font-size:.71rem;font-weight:600;color:var(--accent);display:block;margin-bottom:.28rem;letter-spacing:.04em}
+h3{font-weight:600;font-size:1.13rem;margin:1.9rem 0 .5rem;line-height:1.3}
+h4{font-family:var(--sans);font-weight:600;font-size:.86rem;margin:1.35rem 0 .45rem;color:var(--soft)}
+p{margin:0 0 1.05rem} ul{margin:0 0 1.1rem;padding-left:1.15rem} li{margin:0 0 .5rem}
+.box{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:1rem 1.1rem;margin:1.7rem 0;background:var(--card)}
+.box h4{margin:0 0 .5rem;font-size:.82rem;color:var(--accent);letter-spacing:.02em}
+.box p{font-size:.96rem;margin-bottom:.6rem} .box p:last-child{margin-bottom:0}
+.box.principle{background:var(--accent-wash)}
+.box.warn{background:#FBF1E6;border-left-color:#A9772A} .box.warn h4{color:#A9772A}
+.tw{overflow-x:auto;margin:1.3rem 0}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.84rem;font-variant-numeric:tabular-nums;background:var(--card)}
+@media (max-width:640px){table{font-size:.77rem}}
+th{background:var(--accent-wash);font-weight:600;text-align:left;padding:.46rem .6rem;border:1px solid var(--rule);white-space:nowrap;color:var(--accent)}
+td{padding:.42rem .6rem;border:1px solid var(--rule)}
+table.txt td{white-space:normal}
+caption{caption-side:bottom;font-family:var(--sans);font-size:.74rem;color:var(--soft);text-align:left;padding-top:.45rem;line-height:1.4}
+td.win{background:var(--ok-bg);color:var(--ok-ink);font-weight:600}
+td.lose{background:var(--no-bg);color:var(--no-ink);font-weight:600}
+/* signature device: what the summary threw away */
+.lostbox{border:1px dashed var(--lost);background:var(--lost-wash);border-radius:6px;padding:.6rem .8rem;margin:.9rem 0;
+ font-family:var(--sans);font-size:.82rem;color:var(--soft);line-height:1.5}
+.lostbox b{font-family:var(--sans);font-size:.67rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+ color:var(--lost);display:block;margin-bottom:.25rem}
+.demo{background:var(--card);border:1px solid var(--rule);border-radius:8px;margin:1.9rem 0;overflow:hidden}
+.demo-h{padding:.9rem 1.1rem .2rem}
+.demo-h h4{margin:0 0 .25rem;font-size:.83rem;color:var(--ink)}
+.demo-h p{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:0 0 .75rem;line-height:1.45}
+.pick{display:flex;flex-wrap:wrap;gap:.38rem;padding:0 1.1rem .85rem}
+.pk{font-family:var(--sans);font-size:.77rem;font-weight:500;padding:.42rem .7rem;border-radius:5px;border:1px solid var(--rule);
+ background:var(--paper);color:var(--soft);cursor:pointer;line-height:1.25}
+.pk:hover{color:var(--ink)}
+.pk[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.pk:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.demo-body{padding:0 1.1rem}
+.demo-out{border-top:1px solid var(--rule);background:var(--paper);padding:.85rem 1.1rem}
+.demo-out .k{font-family:var(--sans);font-size:.68rem;font-weight:600;color:var(--soft);margin-bottom:.3rem}
+.demo-out .v{font-size:1rem;line-height:1.5}
+.flag{font-family:var(--sans);font-size:.82rem;line-height:1.5;padding:.55rem .7rem;border-radius:5px;margin-top:.6rem}
+.flag.bad{background:var(--no-bg);color:var(--no-ink)}
+.flag.good{background:var(--ok-bg);color:var(--ok-ink)}
+.flag.neutral{background:var(--accent-wash);color:var(--accent)}
+svg.hist{width:100%;height:160px;display:block}
+.kc{background:var(--card);border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:.95rem 1.05rem;margin:1.8rem 0}
+.kc .tag{font-family:var(--sans);font-size:.66rem;font-weight:600;color:var(--accent);letter-spacing:.05em;display:block;margin-bottom:.35rem}
+.kc .q{font-size:1rem;line-height:1.45;margin:0 0 .7rem;font-weight:500}
+.opts{display:grid;gap:.34rem;margin-bottom:.5rem}
+.opt{display:flex;gap:.55rem;align-items:flex-start;font-family:var(--sans);font-size:.87rem;line-height:1.42;text-align:left;
+ padding:.5rem .65rem;border:1px solid var(--rule);border-radius:5px;background:var(--paper);color:var(--ink);cursor:pointer;width:100%}
+.opt:hover:not([disabled]){border-color:var(--accent-soft)}
+.opt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.opt .ltr{font-weight:600;color:var(--soft);flex:0 0 auto}
+.opt.right{background:var(--ok-bg);border-color:#8CCBA1;color:var(--ok-ink)} .opt.right .ltr{color:var(--ok-ink)}
+.opt.wrong{background:var(--no-bg);border-color:#DDA79E;color:var(--no-ink)} .opt.wrong .ltr{color:var(--no-ink)}
+.opt[disabled]{cursor:default}
+.fb{display:none;font-family:var(--sans);font-size:.84rem;line-height:1.5;padding:.55rem .7rem;border-radius:5px;background:var(--accent-wash);color:var(--ink)}
+.fb.on{display:block} .fb b{color:var(--accent)}
+.resp{border:1px solid var(--rule);border-radius:6px;background:var(--card);margin:0 0 .7rem;overflow:hidden}
+.resp .p{padding:.65rem .8rem .35rem;font-size:.97rem;line-height:1.5}
+.resp textarea{width:100%;border:none;border-top:1px solid var(--rule-soft);padding:.6rem .8rem;font-family:var(--serif);font-size:.95rem;
+ line-height:1.5;resize:vertical;min-height:3.4rem;background:transparent;color:var(--ink);display:block}
+.resp textarea:focus{outline:2px solid var(--accent);outline-offset:-2px;background:#FEFDFE}
+.resp .f{padding:.35rem .8rem .5rem;border-top:1px solid var(--rule-soft)}
+.rev{font-family:var(--sans);font-size:.75rem;font-weight:500;color:var(--accent);background:none;border:none;cursor:pointer;
+ padding:.15rem 0;text-decoration:underline;text-underline-offset:2px}
+.rev:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ans{display:none;padding:.55rem .8rem .7rem;background:var(--accent-wash);border-top:1px solid var(--rule-soft);font-size:.93rem;line-height:1.5}
+.ans.on{display:block}
+.ans .k{font-family:var(--sans);font-size:.66rem;font-weight:600;color:var(--accent);display:block;margin-bottom:.2rem}
+.score{font-family:var(--sans);font-size:.82rem;color:var(--soft);background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:.6rem .8rem;margin:1.6rem 0}
+.score b{color:var(--accent);font-size:1.05rem}
+.end{font-family:var(--sans);font-size:.78rem;color:var(--soft);border-top:1px solid var(--rule);margin-top:3.4rem;padding-top:1rem;line-height:1.5}
+.ref{font-family:var(--sans);font-size:.72rem;color:var(--soft);vertical-align:super}
+@media print{.bar,nav.toc,.scrim,.rev,.pick,.opt,.btn{display:none!important}
+ body{background:#fff;font-size:11pt}.shell{display:block;max-width:none;padding:0}main{max-width:none;padding:0}
+ .resp textarea{border:1px solid #999;background:#fff;min-height:3.2rem}
+ table,.box,.demo,.kc,.lostbox{break-inside:avoid}h2{break-after:avoid}}
+
+/* ---- study guide additions ---- */
+.gnav{font-family:var(--sans);font-size:.78rem;color:var(--soft);display:flex;flex-wrap:wrap;gap:.2rem .9rem;margin:0 0 1.4rem;padding:0 0 .8rem;border-bottom:1px solid var(--rule)}
+.gnav a{color:var(--soft);text-decoration:none;padding:.15rem 0;border-bottom:2px solid transparent}
+.gnav a:hover{color:var(--ink)}
+.gnav a.here{color:var(--accent);border-bottom-color:var(--accent);font-weight:500}
+.pn{display:flex;justify-content:space-between;gap:1rem;font-family:var(--sans);font-size:.84rem;margin:2.6rem 0 0;padding-top:1rem;border-top:1px solid var(--rule)}
+.pn a{color:var(--accent);text-decoration:none}
+.pn a:hover{text-decoration:underline}
+.pn span{color:var(--soft);display:block;font-size:.7rem;margin-bottom:.15rem}
+.date{font-family:var(--sans);font-size:.92rem;font-weight:500;color:var(--accent);background:var(--accent-wash);border:1px solid var(--rule);border-radius:6px;padding:.6rem .9rem;margin:0 0 1.6rem}
+.grid{display:grid;grid-template-columns:1fr;gap:.7rem;margin:1.2rem 0 1.6rem}
+.part{display:block;border:1px solid var(--rule);border-radius:6px;padding:.8rem 1rem;background:var(--card);text-decoration:none;color:var(--ink)}
+.part:hover{border-color:var(--accent)}
+.part b{display:block;font-family:var(--sans);font-size:.72rem;color:var(--accent);letter-spacing:.04em;margin-bottom:.2rem}
+.part strong{font-weight:500;font-size:1.05rem;display:block;margin-bottom:.25rem}
+.part span{font-family:var(--sans);font-size:.84rem;color:var(--soft);line-height:1.45}
+.part ul{font-family:var(--sans);font-size:.8rem;color:var(--soft);margin:.5rem 0 0;padding-left:1.1rem}
+.part li{margin:0 0 .18rem}
+.src{font-family:var(--sans);font-size:.76rem;color:var(--soft);margin:-.4rem 0 1rem}
+.gnav .soon{color:var(--lost);padding:.15rem 0}
+.pn em{font-style:normal;color:var(--soft)}
+.part.soon{opacity:.62;pointer-events:none}
+.part .tag{font-family:var(--sans);font-size:.7rem;color:var(--lost);display:block;margin-top:.4rem}
+.note{font-family:var(--sans);font-size:.84rem;color:var(--soft);margin:-1rem 0 1.6rem;line-height:1.5}
+
+/* the mini-case that opens a practice section */
+.case{border:1px solid var(--rule);border-radius:6px;padding:1.05rem 1.15rem .5rem;margin:1.5rem 0 2rem;background:var(--accent-wash)}
+.case h4{margin:0 0 .55rem;font-size:.82rem;color:var(--accent);letter-spacing:.02em}
+.case p{font-size:.96rem;margin:0 0 .6rem}
+.case .tw{margin:.9rem 0 1rem}
+.case table{background:var(--card)}
+
+/* die-throw simulator, appendix only */
+.sim{border:1px solid var(--rule);border-radius:6px;padding:1rem 1.1rem;margin:1.4rem 0;background:var(--card)}
+.sim-row{display:flex;flex-wrap:wrap;gap:.5rem .8rem;align-items:center;font-family:var(--sans);font-size:.82rem;color:var(--soft)}
+.sim-row select{font-family:var(--sans);font-size:.82rem;padding:.3rem .4rem;border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--ink)}
+.sim-out{display:flex;flex-wrap:wrap;gap:1.4rem;margin:1rem 0 .4rem;font-family:var(--sans)}
+.sim-out span{display:flex;flex-direction:column;font-size:.72rem;color:var(--soft);letter-spacing:.02em}
+.sim-out b{font-size:1.28rem;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.25}
+.sim-chart .bars{display:flex;align-items:flex-end;gap:2px;height:110px;margin:.7rem 0 .25rem}
+.sim-chart .bars i{flex:1;background:var(--accent-soft);border-radius:2px 2px 0 0;min-height:1px}
+.sim-chart .axis{display:flex;justify-content:space-between;font-family:var(--sans);font-size:.7rem;color:var(--soft);border-top:1px solid var(--rule);padding-top:.25rem}
+.sim-note{font-family:var(--sans);font-size:.78rem;color:var(--soft);margin:.6rem 0 0}
+
+</style>
+</head>
+<body>
+<div class="bar"><div class="bar-in">
+ <div class="bar-t">Midterm Study Guide <span>&nbsp;Part 1</span></div>
+ <div class="bar-sp"></div>
+ <button class="btn" id="printBtn" type="button">Print or save PDF</button>
+ <button class="btn" id="tocBtn" type="button" aria-expanded="false">Contents</button>
+</div><div class="prog" id="prog"></div></div>
+<div class="scrim" id="scrim"></div>
+<div class="shell">
+<nav class="toc" id="toc" aria-label="Contents"><ol>
+<li><a href="#s1">1.1 Activities into outcomes</a></li>
+<li><a href="#s2">1.2 Signal and outcome</a></li>
+<li><a href="#s3">1.3 A role is not a property</a></li>
+<li><a href="#s4">1.4 Facts and dimensions</a></li>
+<li><a href="#practice">Practice</a></li>
+</ol></nav>
+<main>
+<div class="gnav"><a href="index.html">Start</a><a href="part1.html" class="here">Part 1</a><a href="part2.html">Part 2</a><a href="part3.html">Part 3</a><a href="part4.html">Part 4</a><a href="part5.html">Part 5</a><span class="soon" title="Not yet posted">Closing</span><a href="appendix.html">Appendix</a><span class="soon" title="Not yet posted">Practice set</span></div>
+
+<h1>Part 1. The decision and the roles</h1>
+<p class="dek">What job is this column doing, for this decision, for this decision-maker?</p>
+
+<p>An organisation acts on the world long before it analyses anything. FPF recruits participants, runs training, arranges mentorship, approaches employers and reports to funders, and all of that happens whether or not anybody opens a file afterwards. The file exists because somebody decided which parts of that activity were worth recording.</p>
+<p>So a dataset is a selective record of real activity, kept for a purpose, at one level of detail, and it is smaller than the programme it records. Everything in Parts 2 to 5 follows from that, and this part is about the step before any of it: knowing which decision you are serving, and what job each column is doing for that decision.</p>
+<section id="s1"><h2><span class="n">Section 1.1</span>A programme converts activities into outcomes</h2>
+
+<p>FPF pulls levers. It recruits, it delivers technical and soft-skills training, it provides mentorship and career counselling, it runs mock interviews and job-readiness workshops, it builds employer partnerships, it places people in work and it reports to funders. Those are the things it can choose to do more or less of.</p>
+<p>Everything else around them has a different job. The five roles used in Homework 1 are a way of sorting them.</p>
+<div class="tw"><table class="txt"><thead><tr><th>Role</th><th>What it is</th><th>An FPF example</th></tr></thead><tbody><tr><td>Activity</td><td>the work the organisation does, and the lever it can pull</td><td>running a mock-interview workshop</td></tr><tr><td>Signal</td><td>what you watch instead of the outcome, because the outcome arrives too late to steer by</td><td>the share of enrolled participants who finish</td></tr><tr><td>Outcome</td><td>what the organisation exists to produce, wanted for its own sake</td><td>a graduate moving into a better role two years on</td></tr><tr><td>Context</td><td>what shapes the result and cannot be moved within the planning horizon</td><td>whether a participant has childcare available</td></tr><tr><td>Mechanism</td><td>what has to happen inside a person between the activity and the result</td><td>coming to believe the qualification is worth finishing</td></tr></tbody></table></div>
+
+<p>Sorting them decides what you will act on, what you will watch, and what you will have to work around.</p>
+<p>One condition applies throughout, and it was put in class as the definition of the subject: analytics is the study of variation and co-variation. To learn anything about a lever you need the lever to vary and the outcome to vary. If every participant received the same training there is nothing to compare training against, and if every participant ended up in the same job there is nothing to explain. Part 2 is what happens when that condition fails inside a real file.</p>
+<div class="box principle"><h4>The question to ask</h4><p>Which of the five is this item, and for whose decision am I sorting it?</p></div>
+<p class="src">Where this was covered: Homework 1 and the five roles sheet issued with it; the in-class mapping of FPF activities and measures. Reading Note 1, section 1, is behind the opening of this part.</p>
+</section>
+<section id="s2"><h2><span class="n">Section 1.2</span>Signal and outcome</h2>
+
+<p>One question settles whether something is a signal or an outcome.</p>
+<div class="box principle"><h4>The question</h4><p>Do you care about this on its own? If yes, it is an outcome: you want it whether or not it leads to anything else. If no, it is a signal: it stands in for something else, which means it can be pushed up while the thing it stands for gets no better.</p></div>
+
+<p>Take two items from Homework 1. Employer feedback on graduate readiness is a signal. FPF does not exist to collect good feedback; it collects it because good feedback from employers is the earliest sign that interviews and offers will follow. Community trust in FPF is harder, and it is one of the items Homework 1 expects students to find a close call. A funder may treat it as a signal, because people who trust FPF enrol. The organisation may treat it as an outcome, because a body that exists to serve a community and is not trusted by it has failed at something it cares about directly.</p>
+<p>The answer depends on who is asking, and both readings can be defended. Asking the question is what matters.</p>
+<p>The reason it is worth the trouble is what happens when a signal is used as a target. A completion rate can be raised by making the course easier, and the number will rise while the thing it was standing in for gets no better. Part 3 takes up what that does to a measure.</p>
+<div class="box principle"><h4>The question to ask</h4><p>Would I still want this if it led to nothing else?</p></div>
+<p class="src">Where this was covered: Homework 1, items 11 and 15, and the one-question test on the five roles sheet.</p>
+</section>
+<section id="s3"><h2><span class="n">Section 1.3</span>A role is not a property of a column</h2>
+
+<p>The same item plays different roles depending on who is looking, and Homework 1 was built around that. Participant satisfaction is a signal to somebody running the programme and closer to an outcome for the participant feeling it. An economic downturn is context for FPF and the outcome a regional funder is judged on.</p>
+<p>The same is true inside a file. Take attendance_pct in the FPF data. Ask what average attendance was, and the answer is 93.13 percent: the column is the thing being measured. Now ask whether participants who attended more were placed more often. To answer that you sort participants into higher and lower attenders and compare placement between the two groups. The column is now the thing you are slicing by, and placement is what is being measured.</p>
+<p>Nothing about the column changed. The values are identical in both questions. What changed is the question, and with it the job the column is doing.</p>
+<p>This is why a column cannot be labelled once and filed. The label belongs to the pairing of a column with a decision, and if three decision-makers work from one file, the same columns are labelled three different ways.</p>
+<div class="box principle"><h4>The question to ask</h4><p>What job is this column doing in this question, and would it change job in the next one?</p></div>
+<p class="src">Where this was covered: Homework 1, question 2, on how a role changes with perspective; the in-class treatment of attendance as a fact and then as a dimension; Reading Note 3, section 2.</p>
+</section>
+<section id="s4"><h2><span class="n">Section 1.4</span>Facts and dimensions</h2>
+
+<p>Inside a table the same distinction has a working name. Facts are the measured quantities the decision is about, recorded at one grain, which is what one row stands for. Dimensions are the descriptive context you slice those facts by.</p>
+<div class="tw"><table class="txt"><thead><tr><th>In the FPF file</th><th>Columns</th></tr></thead><tbody><tr><td>Facts</td><td>employed, salary, attendance_pct, digital_lit_score</td></tr><tr><td>Dimensions</td><td>track, education, gender, mentorship, location_category, employer_partnership_strength</td></tr></tbody></table></div>
+
+<p>The rule that follows is about what may be added. Facts add: two salaries make a total, two placements make a count. Dimensions do not: adding a track to an education level produces nothing. Ratios and rates were already divided once, and adding two of them gives a number whose denominator is nobody's, which is why a rate is a fact you may not total.</p>
+<p>Partnership strength needs care. Its levels are ordered from very low to very high, so it can be put in order, and being able to rank it does not make the steps between its levels equal. Two further columns, employment type and sector, were recorded only for participants who were employed, so those blanks follow from the value in another column rather than from anything going wrong.</p>
+<p>Both of those are taken further in Part 3. What belongs here is the habit of asking, of any column, whether it is the thing being measured or the thing you are cutting by, because the answer decides what arithmetic is allowed on it.</p>
+<div class="box principle"><h4>The question to ask</h4><p>Is this column the thing being measured, or the thing I am cutting by, and what does that permit?</p></div>
+<p class="src">Where this was covered: the in-class table of facts and dimensions in the FPF file; Reading Note 3, section 2. Part 3 covers ordered categories and structural blanks.</p>
+</section>
+
+<section id="practice">
+<h2><span class="n">Practice</span>Check yourself</h2>
+<p>All the questions below are worked from one situation. Read it once, then answer with the list in front of you.</p>
+<div class="case"><h4>The situation</h4><p>FPF has two decisions to make this month and one file to make them from. The first is operational: how much mentorship to fund next year, and for whom. The second is a reporting decision: the annual report will give the placement rate and the average salary of those placed, broken down by education, and nothing else.</p><p>Eight items are available.</p><div class="tw"><table class="txt"><thead><tr><th>Item</th><th>What it records</th></tr></thead><tbody><tr><td>mentorship</td><td>whether the participant was assigned a mentor</td></tr><tr><td>attendance_pct</td><td>the share of sessions the participant attended</td></tr><tr><td>employed</td><td>whether the participant was in work when the outcome was recorded</td></tr><tr><td>salary</td><td>what the employed participant was paid</td></tr><tr><td>education</td><td>highest level of education at enrolment</td></tr><tr><td>location_category</td><td>rural or urban</td></tr><tr><td>employer_partnership_strength</td><td>how strong the partnership with the employer is, from very low to very high</td></tr><tr><td>Regional unemployment</td><td>not in the file; published quarterly by the government</td></tr></tbody></table></div>
+</div>
+
+<p>Six questions that mark themselves, then three to write out.</p>
+<div class="kc" data-id="p1-k1" data-h="771c2ed3"><span class="tag">Practice 1</span><p class="q">For the mentorship decision, which role does mentorship play?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>An activity, because it is the lever FPF can choose to pull</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>A signal, because it is watched instead of the real outcome</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>An outcome, because FPF exists to provide mentorship to people</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>Context, because it was settled before the participant enrolled</span></button></div><div class="fb"><b>Why:</b> FPF decides who receives mentorship, so it is the lever. It is not something watched in place of an outcome, and it is not fixed before enrolment. FPF does not exist to provide mentorship either; it provides mentorship so that participants find work. Part 2 follows the same decision into the file.</div></div>
+<div class="kc" data-id="p1-k2" data-h="b841025c"><span class="tag">Practice 2</span><p class="q">Regional unemployment is published quarterly and is not in the file. What is it for the mentorship decision?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>A signal, because it can be watched every quarter</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>An outcome, because reducing it is what FPF exists to do</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>Context, because it shapes the result and FPF cannot move it</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>Irrelevant, because a decision can only use what is in the file</span></button></div><div class="fb"><b>Why:</b> FPF cannot move regional unemployment within its planning horizon, and it shapes how many participants find work whatever the programme does. Something can be watched every quarter without being a signal, because a signal stands in for an outcome FPF is trying to produce. And a decision may use anything that bears on it, whether or not it was recorded in the file.</div></div>
+<div class="kc" data-id="p1-k3" data-h="9fce8076"><span class="tag">Practice 3</span><p class="q">Apply the one-question test to attendance_pct. Which is right?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>An outcome, because attending is worth having for its own sake</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>A signal, because nobody wants attendance if it leads nowhere</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>A fact for one decision and an outcome for the other</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>Neither, because it is recorded as a percentage rather than a count</span></button></div><div class="fb"><b>Why:</b> Nobody runs a programme in order to produce attendance, so it fails the one-question test and is not an outcome. It is watched because it is meant to stand in for engagement, which is what Part 3 examines. It is a fact in the table, but that is a separate question from the role it plays. The unit makes no difference either, because the one-question test asks what you want the item for, not how it was recorded.</div></div>
+<div class="kc" data-id="p1-k4" data-h="3bee6a60"><span class="tag">Practice 4</span><p class="q">In one internal memo, FPF writes that average attendance was 93.13 percent. In a second memo it compares placement between higher and lower attenders. What has happened to attendance_pct?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>It has been used first as a fact, then as a dimension</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>It has been used incorrectly in one of the two places</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>It has changed from a signal into an outcome between them</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>It has been converted from a percentage into a category</span></button></div><div class="fb"><b>Why:</b> The values never changed. In the first use the column is the thing being measured; in the second it is the thing being sliced by. Both uses are legitimate, and the role it plays for the decision, signal rather than outcome, is the same in both.</div></div>
+<div class="kc" data-id="p1-k5" data-h="338f8962"><span class="tag">Practice 5</span><p class="q">Which of these four can be added up across participants without producing a meaningless number?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>employer_partnership_strength, once its levels are coded 1 to 4</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>attendance_pct, because every value is on the same percentage scale</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>location_category, by counting rural as one and urban as zero</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>salary, because two salaries together make a wage bill</span></button></div><div class="fb"><b>Why:</b> Salary totals to something real. A rate cannot be totalled, an ordered category has no equal steps, and a dimension is not a quantity at all.</div></div>
+<div class="kc" data-id="p1-k6" data-h="f3b391d8"><span class="tag">Practice 6</span><p class="q">FPF switches from the mentorship decision to the reporting decision. Which of these items now does no work?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>salary, because funders are not told what participants earn</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>education, because the report is not broken down by education</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>mentorship, because the report is not broken down by who was mentored</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>None of them; both decisions need all eight items</span></button></div><div class="fb"><b>Why:</b> The report is broken down by education and by nothing else, so it never compares the mentored with the unmentored. Salary and education are both in it. For the mentorship decision, mentorship is the whole point.</div></div>
+<div class="score">Practice questions answered: <b id="scoreN">0</b>. Correct first time: <b id="scoreC">0</b>.</div>
+
+<h3>Write it out</h3>
+<p>The same situation. There is no single correct answer to these. Write yours first, then compare.</p>
+<div class="resp"><div class="p">Four items from Homework 1, which are not in the file. Sort them into the five roles, and give a reason for each that is not a restatement of the item: number of employers offering interviews; participants gaining technical AI skills; social norms discouraging rural women from enrolling; employment stability at one year.</div><textarea rows="3" placeholder="Write your answer"></textarea><div class="f"><button class="rev" type="button">Compare with a model answer</button></div><div class="ans"><span class="k">Model answer</span>Number of employers offering interviews is a signal. FPF does not exist to generate interviews, and the number can be raised by approaching more employers of lower quality, which is exactly what a signal allows someone to do. Participants gaining technical AI skills is a mechanism. It is what has to happen inside a person between the training and the job, and it is wanted because of what it leads to rather than for itself, although a participant might reasonably call it an outcome. Social norms discouraging rural women from enrolling is context. It shapes who enrols and FPF cannot change it in a year, though it could work around it by changing where it recruits. Employment stability at one year is an outcome. It is wanted on its own terms, and it is the thing the placement rate is standing in for.</div></div>
+<div class="resp"><div class="p">Take employer_partnership_strength. Say what role it plays for the mentorship decision, what role it plays for the reporting decision, and one thing you are not allowed to do with it in either.</div><textarea rows="3" placeholder="Write your answer"></textarea><div class="f"><button class="rev" type="button">Compare with a model answer</button></div><div class="ans"><span class="k">Model answer</span>For the mentorship decision it is context. FPF builds partnerships, so their strength is not fixed in general, but nothing in the mentorship decision moves it, and it shapes how many participants are placed, so it belongs in the comparison rather than in the decision. For the reporting decision it is closer to a signal, because a funder reading that partnerships are strong takes it as evidence that placements will follow; and it is arguably an outcome for the partnerships team, who are judged on it directly. In neither case may it be averaged. Its levels are ordered, so a partnership at very high ranks above one at low, but nothing establishes that the step from low to high is the same size as the step from high to very high, so a mean of the coded values is a number with no referent.</div></div>
+<div class="resp"><div class="p">A funder asks FPF for one number to report as the evidence that the programme is working. Name the number you would report, say which role it plays, and give the strongest argument against your own choice.</div><textarea rows="3" placeholder="Write your answer"></textarea><div class="f"><button class="rev" type="button">Compare with a model answer</button></div><div class="ans"><span class="k">Model answer</span>I would report the share of participants in work one year after finishing. It is the closest thing in reach to an outcome, since it is wanted for its own sake rather than as evidence of something else, and it is harder to move without doing the underlying work than a placement rate measured at three months. The strongest argument against it is timing. It is a year late, which makes it useless for steering: by the time the figure is known, the cohort it describes has finished and the decisions it should have informed have been made. That is the whole reason signals exist. A funder who wants one number and wants it now is asking for a signal, and the honest response is to give the signal, name what it stands in for, and say what could push it up without the outcome improving.</div></div>
+
+</section>
+
+<div class="pn"><div><a href="index.html"><span>Previous</span>Start here</a></div><div style="text-align:right"><a href="part2.html"><span>Next</span>Part 2. What one row is</a></div></div>
+<div class="end">Nothing you type on this page is stored. Use Print or save PDF to keep your answers.</div>
+</main>
+</div>
+<script>
+var toc=document.getElementById('toc'),scrim=document.getElementById('scrim'),tb=document.getElementById('tocBtn');
+function closeToc(){toc.classList.remove('open');scrim.classList.remove('on');tb.setAttribute('aria-expanded','false');}
+tb.addEventListener('click',function(){var o=toc.classList.toggle('open');scrim.classList.toggle('on',o);
+ tb.setAttribute('aria-expanded',o?'true':'false');});
+scrim.addEventListener('click',closeToc);
+toc.addEventListener('click',function(e){if(e.target.tagName==='A'&&window.innerWidth<=980)closeToc();});
+document.getElementById('printBtn').addEventListener('click',function(){window.print();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeToc();});
+var links=[].slice.call(toc.querySelectorAll('a')),
+    secs=links.map(function(a){var h=a.getAttribute('href');return h.charAt(0)==='#'?document.getElementById(h.slice(1)):null;}),
+    prog=document.getElementById('prog');
+function onScroll(){var h=document.documentElement,sc=h.scrollTop||document.body.scrollTop,max=h.scrollHeight-h.clientHeight;
+ prog.style.width=(max>0?sc/max*100:0)+'%';
+ var cur=0;for(var i=0;i<secs.length;i++){if(secs[i]&&secs[i].getBoundingClientRect().top<140)cur=i;}
+ links.forEach(function(a,i){a.classList.toggle('on',i===cur);});}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ---- knowledge checks. The correct option is stored as a hash, not as an index. ---- */
+function fnv(s){var h=0x811c9dc5;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=(h+((h<<1)+(h<<4)+(h<<7)+(h<<8)+(h<<24)))>>>0;}return ('0000000'+h.toString(16)).slice(-8);}
+var answered=0,correct=0;
+document.querySelectorAll('.kc').forEach(function(card){
+ var want=card.dataset.h,id=card.dataset.id,done=false;
+ card.querySelectorAll('.opt').forEach(function(btn){btn.addEventListener('click',function(){
+  if(done)return;done=true;
+  var ok=fnv(id+':'+btn.dataset.a)===want;
+  card.querySelectorAll('.opt').forEach(function(b){b.disabled=true;if(fnv(id+':'+b.dataset.a)===want)b.classList.add('right');});
+  if(!ok)btn.classList.add('wrong');
+  card.querySelector('.fb').classList.add('on');
+  answered++;if(ok)correct++;
+  var n=document.getElementById('scoreN'),c=document.getElementById('scoreC');
+  if(n)n.textContent=answered;if(c)c.textContent=correct;});});});
+document.querySelectorAll('.rev').forEach(function(b){b.addEventListener('click',function(){
+ var a=b.closest('.resp').querySelector('.ans'),on=a.classList.toggle('on');
+ b.textContent=on?'Hide the model answer':'Compare with a model answer';});});
+
+</script>
+</body>
+</html>
