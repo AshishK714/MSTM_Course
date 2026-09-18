@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practice set</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+ --ink:#1B1720;--soft:#584F5E;--paper:#F8F6F8;--card:#FFFFFF;--rule:#DFD8E0;--rule-soft:#EDE8EE;
+ --accent:#6B2D52;--accent-wash:#F3E9EF;--accent-soft:#A8749A;
+ --lost:#B9AEBE;--lost-wash:#F1EDF2;
+ --ok-bg:#CBEBD5;--ok-ink:#0C5E2D;--no-bg:#F7E0DD;--no-ink:#9A3226;
+ --serif:"Newsreader",Georgia,serif;--sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,sans-serif;}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:19px;line-height:1.66}
+@media (max-width:640px){body{font-size:17.5px}}
+.bar{position:sticky;top:0;z-index:60;background:rgba(248,246,248,.95);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:1160px;margin:0 auto;padding:.55rem 1rem;display:flex;align-items:center;gap:.7rem}
+.bar-t{font-family:var(--sans);font-size:.83rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-t span{color:var(--soft);font-weight:400}
+.bar-sp{flex:1}
+.btn{font-family:var(--sans);font-size:.79rem;font-weight:500;color:var(--ink);background:var(--card);border:1px solid var(--rule);
+ border-radius:5px;padding:.34rem .66rem;cursor:pointer;line-height:1.3}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.prog{position:absolute;left:0;bottom:-1px;height:2px;background:var(--accent);width:0}
+@media (max-width:560px){.bar-t span{display:none}.btn{padding:.3rem .5rem;font-size:.73rem}}
+.shell{max-width:1160px;margin:0 auto;padding:0 1rem;display:grid;grid-template-columns:214px minmax(0,1fr);gap:2.6rem;align-items:start}
+@media (max-width:980px){.shell{grid-template-columns:minmax(0,1fr);gap:0}}
+nav.toc{position:sticky;top:3.6rem;padding:1.7rem 0 3rem;font-family:var(--sans);font-size:.78rem;
+ max-height:calc(100vh - 5rem);overflow-y:auto;overscroll-behavior:contain}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc a{display:block;padding:.26rem .5rem;color:var(--soft);text-decoration:none;border-left:2px solid transparent;border-radius:0 3px 3px 0;line-height:1.35}
+nav.toc a:hover{color:var(--ink);background:#F0EAF1}
+nav.toc a.on{color:var(--accent);border-left-color:var(--accent);background:var(--accent-wash);font-weight:500}
+@media (max-width:980px){nav.toc{position:fixed;inset:0 0 0 auto;width:min(305px,86vw);background:var(--card);border-left:1px solid var(--rule);
+ padding:1rem 1rem 3rem;z-index:70;transform:translateX(100%);transition:transform .22s ease;box-shadow:-14px 0 34px rgba(27,23,32,.12);max-height:none}
+ nav.toc.open{transform:none}}
+.scrim{display:none}
+@media (max-width:980px){.scrim.on{display:block;position:fixed;inset:0;background:rgba(27,23,32,.34);z-index:65}}
+main{padding:2.2rem 0 6rem;max-width:70ch}
+h1{font-weight:500;font-size:2.5rem;line-height:1.12;letter-spacing:-.015em;margin:.4rem 0 .3rem}
+@media (max-width:640px){h1{font-size:1.95rem}}
+.dek{font-size:1.18rem;color:var(--soft);margin:0 0 1.3rem;line-height:1.45}
+h2{font-weight:500;font-size:1.62rem;line-height:1.22;margin:3rem 0 .9rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+h2 .n{font-family:var(--sans);font-size:.71rem;font-weight:600;color:var(--accent);display:block;margin-bottom:.28rem;letter-spacing:.04em}
+h3{font-weight:600;font-size:1.13rem;margin:1.9rem 0 .5rem;line-height:1.3}
+h4{font-family:var(--sans);font-weight:600;font-size:.86rem;margin:1.35rem 0 .45rem;color:var(--soft)}
+p{margin:0 0 1.05rem} ul{margin:0 0 1.1rem;padding-left:1.15rem} li{margin:0 0 .5rem}
+.box{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:1rem 1.1rem;margin:1.7rem 0;background:var(--card)}
+.box h4{margin:0 0 .5rem;font-size:.82rem;color:var(--accent);letter-spacing:.02em}
+.box p{font-size:.96rem;margin-bottom:.6rem} .box p:last-child{margin-bottom:0}
+.box.principle{background:var(--accent-wash)}
+.box.warn{background:#FBF1E6;border-left-color:#A9772A} .box.warn h4{color:#A9772A}
+.tw{overflow-x:auto;margin:1.3rem 0}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.84rem;font-variant-numeric:tabular-nums;background:var(--card)}
+@media (max-width:640px){table{font-size:.77rem}}
+th{background:var(--accent-wash);font-weight:600;text-align:left;padding:.46rem .6rem;border:1px solid var(--rule);white-space:nowrap;color:var(--accent)}
+td{padding:.42rem .6rem;border:1px solid var(--rule)}
+table.txt td{white-space:normal}
+caption{caption-side:bottom;font-family:var(--sans);font-size:.74rem;color:var(--soft);text-align:left;padding-top:.45rem;line-height:1.4}
+td.win{background:var(--ok-bg);color:var(--ok-ink);font-weight:600}
+td.lose{background:var(--no-bg);color:var(--no-ink);font-weight:600}
+/* signature device: what the summary threw away */
+.lostbox{border:1px dashed var(--lost);background:var(--lost-wash);border-radius:6px;padding:.6rem .8rem;margin:.9rem 0;
+ font-family:var(--sans);font-size:.82rem;color:var(--soft);line-height:1.5}
+.lostbox b{font-family:var(--sans);font-size:.67rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+ color:var(--lost);display:block;margin-bottom:.25rem}
+.demo{background:var(--card);border:1px solid var(--rule);border-radius:8px;margin:1.9rem 0;overflow:hidden}
+.demo-h{padding:.9rem 1.1rem .2rem}
+.demo-h h4{margin:0 0 .25rem;font-size:.83rem;color:var(--ink)}
+.demo-h p{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:0 0 .75rem;line-height:1.45}
+.pick{display:flex;flex-wrap:wrap;gap:.38rem;padding:0 1.1rem .85rem}
+.pk{font-family:var(--sans);font-size:.77rem;font-weight:500;padding:.42rem .7rem;border-radius:5px;border:1px solid var(--rule);
+ background:var(--paper);color:var(--soft);cursor:pointer;line-height:1.25}
+.pk:hover{color:var(--ink)}
+.pk[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.pk:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.demo-body{padding:0 1.1rem}
+.demo-out{border-top:1px solid var(--rule);background:var(--paper);padding:.85rem 1.1rem}
+.demo-out .k{font-family:var(--sans);font-size:.68rem;font-weight:600;color:var(--soft);margin-bottom:.3rem}
+.demo-out .v{font-size:1rem;line-height:1.5}
+.flag{font-family:var(--sans);font-size:.82rem;line-height:1.5;padding:.55rem .7rem;border-radius:5px;margin-top:.6rem}
+.flag.bad{background:var(--no-bg);color:var(--no-ink)}
+.flag.good{background:var(--ok-bg);color:var(--ok-ink)}
+.flag.neutral{background:var(--accent-wash);color:var(--accent)}
+svg.hist{width:100%;height:160px;display:block}
+.kc{background:var(--card);border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:.95rem 1.05rem;margin:1.8rem 0}
+.kc .tag{font-family:var(--sans);font-size:.66rem;font-weight:600;color:var(--accent);letter-spacing:.05em;display:block;margin-bottom:.35rem}
+.kc .q{font-size:1rem;line-height:1.45;margin:0 0 .7rem;font-weight:500}
+.opts{display:grid;gap:.34rem;margin-bottom:.5rem}
+.opt{display:flex;gap:.55rem;align-items:flex-start;font-family:var(--sans);font-size:.87rem;line-height:1.42;text-align:left;
+ padding:.5rem .65rem;border:1px solid var(--rule);border-radius:5px;background:var(--paper);color:var(--ink);cursor:pointer;width:100%}
+.opt:hover:not([disabled]){border-color:var(--accent-soft)}
+.opt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.opt .ltr{font-weight:600;color:var(--soft);flex:0 0 auto}
+.opt.right{background:var(--ok-bg);border-color:#8CCBA1;color:var(--ok-ink)} .opt.right .ltr{color:var(--ok-ink)}
+.opt.wrong{background:var(--no-bg);border-color:#DDA79E;color:var(--no-ink)} .opt.wrong .ltr{color:var(--no-ink)}
+.opt[disabled]{cursor:default}
+.fb{display:none;font-family:var(--sans);font-size:.84rem;line-height:1.5;padding:.55rem .7rem;border-radius:5px;background:var(--accent-wash);color:var(--ink)}
+.fb.on{display:block} .fb b{color:var(--accent)}
+.resp{border:1px solid var(--rule);border-radius:6px;background:var(--card);margin:0 0 .7rem;overflow:hidden}
+.resp .p{padding:.65rem .8rem .35rem;font-size:.97rem;line-height:1.5}
+.resp textarea{width:100%;border:none;border-top:1px solid var(--rule-soft);padding:.6rem .8rem;font-family:var(--serif);font-size:.95rem;
+ line-height:1.5;resize:vertical;min-height:3.4rem;background:transparent;color:var(--ink);display:block}
+.resp textarea:focus{outline:2px solid var(--accent);outline-offset:-2px;background:#FEFDFE}
+.resp .f{padding:.35rem .8rem .5rem;border-top:1px solid var(--rule-soft)}
+.rev{font-family:var(--sans);font-size:.75rem;font-weight:500;color:var(--accent);background:none;border:none;cursor:pointer;
+ padding:.15rem 0;text-decoration:underline;text-underline-offset:2px}
+.rev:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ans{display:none;padding:.55rem .8rem .7rem;background:var(--accent-wash);border-top:1px solid var(--rule-soft);font-size:.93rem;line-height:1.5}
+.ans.on{display:block}
+.ans .k{font-family:var(--sans);font-size:.66rem;font-weight:600;color:var(--accent);display:block;margin-bottom:.2rem}
+.score{font-family:var(--sans);font-size:.82rem;color:var(--soft);background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:.6rem .8rem;margin:1.6rem 0}
+.score b{color:var(--accent);font-size:1.05rem}
+.end{font-family:var(--sans);font-size:.78rem;color:var(--soft);border-top:1px solid var(--rule);margin-top:3.4rem;padding-top:1rem;line-height:1.5}
+.ref{font-family:var(--sans);font-size:.72rem;color:var(--soft);vertical-align:super}
+@media print{.bar,nav.toc,.scrim,.rev,.pick,.opt,.btn{display:none!important}
+ body{background:#fff;font-size:11pt}.shell{display:block;max-width:none;padding:0}main{max-width:none;padding:0}
+ .resp textarea{border:1px solid #999;background:#fff;min-height:3.2rem}
+ table,.box,.demo,.kc,.lostbox{break-inside:avoid}h2{break-after:avoid}}
+
+/* ---- study guide additions ---- */
+.gnav{font-family:var(--sans);font-size:.78rem;color:var(--soft);display:flex;flex-wrap:wrap;gap:.2rem .9rem;margin:0 0 1.4rem;padding:0 0 .8rem;border-bottom:1px solid var(--rule)}
+.gnav a{color:var(--soft);text-decoration:none;padding:.15rem 0;border-bottom:2px solid transparent}
+.gnav a:hover{color:var(--ink)}
+.gnav a.here{color:var(--accent);border-bottom-color:var(--accent);font-weight:500}
+.pn{display:flex;justify-content:space-between;gap:1rem;font-family:var(--sans);font-size:.84rem;margin:2.6rem 0 0;padding-top:1rem;border-top:1px solid var(--rule)}
+.pn a{color:var(--accent);text-decoration:none}
+.pn a:hover{text-decoration:underline}
+.pn span{color:var(--soft);display:block;font-size:.7rem;margin-bottom:.15rem}
+.date{font-family:var(--sans);font-size:.92rem;font-weight:500;color:var(--accent);background:var(--accent-wash);border:1px solid var(--rule);border-radius:6px;padding:.6rem .9rem;margin:0 0 1.6rem}
+.grid{display:grid;grid-template-columns:1fr;gap:.7rem;margin:1.2rem 0 1.6rem}
+.part{display:block;border:1px solid var(--rule);border-radius:6px;padding:.8rem 1rem;background:var(--card);text-decoration:none;color:var(--ink)}
+.part:hover{border-color:var(--accent)}
+.part b{display:block;font-family:var(--sans);font-size:.72rem;color:var(--accent);letter-spacing:.04em;margin-bottom:.2rem}
+.part strong{font-weight:500;font-size:1.05rem;display:block;margin-bottom:.25rem}
+.part span{font-family:var(--sans);font-size:.84rem;color:var(--soft);line-height:1.45}
+.part ul{font-family:var(--sans);font-size:.8rem;color:var(--soft);margin:.5rem 0 0;padding-left:1.1rem}
+.part li{margin:0 0 .18rem}
+.src{font-family:var(--sans);font-size:.76rem;color:var(--soft);margin:-.4rem 0 1rem}
+.gnav .soon{color:var(--lost);padding:.15rem 0}
+.pn em{font-style:normal;color:var(--soft)}
+.part.soon{opacity:.62;pointer-events:none}
+.part .tag{font-family:var(--sans);font-size:.7rem;color:var(--lost);display:block;margin-top:.4rem}
+.note{font-family:var(--sans);font-size:.84rem;color:var(--soft);margin:-1rem 0 1.6rem;line-height:1.5}
+
+/* the mini-case that opens a practice section */
+.case{border:1px solid var(--rule);border-radius:6px;padding:1.05rem 1.15rem .5rem;margin:1.5rem 0 2rem;background:var(--accent-wash)}
+.case h4{margin:0 0 .55rem;font-size:.82rem;color:var(--accent);letter-spacing:.02em}
+.case p{font-size:.96rem;margin:0 0 .6rem}
+.case .tw{margin:.9rem 0 1rem}
+.case table{background:var(--card)}
+
+/* die-throw simulator, appendix only */
+.sim{border:1px solid var(--rule);border-radius:6px;padding:1rem 1.1rem;margin:1.4rem 0;background:var(--card)}
+.sim-row{display:flex;flex-wrap:wrap;gap:.5rem .8rem;align-items:center;font-family:var(--sans);font-size:.82rem;color:var(--soft)}
+.sim-row select{font-family:var(--sans);font-size:.82rem;padding:.3rem .4rem;border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--ink)}
+.sim-out{display:flex;flex-wrap:wrap;gap:1.4rem;margin:1rem 0 .4rem;font-family:var(--sans)}
+.sim-out span{display:flex;flex-direction:column;font-size:.72rem;color:var(--soft);letter-spacing:.02em}
+.sim-out b{font-size:1.28rem;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.25}
+.sim-chart .bars{display:flex;align-items:flex-end;gap:2px;height:110px;margin:.7rem 0 .25rem}
+.sim-chart .bars i{flex:1;background:var(--accent-soft);border-radius:2px 2px 0 0;min-height:1px}
+.sim-chart .axis{display:flex;justify-content:space-between;font-family:var(--sans);font-size:.7rem;color:var(--soft);border-top:1px solid var(--rule);padding-top:.25rem}
+.sim-note{font-family:var(--sans);font-size:.78rem;color:var(--soft);margin:.6rem 0 0}
+
+</style>
+</head>
+<body>
+<div class="bar"><div class="bar-in">
+ <div class="bar-t">Midterm Study Guide <span>&nbsp;Practice set</span></div>
+ <div class="bar-sp"></div>
+ <button class="btn" id="printBtn" type="button">Print or save PDF</button>
+ <button class="btn" id="tocBtn" type="button" aria-expanded="false">Contents</button>
+</div><div class="prog" id="prog"></div></div>
+<div class="scrim" id="scrim"></div>
+<div class="shell">
+<nav class="toc" id="toc" aria-label="Contents"><ol>
+<li><a href="#checks">Check yourself</a></li>
+<li><a href="#tasks">Four tasks</a></li>
+</ol></nav>
+<main>
+<div class="gnav"><a href="index.html">Start</a><a href="part1.html">Part 1</a><a href="part2.html">Part 2</a><a href="part3.html">Part 3</a><a href="part4.html">Part 4</a><a href="part5.html">Part 5</a><a href="closing.html">Closing</a><a href="appendix.html">Appendix</a><a href="practice.html" class="here">Practice set</a></div>
+
+<h1>Practice set</h1>
+<p class="dek">One dataset you have not seen, eight questions and four written tasks.</p>
+
+<p>One dataset you have not seen, and four kinds of task. The four are the shapes the homeworks used: sort items and justify the sorting, compute a figure and apply a stated rule to it, write the strongest honest case on each side, and audit somebody else's claim. Everything on this page draws on Parts 1 to 5, and none of it needs the FPF file.</p>
+<p>Read the description once. Then work the questions with it in front of you, and write the four tasks out properly rather than in your head, because you find out whether you can use an idea under exam conditions only by writing it out.</p>
+
+<section id="checks">
+<h2><span class="n">Check yourself</span>Eight questions</h2>
+<p>These mark themselves. They run across all five parts, in no particular order, as the exam will.</p>
+<div class="case"><h4>The dataset</h4><p>Verdance Bikes runs a public bike-share scheme for a city council. Members take a bike from a docking station, ride, and return it to another docking station. The council pays Verdance a fee per quarter and wants to know whether the scheme is worth renewing.</p><p>You have the trip file for one quarter, April to June, 91 days. It has one row for each trip that ended at a docking station, with the bike, the starting station, the ending station, the start time, the duration in minutes, the membership type, and whether the bike was flagged for repair when it was returned. Every rider holds an account, annual or casual, so the registered members below include both kinds, and so does the count of those who rode. Vans that move bikes between stations are logged separately and produce no trip row.</p><div class="tw"><table class="txt"><thead><tr><th>What was recorded</th><th>Value</th></tr></thead><tbody><tr><td>Trips in the file</td><td>412,000</td></tr><tr><td>Of those, by annual members</td><td>318,000</td></tr><tr><td>Of those, by casual members</td><td>94,000</td></tr><tr><td>Registered members</td><td>18,400</td></tr><tr><td>Members who took at least one trip</td><td>11,040</td></tr><tr><td>Bikes in the fleet</td><td>1,200</td></tr><tr><td>Docking stations</td><td>90</td></tr><tr><td>Trips ending with a repair flag</td><td>2,140</td></tr><tr><td>Trips starting at the busiest station</td><td>9,800</td></tr><tr><td>Van moves between stations</td><td>27,500</td></tr></tbody></table></div>
+<div class="tw"><table><thead><tr><th>Trip duration</th><th>Trips</th></tr></thead><tbody><tr><td>4 to 14 minutes</td><td>289,000</td></tr><tr><td>25 to 45 minutes</td><td>123,000</td></tr></tbody><caption>Mean duration is 16.3 minutes and the median is 11.</caption></table></div>
+<p>Three things are true of the scheme and are not in the trip file. A bike left outside the network is not returned to a dock, so the trip has no end and no row; there were 3,100 recoveries of bikes from the street during the quarter. Bikes withdrawn for repair are out of the fleet until they are fixed, and the file records the flag but not the days lost. And the council cares about trips that would otherwise have been made by car, which nobody has ever measured.</p></div>
+<div class="kc" data-id="ps-k1" data-h="e09fb4fb"><span class="tag">Practice 1</span><p class="q">What does one row of the trip file represent?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>One member of the scheme during the quarter</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>One bike during the quarter, with its trips summarised</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>One trip that ended at a docking station</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>One ride taken by a member, whether or not it ended at a dock</span></button></div><div class="fb"><b>Why:</b> The file was built from dock returns, and the 3,100 street recoveries are rides of a kind that produced no row. A row is not a member and not a bike either: one member and one bike each appear on many rows.</div></div>
+<div class="kc" data-id="ps-k2" data-h="4136ebec"><span class="tag">Practice 2</span><p class="q">Verdance wants to decide, for each station and each hour, whether to send a van. What does that decision need?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>One row per station and hour, which this file can be folded into</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>One row per bike, which this file does not contain</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>One row per member, which this file does not contain</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>Nothing more; 412,000 trips is enough for any question about stations</span></button></div><div class="fb"><b>Why:</b> Each trip has a start station and a start time recorded on it, so the trips can be counted into station-hours. The finer rows already exist, which is what makes the coarser table available.</div></div>
+<div class="kc" data-id="ps-k3" data-h="b6b02ed8"><span class="tag">Practice 3</span><p class="q">Verdance reports trips per bike per day, which is 3.77. For the council's decision, what role does that figure play?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>An outcome for the council, which is paying for the trips themselves</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>A signal, watched because the thing the council wants arrives later</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>Context, because Verdance cannot change how often bikes are used</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>A mechanism, because it explains why members keep their membership</span></button></div><div class="fb"><b>Why:</b> The council wants trips shifted out of cars, and that is not in the file. Trips per bike is watched instead, and it can be raised by shrinking the fleet. A mechanism is something that happens inside a person, so D is the wrong kind of thing: a count is not a reason a member rides again.</div></div>
+<div class="kc" data-id="ps-k4" data-h="968560a3"><span class="tag">Practice 4</span><p class="q">A councillor asks how much the scheme is used per member. What should the report do?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>Divide by the 1,200 bikes, which are what the council pays for</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>Divide by the 11,040 who rode, and print 37.3 trips each</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>Divide by the 18,400 registered, because that is who it is for</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>Give either figure, and say which denominator produced it</span></button></div><div class="fb"><b>Why:</b> 412,000 over 18,400 is 22.4 and over 11,040 is 37.3. Both are honest and they answer different questions. What is not honest is printing one without saying which.</div></div>
+<div class="kc" data-id="ps-k5" data-h="1d12460a"><span class="tag">Practice 5</span><p class="q">Duration is measured from the moment the bike leaves one dock to the moment it enters another. What does that measure include?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>Only the time the member was riding the bike</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>Time the bike was stopped and locked partway through</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>The time the member waited for a bike to become free</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>Time the bike spent being moved between stations by van</span></button></div><div class="fb"><b>Why:</b> Nothing in the measurement separates riding from standing. A member who stops for twenty minutes produces a long trip, and so does a member who rides for twenty minutes. The wait for a bike happens before the bike leaves the dock, so C is outside the measured interval, and van moves are logged separately, so D is not in this column at all.</div></div>
+<div class="kc" data-id="ps-k6" data-h="7e826f1e"><span class="tag">Practice 6</span><p class="q">The 3,100 street recoveries produced no trip row. What follows for a figure computed from the file?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>It is wrong, and should be recomputed once those trips have been added in</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>It is unaffected, because 3,100 is small against 412,000</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>It describes trips that ended at a dock, which is a narrower group</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>It overstates duration, because those trips were the longest ones</span></button></div><div class="fb"><b>Why:</b> Those rides are not rows, so nothing computed from the file can describe them. They cannot be added back either, because no end time was ever recorded.</div></div>
+<div class="kc" data-id="ps-k7" data-h="7560bf7a"><span class="tag">Practice 7</span><p class="q">Mean duration is 16.3 minutes and the median is 11. Using the duration table, what is the best account of that gap?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>A recording error in the longer trips has inflated the mean</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>Most trips last about 16 minutes, with a few much shorter and a few longer</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>Duration is recorded in whole minutes, which raises the mean</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>There are two groups of trips, and 16.3 describes neither well</span></button></div><div class="fb"><b>Why:</b> 289,000 trips run 4 to 14 minutes and 123,000 run 25 to 45. 16.3 is between the two groups, and no trip in the file lasts 16 minutes.</div></div>
+<div class="kc" data-id="ps-k8" data-h="d3d0e3d5"><span class="tag">Practice 8</span><p class="q">Verdance proposes one chart for the council showing mean duration by month. What would the council not be able to see?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>Whether the mean in April was higher than the mean in June</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>That the trips fall into two groups of very different length</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>Which of the three months had the longest mean trip</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>The direction of the change in mean duration across the quarter</span></button></div><div class="fb"><b>Why:</b> A mean per month is three numbers, so A, C and D can all be read straight off the chart. The two groups are inside every month, and they are visible at once in a histogram of duration.</div></div>
+<div class="score">Practice questions answered: <b id="scoreN">0</b>. Correct first time: <b id="scoreC">0</b>.</div>
+
+</section>
+
+<section id="tasks">
+<h2><span class="n">Four tasks</span>Write these out</h2>
+<p>The same dataset. Each task is one of the four shapes the homeworks used. There is no single correct answer; write yours before opening the model.</p>
+
+<h3>1. Sort and justify</h3>
+<div class="resp"><div class="p">Sort these six into the five roles from Part 1, which are activity, signal, outcome, context and mechanism, and give a reason for each that is not a restatement of the item. Two of them are close calls; say which and why. The items: bikes moved between stations by van; trips per bike per day; the number of car trips the scheme replaces; a wet April; a member coming to feel confident riding in traffic; the repair flag.</div><textarea rows="3" placeholder="Write your answer"></textarea><div class="f"><button class="rev" type="button">Compare with a model answer</button></div><div class="ans"><span class="k">Model answer</span>Bikes moved by van is an activity. It is the thing Verdance can change, and each move costs money. Trips per bike per day is a signal. Nobody wants it for itself, and Verdance can raise it by shrinking the fleet, which is the weakness of any signal. Car trips replaced is the outcome. It is what the council is buying, it is wanted for its own sake, and it is measured by nobody. A wet April is context. It affects how many trips are taken, and nobody can change it within the quarter. Coming to feel confident in traffic is a mechanism. It is what has to happen inside a person between the activity and the outcome, and it explains why a member rides again. The close calls are the repair flag and trips per bike. The repair flag is an activity from the workshop's side, since somebody decides to flag and fix, and a signal from the council's side, since the council can use a rising flag rate as a proxy for a fleet in worse condition. Trips per bike is a signal for the council and closer to an outcome for Verdance, whose fee may depend on it.</div></div>
+
+
+<h3>2. Compute and choose against a rule</h3>
+<div class="resp"><div class="p">The council has a rule: it will fund a new docking station at a location only if the stations already there are handling more than 5 percent of all trips between them. Verdance points at the busiest station, with 9,800 trips, and asks for a new station beside it. Work out the figure you can compute from what you have, say whether it settles the rule, and say what else you would need before applying it.</div><textarea rows="3" placeholder="Write your answer"></textarea><div class="f"><button class="rev" type="button">Compare with a model answer</button></div><div class="ans"><span class="k">Model answer</span>9,800 of 412,000 is 2.4 percent of starts, so on starts alone the rule is not met. But the rule is about the stations already at a location, plural, so the figure to compute is the share of trips starting at all the stations near that one, which the file can give by grouping the start station column. Three things would settle it. Whether handling counts arrivals as well as departures, since every row has an ending station too, and counting both could roughly double the figure. Whether the 5 percent is of all trips or of trips in that part of the city, since 5 percent of a citywide total is a high bar that perhaps no location meets. And whether the station is busy because demand is high or because it is one of the few stations in that area, which is the difference between a rule that picks out where demand is high and one that funds the places already funded.</div></div>
+
+
+<h3>3. Two honest reports</h3>
+<div class="resp"><div class="p">Write the strongest honest case that the scheme is working, then the strongest honest case that it is not, using only the description. Then say which you believe and why. You may compute from the figures given; you may not bring in a figure from anywhere else.</div><textarea rows="3" placeholder="Write your answer"></textarea><div class="f"><button class="rev" type="button">Compare with a model answer</button></div><div class="ans"><span class="k">Model answer</span>Working: members took 412,000 trips in 91 days, which is 3.77 trips per bike per day across a fleet of 1,200. Annual members took 318,000 of those trips, 77.2 percent, so most of the demand is repeat use by committed members. Only 2,140 trips, about one in 200, ended with a repair flag, so the bikes are in reasonable condition. Not working: of 18,400 registered members, only 11,040 took any trip at all, so 40 percent of the people who signed up did not use it in three months. The median trip is 11 minutes, which is short enough that many could have been walked. Vans made 27,500 moves, roughly 23 per bike in the quarter, which is a substantial hidden cost. And there were 3,100 recoveries of bikes from the street. I believe the second case is closer, with one reservation. Both cases are about use. Neither is about what the council is paying for, which is car trips replaced. Nothing in this file measures that, so on the question actually asked the file cannot settle it either way, and the honest answer to the council is that the evidence they need was never collected.</div></div>
+
+
+<h3>4. Audit a claim</h3>
+<div class="resp"><div class="p">A consultant reports to the council: "Average trip duration is 16.3 minutes, and 77 percent of trips are taken by annual members, so the scheme has built a base of committed regular users. We recommend renewal." Audit it. Say what is true, what does not follow, and what you would ask for.</div><textarea rows="3" placeholder="Write your answer"></textarea><div class="f"><button class="rev" type="button">Compare with a model answer</button></div><div class="ans"><span class="k">Model answer</span>True: 16.3 minutes is the mean of the duration column, and 318,000 of 412,000 is 77.2 percent. What does not follow: the mean is the wrong summary here, because the trips fall into a group of 289,000 at 4 to 14 minutes and a group of 123,000 at 25 to 45, so 16.3 describes no trip in the file, and the consultant writes as though there were a typical rider. The 77 percent is a share of trips, not of people, and a small number of heavy users can produce it; it is consistent with a committed base and equally consistent with about 1,800 commuters riding twice a day while the rest ride rarely. The membership figures are evidence against it: 7,360 of 18,400 registered members took no trip at all. And renewal depends on car trips replaced, which is not in the file. I would ask for the spread of trips per member rather than the total alone, so the concentration is visible; for the duration distribution rather than its mean; and for whatever the council has on how members travelled before they joined, which is the only thing that bears on the recommendation.</div></div>
+
+</section>
+
+<div class="pn"><div><a href="appendix.html"><span>Previous</span>Appendix. Many trials</a></div><div style="text-align:right"></div></div>
+<div class="end">Nothing you type on this page is stored. Use Print or save PDF to keep your answers.</div>
+</main>
+</div>
+<script>
+var toc=document.getElementById('toc'),scrim=document.getElementById('scrim'),tb=document.getElementById('tocBtn');
+function closeToc(){toc.classList.remove('open');scrim.classList.remove('on');tb.setAttribute('aria-expanded','false');}
+tb.addEventListener('click',function(){var o=toc.classList.toggle('open');scrim.classList.toggle('on',o);
+ tb.setAttribute('aria-expanded',o?'true':'false');});
+scrim.addEventListener('click',closeToc);
+toc.addEventListener('click',function(e){if(e.target.tagName==='A'&&window.innerWidth<=980)closeToc();});
+document.getElementById('printBtn').addEventListener('click',function(){window.print();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeToc();});
+var links=[].slice.call(toc.querySelectorAll('a')),
+    secs=links.map(function(a){var h=a.getAttribute('href');return h.charAt(0)==='#'?document.getElementById(h.slice(1)):null;}),
+    prog=document.getElementById('prog');
+function onScroll(){var h=document.documentElement,sc=h.scrollTop||document.body.scrollTop,max=h.scrollHeight-h.clientHeight;
+ prog.style.width=(max>0?sc/max*100:0)+'%';
+ var cur=0;for(var i=0;i<secs.length;i++){if(secs[i]&&secs[i].getBoundingClientRect().top<140)cur=i;}
+ links.forEach(function(a,i){a.classList.toggle('on',i===cur);});}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ---- knowledge checks. The correct option is stored as a hash, not as an index. ---- */
+function fnv(s){var h=0x811c9dc5;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=(h+((h<<1)+(h<<4)+(h<<7)+(h<<8)+(h<<24)))>>>0;}return ('0000000'+h.toString(16)).slice(-8);}
+var answered=0,correct=0;
+document.querySelectorAll('.kc').forEach(function(card){
+ var want=card.dataset.h,id=card.dataset.id,done=false;
+ card.querySelectorAll('.opt').forEach(function(btn){btn.addEventListener('click',function(){
+  if(done)return;done=true;
+  var ok=fnv(id+':'+btn.dataset.a)===want;
+  card.querySelectorAll('.opt').forEach(function(b){b.disabled=true;if(fnv(id+':'+b.dataset.a)===want)b.classList.add('right');});
+  if(!ok)btn.classList.add('wrong');
+  card.querySelector('.fb').classList.add('on');
+  answered++;if(ok)correct++;
+  var n=document.getElementById('scoreN'),c=document.getElementById('scoreC');
+  if(n)n.textContent=answered;if(c)c.textContent=correct;});});});
+document.querySelectorAll('.rev').forEach(function(b){b.addEventListener('click',function(){
+ var a=b.closest('.resp').querySelector('.ans'),on=a.classList.toggle('on');
+ b.textContent=on?'Hide the model answer':'Compare with a model answer';});});
+
+</script>
+</body>
+</html>
