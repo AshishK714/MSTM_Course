@@ -21,7 +21,7 @@ PARTS = [
       'Survivorship: cases that were resolved earlier never became rows', 'A filter can be evidence',
       'Every number in this file describes people who enrolled and completed']),
     ('part5.html', 'Part 5', 'Summarising, and what it costs',
-     'What did this summary throw away, and would the decision change if I could see it?',
+     'What did this summary leave out, and would the decision change if I could see it?',
      ['Why summarise at all', 'Centre, spread, and which centre',
       'Percentiles, and the column with two clusters', 'Spread is a constructed metric',
       'Types, and a continuous world recorded in discrete steps', 'Two columns, three ways',

@@ -71,6 +71,9 @@ resp(prompt, model answer), score().
 2. Simple, descriptive sentences. No flashy phrases, no headlines, no wordplay in titles. A section
    title says what the section is about.
 3. Conventional academic register. British spelling, to match Reading Note 3 (summarise, centre, signalling).
+   Plain words in plain phrases. Where a short common word will do, use it. Do not reach for an idiom
+   when a plain verb is available: say what a summary leaves out, or loses, rather than what it
+   "throws away". That phrase is now a hard stop in build.py.
 4. No week numbers, class numbers or course codes in student-facing text. Say "in class" or "the
    in-class activity on denominators". Reading Notes and Homeworks are named by number.
 5. Every number is computed from the CSV files, never recalled or copied from a slide. Compute first,
@@ -78,6 +81,14 @@ resp(prompt, model answer), score().
 6. Nothing is said twice across parts. Where two sources cover one idea, use the clearer example and
    name the other in the "Where this was covered" line.
 7. Practice uses the examples students already know. The exam will use new ones.
+   Stronger form of the same rule, and it applies to the prose as well as the practice: anchor
+   every section and every practice item to a named Homework or to something that was discussed
+   in class, and say which in the "Where this was covered" line. Prefer a worked example students
+   sat through over a cleaner invented one, because the point of the guide is to reach what they
+   already remember. Do not invent a hospital, a college or a charity to carry an idea when the
+   FPF file, the trainer file, Homework 1, 2 or 3, or an in-class activity carries it. If nothing
+   taught covers the idea, that is a reason to ask AV whether it belongs in the guide at all,
+   not a reason to invent a setting for it.
 8. Each section: one idea, one named example with real numbers, a "Where this was covered" line, and
    the question to ask. 150 to 300 words of prose. Each part ends with about six self-marking items
    and three written prompts with model answers.

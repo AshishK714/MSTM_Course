@@ -60,6 +60,13 @@ def lost(text):
     return '<div class="lostbox"><b>What this leaves out</b>%s</div>\n' % text
 
 
+def case(title, paras, inner=''):
+    """The mini-case that opens a practice section: the situation, then its table.
+    Every practice item in the part is worked from this one case."""
+    return ('<div class="case"><h4>%s</h4>%s%s</div>\n'
+            % (title, ''.join('<p>%s</p>' % t for t in paras), inner))
+
+
 def table(head, rows, caption=None, txt=False):
     th = ''.join('<th>%s</th>' % h for h in head)
     body = ''.join('<tr>%s</tr>' % ''.join('<td>%s</td>' % c for c in r) for r in rows)
@@ -84,12 +91,14 @@ HARD = ['delve', 'leverage', 'robust', 'nuanced', 'landscape', 'journey', 'unpac
         "in today's fast-paced world", 'in the ever-evolving', 'in an increasingly', "let's dive in", 'buckle up',
         'when it comes to', 'needless to say', 'i hope this email finds you well', 'seamlessly',
         'stands as a testament', 'highlights the enduring', 'it is important to note', "it's important to note",
-        'in conclusion', 'furthermore', 'moreover']
+        'in conclusion', 'furthermore', 'moreover',
+        # AV, plainer wording: say what is lost, in ordinary words
+        'throw away', 'throws away', 'threw away', 'thrown away', 'throwing away']
 
 # Words that print a warning. Most are verbs that make an idea or an object into an actor.
 WATCH = ['sit', 'sits', 'reached', 'reaches', 'landed', 'lands', 'carries', 'carry', 'lives', 'hides', 'hiding',
          'tells you', 'tells us', 'says', 'speaks', 'reveals', 'unlocks', 'drives', 'shapes', 'captures',
-         'delivers', 'surfaces', 'leans on', 'ties together', 'lies in', 'points to', 'throws away', 'threw away',
+         'delivers', 'surfaces', 'leans on', 'ties together', 'lies in', 'points to',
          'travels', 'earns', 'invites', 'demands', 'rewards', 'punishes', 'betrays', 'whispers', 'matters',
          # added from STYLE.md. Section A: negative parallelism, formulaic openers, significance inflation.
          'not just', 'not only', "isn't just", 'is not just', "isn't merely", 'is not merely',

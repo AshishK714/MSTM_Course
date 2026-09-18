@@ -1,4 +1,4 @@
-from build import sec, ask, src, box, table, kc, resp, score, lost
+from build import sec, ask, src, box, table, kc, resp, score, lost, case
 
 P = 'p2'
 
@@ -67,75 +67,85 @@ s5 = sec('s5', '2.5', 'Grain in a file somebody else built', """
 + src('Homework 2, part 1, on stating what one row is.'))
 
 s6 = sec('s6', '2.6', 'Two things are called granularity', """
-<p>The word granularity is used for two separate choices, and confusing them causes trouble later.</p>
-<p>Row granularity is what one row represents. Everything above is about that. It follows from the comparison, as in 2.2, and once fixed it limits which questions the file can answer.</p>
-<p>Column granularity is how finely a value is recorded inside a row. The FPF file has three settings of it at once. Salary is recorded to the currency unit, which is why 1,912 employed participants have 1,884 distinct salaries between them. Attendance is recorded to the whole percentage point, so 5,000 participants share only 25 distinct attendance values, from 76 to 100. Prior experience is recorded as one of two bands, one to three years or four years and over, so a participant with eighteen months and a participant with thirty-four months are identical in the file.</p>
-<p>These are recording choices, made by whoever designed the form or the system, and they were made for reasons of cost and convenience. Someone decided that attendance to the nearest percent was close enough and that exact months of experience were not worth collecting.</p>
-<p>The one-way property holds for both kinds of granularity. A salary recorded to the unit can be banded into ranges at any point. A band cannot be turned back into a salary. What separates them is who decides and why. You choose the row granularity from the comparison you need, and whoever built the system chose the column granularity for reasons of cost and convenience.</p>
-<p>What a coarse column costs you, and when a band is the honest way to record something, belongs to Part 5.</p>
+<p>Granularity means two separate choices.</p>
+<p>Row granularity is what one row represents, and it follows from the comparison (2.2).</p>
+<p>Column granularity is how finely a value is recorded, and it decides which kind of variable you have: continuous, discrete, ordinal or categorical. Age was the example in class. Recorded in years and months it is continuous. Rounded to whole years it is discrete. Put into bands such as eighteen to twenty-five it is ordinal, because the bands have an order but the distance between them is not recorded. The age never changed. The type is a fact about the recording.</p>
+<p>Once ages are held in whole years, half a year, three quarters and a full year are all recorded as one year. The skill and effort a student brings to an exam vary continuously, and the recorded result may be only a pass or a fail, which is categorical.</p>
+<p>The Titanic data worked in class is an example of what banding loses. Survival there does not rise or fall steadily with age. Band age into under forty and over, and each band reports one survival figure, so the movement among the youngest passengers disappears into the figure for everyone under forty.</p>
+<p>All four types are in the FPF file. Salary is recorded to the currency unit and is continuous, with 1,884 distinct values. Attendance is recorded to the whole percentage point and is discrete: 25 distinct values, 76 to 100. Prior experience is recorded as one of two ordered bands and is ordinal. Location is rural or urban, with no order, and is categorical.</p>
+<p>Both changes go one way only. Rows can be combined and salaries can be put into bands, and neither can be undone. You choose the row granularity; whoever built the system chose the column granularity.</p>
 """ + ask('Was this value recorded finely enough for the distinction I am about to draw with it?')
-+ src('this section draws the two ideas together; the recording side is taken up again in Part 5.'))
++ src('the in-class discussion of variable types, of recording age, and of age against survival in the Titanic data; Part 5 covers the cases where a band is the right way to record a value.'))
 
 practice = """
 <section id="practice">
 <h2><span class="n">Practice</span>Check yourself</h2>
+<p>All the questions below are worked from one situation. Read it once, then answer with the table in front of you.</p>
+""" + case('The situation', [
+    'Mentorship is expensive, and FPF can afford it for some participants but not all. The director has decided to look at the 2,323 participants whose highest education is High School, because that is where the programme recruits hardest. She has built the pivot in counts and stopped there, and she wants your advice on what to do with it.',
+], table(['', 'Not employed', 'Employed', 'Total'], [
+    ['Not mentored', '190', '61', '251'],
+    ['Mentored', '1,368', '704', '2,072'],
+    ['Total', '1,558', '765', '2,323'],
+]) + '<p>Two other facts are in the file and not in this table. Across all 5,000 participants, 87.26 percent were mentored. Every one of the 637 participants who went without mentorship is urban, has one to three years of prior experience, and has mid-level AI exposure.</p>') + """
 <p>Six questions that mark themselves, then three to write out.</p>
 """ + kc(P, 1,
-   'A retailer can show one advertisement in the morning and a different one in the evening. Its file holds one row per customer. What does that file support?',
-   ['One policy per customer, and nothing finer',
-    'One policy per customer for each time of day',
-    'Only a single policy for the whole customer base',
-    'Any policy, once the rows are split by time of day'],
-   0, 'Folding runs one way. Customer rows can be built from customer-and-time rows, never the reverse, so the time-of-day decision has no data underneath it.') \
+   'FPF decides who receives mentorship. It does not decide who becomes employed. Which percentage from this table should the director act on?',
+   ['704 out of 2,072, the share of the mentored who were employed',
+    '61 out of 765, the share of the employed who had gone unmentored',
+    '704 out of 765, the share of the employed who were mentored',
+    '704 out of 2,323, the share of everybody who was both'],
+   0, 'Read forward from the thing FPF controls. That gives 33.98 percent against 24.30 percent for the unmentored, a gap of 9.68 points.') \
 + kc(P, 2,
-   'You have a three-row table of placement rates by track. Can that table answer whether mentored learners place better?',
-   ['Yes, provided the table also lists the mentorship counts',
-    'No, the track rows no longer separate mentored learners',
-    'Yes, because all 5,000 learners are still represented in it',
-    'No, because three rows are too few for a fair comparison'],
-   1, 'Each track row was summarised across mentored and unmentored learners together, so the difference the question asks about is no longer in the table.') \
+   'A colleague computes that 92.03 percent of the employed had been mentored, and calls it strong evidence for mentorship. What is wrong with that?',
+   ['The arithmetic is wrong; the correct figure is 87.80 percent',
+    'It should have been computed on all 5,000 rather than 2,323',
+    'Every group in this table is between 88 and 92 percent mentored',
+    'It compares the mentored with the employed, which are different groups'],
+   2, 'The denominator is an outcome. 2,072 of the 2,323 in this table were mentored, 89.19 percent; among the not employed the figure is 87.80 percent and among the employed 92.03 percent, so it would be high whatever mentorship did. A is wrong: 704 of 765 really is 92.03 percent, and the colleague&#39;s arithmetic being right is the point. B is wrong because the director asked about High School participants, so 2,323 is the right population and widening it would answer a different question. D misdescribes the error, because the colleague reported one percentage rather than comparing two groups.') \
 + kc(P, 3,
-   'All 637 unmentored participants in the FPF file are urban. What follows for a comparison by location?',
-   ['Rural learners must have been excluded from the programme',
-    'The rural placement rate of 41.51 percent is unreliable',
-    'Rural learners have no unmentored group to compare with',
-    'Location has to be dropped from the analysis altogether'],
-   2, 'A group supports the comparison only if it contains both mentored and unmentored members. No rural learner went unmentored, so there is nothing to compare rural mentored learners against.') \
+   'The director asks for the same comparison for rural participants. What should you tell her?',
+   ['It can be done, but the rural groups will be small',
+    'It will show a larger gap, because rural learners travel further',
+    'Rural and urban have to be combined before the gap can be computed',
+    'No rural participant went unmentored, so there is no comparison'],
+   3, 'All 637 unmentored participants are urban. A group supports the comparison only when it contains both mentored and unmentored members.') \
 + kc(P, 4,
-   'FPF decides who receives mentorship. It does not decide who becomes employed. Which direction answers its question?',
-   ['The grand percentage, because its denominator is all 5,000',
-    'The column percentage, read down the employed column',
-    'Either one, since both describe the same four counts',
-    'The row percentage, read across the mentorship rows'],
-   3, 'The denominator has to be the group FPF can act on. Mentorship is assigned; employment is observed afterwards.') \
+   'Someone proposes replacing this pivot with one row per education level, covering all 5,000 participants, to make the report shorter. Which of these would the new table not answer?',
+   ['Which education level had the highest employment rate',
+    'Whether mentored participants were placed more often',
+    'How many participants there are at each education level',
+    'What share of all 5,000 participants ended up employed'],
+   1, 'Mentored and unmentored participants would be combined in each education row, so the difference between them would no longer appear. The other three are answerable from the three education rows.') \
 + kc(P, 5,
-   'Of the 1,912 employed, 88.76 percent had been mentored. Of the 3,088 not employed, 86.33 percent had been mentored. Why are these so close?',
-   ['Mentorship made almost no difference to who was employed',
-    '87.26 percent of the whole cohort had been mentored',
-    'The two groups being compared are of very different sizes',
-    'The percentages were computed with the wrong denominator'],
-   1, 'Almost any group drawn from this file is about 87 percent mentored, so both column percentages are close to the cohort figure whatever mentorship did.') \
+   'The director asks whether the file can tell her which individual participants to give mentorship to next year. What is the honest answer?',
+   ['No, because mentorship does not vary within a single person',
+    'Yes, by ranking participants on attendance and digital literacy',
+    'Yes, provided the sample is large enough to support it',
+    'No, because the file records education but not motivation'],
+   0, 'To decide for one named person you would need what happened to that person with mentorship and without it. Only one of the two was ever observed.') \
 + kc(P, 6,
-   'Salary is recorded to the currency unit, attendance to the whole percentage point, prior experience as one of two bands. What kind of choice is this?',
-   ['How finely each value was recorded, which somebody chose',
-    'What one row of the file is taken to represent',
-    'A fixed property of the quantity being measured',
-    'A defect that should have been repaired before the analysis'],
-   0, 'This is column granularity, a recording decision made for reasons of cost and convenience, separate from the choice of what a row is.') \
+   'She now wants to offer mentorship separately for each of ten modules. The file has one row for each of the 5,000 participants. What stops her?',
+   ['Ten modules would need ten separate pivot tables',
+    'The file has no row for a participant in a module',
+    'The counts in each module would be too small to compare',
+    'Module-level mentorship was never offered, so there is no precedent'],
+   1, 'The decision has 5,000 participants times ten modules, so 50,000 units, against 5,000 rows. Everything in the file is constant within a participant, so nothing in it separates one module from another.') \
 + score() + """
 <h3>Write it out</h3>
-<p>There is no single correct answer to these. Write yours first, then compare.</p>
+<p>The same situation. There is no single correct answer to these. Write yours first, then compare.</p>
 """ + resp(
-   'State what one row must be for each of these three decisions, and say why. (a) A hospital decides which of its clinics to extend opening hours at. (b) A hospital decides whether to send each patient a reminder before each appointment. (c) A regulator decides whether to license the hospital.',
-   'Begin from what can be acted on separately. (a) One row per clinic, because opening hours are set per clinic. The comparison is between clinics, and patient rows would work only if they could be folded up to clinics. (b) One row per patient and appointment, because a reminder is sent or withheld for each appointment separately. A file with one row per patient cannot support it, since nothing in it varies across that patient\'s appointments. (c) One row per hospital, because the licence is granted or refused to the hospital as a whole. Note that (b) is finer than (a), and that a file built for (b) could be folded to answer either of the others, while the reverse is impossible.') \
+   'The director wants one sentence she can say to the board about this table. Write it, with the denominator in the sentence. Then say what the table does not license her to claim.',
+   'I would write: among the 2,323 participants whose highest education is High School, 33.98 percent of the 2,072 who received mentorship were employed, against 24.30 percent of the 251 who did not. The table does not license a causal claim. Nobody was assigned to mentorship at random, so the 9.68 point gap may be a consequence of who received mentorship rather than of what mentorship did, and the 251 unmentored participants may differ from the 2,072 in ways the file does not record. It also does not license anything about rural participants, about anyone with four or more years of experience, or about any individual, because the file holds no unmentored participants in the first two groups and mentorship does not vary within a person.') \
 + resp(
-   'Using the education table in 2.3, say what the lowest level the FPF file supports for a mentorship decision is, and state what is lost by moving up to the programme level.',
-   'The lowest supported level is the group, and education is one workable grouping, because each education level contains both mentored and unmentored participants. Moving up to the programme level replaces three gaps with one: a single figure of 5.15 points stands in for +9.68 among High School participants, +4.95 among Masters and +2.10 among Bachelors. What is lost is the ordering. A reader given only the programme figure would take mentorship to be worth a similar amount to everyone, when in fact the largest gap is among the participants with the least education and the smallest is among those with a Bachelors degree. If mentorship is limited and has to be rationed, there is no basis in the programme figure for choosing who receives it.') \
+   'FPF can fund mentorship for a limited number of participants. Using this table and the figures for the other education levels in 2.3, say who you would give it to and what would change your mind.',
+   'I would give it to the High School participants first. Their gap is the largest of the three, 9.68 points against 4.95 for Masters and 2.10 for Bachelors, and they are also the group the programme recruits hardest. Two things would change my mind. The first is evidence that the unmentored 251 differ systematically from the mentored 2,072, since they were not assigned at random and the ordering may be a consequence of who was chosen rather than of mentorship. The second is cost per participant: if mentorship costs more to deliver to this group, the ranking by gap is not the ranking by value. I would also want the same table for the participants who left before an outcome was recorded, and the file does not contain them.') \
 + resp(
-   'A charity runs a job club. Its crosstab puts attendance at the job club on the columns and employment six months later on the rows. It reports that 71 percent of those now employed had attended the job club. The trustees are deciding whether to fund the club for another year. Say what is wrong with the reported figure and what you would ask for instead.',
-   'The 71 percent is a column percentage read from an outcome. Its denominator is the people who ended up employed, so it describes who those people turn out to be, and it would be high whenever most of the charity\'s clients attend the job club, whatever the club achieved. The trustees control attendance at the club and do not control employment, so the number they need runs the other way: of those who attended, what share were employed six months later, and of those who did not attend, what share were employed. I would ask for the two row percentages with the counts behind them, and I would check that the non-attenders are a group that exists in usable numbers rather than a handful of people.') + """
+   'In Homework 2 the campaign manager had to decide whether to pay for mobile calls. Suppose a colleague reports the share of the customers who subscribed who had been called on a mobile, and recommends mobile for everyone. In Homework 2 the rule was to use the more expensive channel for a group only if it raised that group&#39;s subscription rate by at least eight percentage points. Say what is wrong with the colleague&#39;s figure and what you would ask for instead.',
+   'The figure has an outcome as its denominator. It describes who the subscribers turn out to have been, and it would be high whenever most calls in the file were mobile, whatever the channel achieved. The manager chooses the channel and does not choose who subscribes, so the percentage has to be computed the other way round: of the customers called on a mobile, what share subscribed, and of those called on a landline, what share subscribed. That is the row percentage, and the lift the eight point rule is applied to is the difference between those two figures. I would also ask for the counts beside the percentages, because a group with very few landline calls gives a lift that cannot be relied on, which is the same problem FPF has with rural participants.') + """
 </section>
 """
+
 
 PAGE = {
     'file': 'part2.html', 'nav': 'part2',

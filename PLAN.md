@@ -22,7 +22,7 @@ Three rules for the whole document:
 | 2 | What one row is | What does one row represent, and did the comparison choose it? |
 | 3 | What a column measures | What did this number stand in for, and what did that leave out? |
 | 4 | Who is in the file | What filtered these rows, and what does that make the number mean? |
-| 5 | Summarising, and what it costs | What did this summary throw away, and would the decision change if I could see it? |
+| 5 | Summarising, and what it costs | What did this summary leave out, and would the decision change if I could see it? |
 
 The spine, stated in the closing section: conditioning is one move that has appeared in four costumes. Choosing what one row is. Choosing which level to decide at. Choosing which percentage direction to read. Holding a third column still. Each is picking what to hold constant so that what varies becomes visible.
 
@@ -100,7 +100,7 @@ Practice: a new filter scenario; what would change if the filter were removed; t
 
 | # | Section | Example | Source |
 |---|---|---|---|
-| 5.1 | Why summarise, and the question to carry | Five thousand values to two; what did this throw away | RN3 §1, HBS class report |
+| 5.1 | Why summarise, and the question to carry | Five thousand values to two; what did this leave out | RN3 §1, HBS class report |
 | 5.2 | Centre, spread, and which centre | Salary mean 63,140 vs median 60,128 and what the gap says; the mid-80% range as the safe report | RN3 §3 to 4, docx |
 | 5.3 | Percentiles, and the column with two clusters | Attendance mean 93.13 sits in the empty middle; 941 learners between 76 and 90 | RN3 §5 |
 | 5.4 | Spread is a constructed metric | Squaring claims a large deviation is worse than proportionally worse; one paragraph, not the walkthrough | RN3 §6 to 7 |

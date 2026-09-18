@@ -1,4 +1,4 @@
-from build import sec, ask, src, box, table, kc, resp, score
+from build import sec, ask, src, box, table, kc, resp, score, case
 
 P = 'p4'
 
@@ -63,63 +63,72 @@ s5 = sec('s5', '4.5', 'Every number in this file describes people who enrolled a
 practice = """
 <section id="practice">
 <h2><span class="n">Practice</span>Check yourself</h2>
+<p>All the questions below are worked from one situation. Read it once, then answer with the table in front of you.</p>
+""" + case('The situation', [
+    'FPF is deciding where to put next year&#39;s recruitment budget. Rural participants currently travel to a city centre to attend, and the board is considering opening a centre in a rural district so that they no longer have to. The director has given you this from the file of 5,000 enrolled participants.',
+], table(['', 'Enrolled', 'Placed', 'Placement rate', 'Mean salary of those placed'], [
+    ['Rural', '518', '215', '41.51%', '68,172'],
+    ['Urban', '4,482', '1,697', '37.86%', '62,503'],
+    ['All', '5,000', '1,912', '38.24%', '63,140'],
+]) + '<p>Three other facts are in the file. The participant identifiers run from P0001 to P5000 with no gaps. The salary column is blank for exactly the 3,088 participants who were not employed. Every participant in the file enrolled, attended enough to have an attendance figure, and was still in contact when employment was recorded.</p>') + """
 <p>Six questions that mark themselves, then three to write out.</p>
 """ + kc(P, 1,
-   'A dataset has 3,088 blank cells in one column and no gaps in its identifier sequence. What does the identifier check establish?',
-   ['That no participant was removed after the file was built',
-    'That the file includes everyone who applied to the programme',
-    'That the blank cells can safely be filled with zero',
-    'That every participant reached the end of the programme'],
-   0, 'An unbroken identifier sequence shows that nothing was deleted from the file. It does not show who never entered it.') \
+   'A board member reads the table and proposes opening the rural centre, on the ground that rural participants do better on both measures. What is the strongest objection?',
+   ['Rural participants in the file are those who paid the travel cost',
+    'The rural figures are computed from 518 people and 215 placements',
+    'The two mean salaries are not adjusted for differences in living costs',
+    'A placement rate and a mean salary should not be read together'],
+   0, 'Travelling to a city cost time and money, so only some rural people were willing to pay it. If the cost is removed, rural people who were unwilling to pay it will enrol, and the file has no record of them. B is a real caution, and it appears in the model answer below, but 518 enrolments and 215 placements are enough to compare. C and D are about how the figures should be read, not about who is in the file.') \
 + kc(P, 2,
-   'Rural learners in the file earn 5,669 more on average than urban learners. FPF opens a rural centre so that rural learners no longer need to travel. Why should FPF not expect the same result from the new learners?',
-   ['Rural salaries are lower once living costs are taken into account',
-    'The travel cost let in unusually motivated rural learners',
-    'The 215 rural placements are too few to compute an average from',
-    'A new centre will take several years to reach the same standard'],
-   1, 'The rural learners in the file paid the travel cost. Removing the cost admits the people it used to keep out, and the file contains nothing about them.') \
+   'The identifiers run from P0001 to P5000 with no gaps. What does checking that establish?',
+   ['That the 5,000 are representative of the district FPF serves',
+    'That nobody was removed from the file after it was built',
+    'That everybody who applied to the programme has a row',
+    'That the rural and urban groups can be compared directly'],
+   1, 'If the sequence is unbroken, no row was deleted after the file was built. That is all you learn, and you learn nothing about who never entered it.') \
 + kc(P, 3,
-   'Team B resolved tickets more slowly than Team A. Forty of Team B\'s contacts were closed by a portal before becoming tickets. What does the portal do to the comparison?',
-   ['It removes the easy enterprise cases, so Team B\'s tickets are the hard ones',
-    'It reduces Team B\'s ticket count, so its averages are less reliable',
-    'It has no effect, because the portal contacts never became tickets',
-    'It makes Team B look better by leaving out the contacts that failed'],
-   0, 'The portal answers simple questions. What gets past it is harder than what Team A receives, so the ticket file compares unlike work.') \
+   'Which of these could you find out from this file?',
+   ['How many rural people considered FPF and did not enrol',
+    'How many participants left before an outcome was recorded',
+    'How many rural participants enrolled and were not placed',
+    'How rural people who never travelled to a centre would do'],
+   2, 'The first, second and fourth describe people who are not rows at all. The third is a subtraction inside the table, 518 less 215, which is 303.') \
 + kc(P, 4,
-   'An employer treats a degree as evidence of motivation, although motivation was never measured. What does that reasoning rest on?',
-   ['Degree holders report higher motivation when surveyed',
-    'Motivation and the degree are recorded in the same file',
-    'The degree was costly to obtain and hard to fake',
-    'Employers have no other information about applicants'],
-   2, 'The degree is evidence because it was costly to obtain. A claim that costs nothing to make is not.') \
+   'The 3,088 blank cells in the salary column took seconds to count. What does that check fail to establish?',
+   ['How many of the 5,000 participants have no salary recorded',
+    'What share of the 5,000 the blank cells are',
+    'That all 3,088 blanks are in the salary column',
+    'Anything about the people who are not in the file at all'],
+   3, 'Counting the blanks gives you A and B directly, 3,088 and 61.76 percent, and C as well, since you counted them in that one column. A blank cell means there was no job to report, and blank cells can be counted. The file has no record of the people who are not in it, and that is the harder question.') \
 + kc(P, 5,
-   'Which of the following can the FPF file tell you?',
-   ['How many people considered enrolling and decided against it',
-    'How many enrolled participants left before an outcome was recorded',
-    'How many employers declined a partnership with FPF',
-    'How many placed participants were placed in full-time work'],
-   3, 'The first three groups never became rows. The fourth is a count within the rows that exist.') \
+   'Suppose the rural centre opens and the rural placement rate falls to 36 percent in the following year. What is the most defensible reading?',
+   ['The centre made rural participants worse off than they were before',
+    'The new rural intake includes people the travel cost kept out',
+    'The 41.51 percent must have been computed incorrectly',
+    'Rural recruitment should be reduced back to its old level'],
+   1, 'The number changed because the filter changed. The work of the programme need not have changed at all, and the two years describe different groups of rural people.') \
 + kc(P, 6,
-   'A report says that 38 percent of participants were placed. Which decision does that figure describe well?',
-   ['Whether to recruit from a population FPF has not served before',
-    'Whether completing the programme goes with finding work',
-    'Whether people who left early would have been placed',
-    'Whether the programme changes outcomes for typical rural residents'],
-   1, 'The figure describes completers. The other three decisions concern people who did not pass through that process.') \
+   'An employer tells FPF it prefers participants who travelled to attend, because the travel shows commitment. Is that reasoning sound?',
+   ['No, because travel measures distance rather than commitment',
+    'No, because it penalises participants who live near a centre',
+    'Yes, because travelling was costly and hard to fake',
+    'Yes, because the travelling participants earned more on average'],
+   2, 'A costly action is evidence, because someone unwilling to pay the cost would not have taken it. The reasoning runs one way only: travelling suggests commitment, and not travelling does not show a lack of it. B describes a real cost of the policy, but the question is whether the stated reasoning is sound, not whether the policy is fair.') \
 + score() + """
 <h3>Write it out</h3>
-<p>There is no single correct answer to these. Write yours first, then compare.</p>
+<p>The same situation. There is no single correct answer to these. Write yours first, then compare.</p>
 """ + resp(
-   'FPF wants to know whether its recruiting is working. Name one group of people the file cannot see, say why that group matters to the question, and describe one way of finding out about them and what it would cost.',
-   'People who enquired or applied and did not enrol. Recruiting is about turning interest into enrolment, and the file begins at enrolment, so there is no way to measure that conversion from it. FPF could record every enquiry with a few fields at first contact, then follow up by phone or email with a sample of those who did not enrol. The cost in money is small. The cost in process is larger: someone has to record enquiries consistently, and the follow-up will reach only some of the people, who will themselves be the ones willing to answer.') \
+   'Write the note you would send the board about the rural centre. Say what the table does support, what it does not, and what you would want to know before the decision is made.',
+   'The table supports one claim: among the people who enrolled, the 518 rural participants were placed more often than the 4,482 urban ones and the 215 placed rural participants earned more on average. It does not support the claim that a rural centre will produce those figures. Every rural participant in the file travelled to a city to attend, so the file describes rural people who were willing and able to pay that cost. With a centre there is no travel cost, so rural people who previously did not enrol will, and the file has no record of them. Two further cautions: the salary comparison assumes 68,172 in a rural area and 62,503 in a city buy the same things, and living costs are not recorded; and the placement rates are computed from 215 rural placements. Before deciding I would want the enquiry records for the rural district, so we know how many rural people considered enrolling and did not, and I would want a figure for what rural people earn locally without the programme.') \
 + resp(
-   'Northgate removes the portal, so every enterprise contact becomes a ticket. Describe what happens to Team B\'s resolution figures in the next quarter and why, and say whether the team\'s work has changed.',
-   'Team B\'s figures improve. The easy contacts the portal used to close now become tickets, so the average ticket is easier, and the share resolved within the service level rises. The team\'s work has not changed. Each hard ticket takes as long as it did before. The number changed because the filter changed. Anyone comparing the two quarters without knowing the portal was removed would conclude that the team improved.') \
+   'A funder asks why FPF cannot simply report the outcomes of everybody it has ever recruited. Answer in the terms of this part, and say what FPF would have to change to be able to do it.',
+   'The file begins at enrolment and ends at a recorded outcome, so it holds people who enrolled, attended and were still in contact when employment was recorded. Anyone who enquired and did not enrol was never a row. Anyone who left before an outcome was recorded is not a row either, because the file holds only participants who were still in contact at that point. So every figure FPF reports, including 38.24 percent, describes the people who enrolled, attended and stayed in contact, and reporting it as the outcome for everybody recruited would overstate what enrolling does for a typical enquirer. To be able to answer the question FPF would have to record every enquiry at first contact with a few fields, record a leaving date and reason for anyone who stops attending, and write down the rule that decides who enters the file. It would cost little money. The work is the difficulty, because somebody has to record enquiries consistently and follow up people who have already declined.') \
 + resp(
-   'A new column records whether a learner attended an optional evening session. Argue that this column is better evidence of engagement than the attendance percentage. Then argue that it is worse.',
-   'Better: the evening session was optional and cost the learner an evening, so attending it is a costly signal of engagement in a way that ordinary attendance, which is expected, is not. Worse: it is a single yes or no for one occasion, so it measures one evening rather than a term, and it also filters by circumstance. Learners with shift work or caring duties could not attend whatever their engagement, so the column mixes engagement with availability. Which argument wins depends on who the column will be used to describe.') + """
+   'Northgate Software&#39;s self-service portal closed 40 of Team B&#39;s 72 enterprise contacts before they became tickets, while none of Team A&#39;s 32 retail contacts met a portal. Explain what that does to a comparison of the two teams, and say which mechanism from this part it is.',
+   'The portal answers simple questions, so the contacts it closes are the simple ones and the contacts it does not close are the harder ones. Team B&#39;s 32 tickets are what remained after the easy cases were removed, while Team A&#39;s 32 tickets went through no such step. Comparing the two on their tickets therefore compares all retail contacts against only the hard enterprise contacts, and Team B will look slower whether or not it is. This is survivorship: cases were removed before the file was built, and which cases were removed depended on the thing being measured. It is the same mechanism as the rural travel cost, with the direction reversed. Because of the travel cost, only unusual rural people enrolled. Because of the portal, only the harder enterprise contacts became tickets. In both, the file is named after a wider group than the one it contains.') + """
 </section>
 """
+
 
 PAGE = {
     'file': 'part4.html', 'nav': 'part4',

@@ -1,4 +1,4 @@
-from build import sec, ask, src, box, table, kc, resp, score, lost
+from build import sec, ask, src, box, table, kc, resp, score, lost, case
 
 P = 'p3'
 
@@ -117,63 +117,78 @@ s9 = sec('s9', '3.9', 'Write it down', """
 practice = """
 <section id="practice">
 <h2><span class="n">Practice</span>Check yourself</h2>
+<p>All the questions below are worked from one situation. Read it once, then answer with the table in front of you.</p>
+""" + case('The situation', [
+    'The FPF board has asked the programme director one question: does the programme work? She has asked you for the results page of the annual report, and she has given you this extract from the file of 5,000 enrolled participants.',
+], table(['What was recorded', 'Count'], [
+    ['Enrolled', '5,000'],
+    ['Placed in any employment', '1,912'],
+    ['Of those, full-time', '1,444'],
+    ['Of those, contract', '375'],
+    ['Of those, part-time', '93'],
+    ['Rows with salary left blank', '3,088'],
+], txt=True) + table(['Column', 'Min', 'Max', 'Standard deviation', 'Standing in for'], [
+    ['attendance_pct', '76', '100', '5.21', 'engagement'],
+    ['digital_lit_score', '51', '100', '11.89', 'capability'],
+]) + '<p>The mean salary of the 1,912 placed participants is 63,140. Three other people want a number from this page: a funder who pays only for full-time work, a prospective participant deciding whether to enrol, and a rival programme that has published its own figure.</p>') + """
 <p>Six questions that mark themselves, then three to write out.</p>
 """ + kc(P, 1,
-   'Someone tidies the FPF file by filling the blanks in employment_type with the word None. What does that do?',
-   ['Nothing, because the blanks were going to be ignored anyway',
-    'It repairs the column so it can now be counted correctly',
-    'It invents a fourth employment category',
-    'It changes the mean salary from 63,140 down to 24,145'],
-   2, 'Those blanks were structural. Filling them invents a category of employment arrangement that describes nobody, and the reason for the blank is no longer recoverable.') \
+   'The prospective participant wants to know what happens to somebody who enrols. Which figure answers that, and out of what?',
+   ['38.24 percent, out of the 5,000 enrolled',
+    '75.52 percent, out of the 1,912 who were placed',
+    '28.88 percent, out of the 5,000, counting only full-time work',
+    '61.76 percent, out of the 5,000, the share with no salary'],
+   0, '1,912 of 5,000 is 38.24 percent. The denominator has to be everybody who enrolled, because that is the group the participant is about to join.') \
 + kc(P, 2,
-   'FPF reports that 75.52 percent were placed in full-time work. Which question does that figure answer well?',
-   ['What happens to somebody who enrols in the programme',
-    'How many of the 5,000 enrolled found full-time work',
-    'Whether the programme places more people than it used to',
-    'How good the placements were among those who got one'],
-   3, 'Its denominator is the 1,912 who were placed, so it describes placement quality. The figure for what happens to somebody who enrols is 28.88 percent.') \
+   'The funder paid for all 5,000 enrolments and counts only full-time work as a result. Work that figure out from the table.',
+   ['75.52 percent, out of those placed',
+    '38.24 percent, out of everyone enrolled',
+    '28.88 percent, out of all 5,000 enrolled',
+    '24.48 percent, the placements that were not full-time'],
+   2, '1,444 out of 5,000 is 28.88 percent. Dividing 1,444 by the 1,912 placed instead gives 75.52 percent, which answers a different question.') \
 + kc(P, 3,
-   'Averaging group rates without weighting gave an answer 15.48 points too high for gender but 0.03 points out for partnership strength. Why the difference?',
-   ['A group of 13 is weighted as heavily as one of 2,763',
-    'Gender is a categorical column and partnership strength is ordered',
-    'Partnership strength has four groups and gender has only three',
-    'The placement rates vary much more across the gender groups'],
-   0, 'The method is equally wrong both times. It only does visible damage when the groups differ sharply in size.') \
+   'The rival programme reports 75.52 percent. Is that figure dishonest?',
+   ['Yes, because it leaves out the people who were not placed',
+    'Yes, because a full-time share should always be out of everyone',
+    'No, and it describes the quality of placements',
+    'No, because all three figures come to the same thing in the end'],
+   2, 'It is correct arithmetic and it describes placement quality. It becomes misleading only when it is offered as the answer to what happens to somebody who enrols.') \
 + kc(P, 4,
-   'Attendance correlates with placement at -0.0496. Why was attendance put in the file in the first place?',
-   ['Because earlier analysis had shown it predicted placement',
-    'Because engagement had been defined as attendance by the board',
-    'Because a register already existed and it could be recorded',
-    'Because it was the best available of the measures considered'],
-   2, 'It was recordable, which is a separate property from being a good measure, and only the first one is obvious at the time of collection.') \
+   'A colleague proposes filling the 3,088 blank salary cells with zero, so the column can be averaged across all 5,000. What happens to the reported mean?',
+   ['It stays at 63,140, because the zeros cancel out',
+    'It falls to 24,145 and describes nobody who was paid',
+    'It cannot be computed, because zero is not a valid salary',
+    'It rises, because the denominator gets larger than before'],
+   1, 'The 1,912 salaries total about 120.7 million. Divided by 5,000 rather than by 1,912 that is 24,145. Those cells are blank for exactly the 3,088 who were not employed, so the new figure describes a group that mixes wages with the absence of a wage.') \
 + kc(P, 5,
-   'Attendance runs 76 to 100 and digital literacy 51 to 100. A readiness score averages the two. What follows?',
-   ['The score is sound, since both columns are percentages',
-    'Digital literacy supplies about 84 percent of the variation',
-    'The score should be recomputed using the medians instead',
-    'Attendance is weighted too heavily because its values are larger'],
-   1, 'Digital literacy varies more than twice as widely, so averaging the two weights it about four times as heavily as attendance, which nobody intended.') \
+   'The director proposes a readiness score, made by averaging the two columns in the second table. From the ranges and standard deviations given, what does that score mostly measure?',
+   ['Attendance, because its values are the larger of the two',
+    'Both equally, because both are recorded as percentages',
+    'Neither, because averaging two percentages cancels them out',
+    'Digital literacy, which varies more than twice as widely'],
+   3, 'A range of 49 against 24, and a standard deviation of 11.89 against 5.21. In the average of the two, about 84 percent of the variation comes from digital literacy.') \
 + kc(P, 6,
-   'Learner A scores 90 before the programme and 92 after. Learner B scores 55 before and 78 after. Which is the stronger candidate?',
-   ['Learner A, who scored higher after the programme',
-    'Learner B, who gained twenty-three points against two',
-    'Learner A, because A ranks at the 95th percentile nationally',
-    'It depends on which decision the figure is being used for'],
-   3, 'Each of the other three is right for one decision and wrong for the rest. An employer hiring on capability now would take A, a trainer judging the teaching would take B, and the national percentile in C is a fourth way of ranking the two rather than a tie-breaker between the first three. Nothing about the learners settles it until the decision is named.') \
+   'The board asks whether placement could be raised by improving attendance. Attendance correlates with placement at -0.0496. What is the most defensible reply?',
+   ['Yes, and the effect will be small but worth having',
+    'No, because these figures prove attendance and placement are unrelated',
+    'No, because nothing here supports it and attendance only stands in for engagement',
+    'Placement should be dropped as a measure of whether it worked'],
+   2, 'Attendance was recorded because a register already existed. Nobody checked whether it measures engagement, and the correlation is -0.0496, near zero and slightly negative, so nothing here supports acting on it. B goes too far: a correlation near zero in one file is not proof that no relationship exists, it is a reason not to act on this one.') \
 + score() + """
 <h3>Write it out</h3>
-<p>There is no single correct answer to these. Write yours first, then compare.</p>
+<p>The same situation. There is no single correct answer to these. Write yours first, then compare.</p>
 """ + resp(
-   'A college wants to measure teaching quality. Two columns are available: the mean student rating of the module, and the share of students who passed it. Take each in turn and say what it is standing in for, what it misses, and which teachers it treats unfairly. Then write the data dictionary entry you would attach to the one you would use.',
-   'The student rating stands in for the quality of the teaching as experienced. It misses everything students cannot judge, such as whether the syllabus was current, and it varies with things that are not teaching, such as the hour the class met and how hard the module is. It treats unfairly anyone teaching a required quantitative module to a reluctant class. The pass share stands in for how much was learned. It misses what was learned by those who passed either way, and it can be raised without teaching anybody anything, by setting an easier paper. It treats unfairly anyone teaching the weakest intake. I would use the student rating, because the pass share can be moved directly by the person being measured. The entry: mean of end-of-module student ratings, one to five, collected online in the final week, response rate recorded alongside; intended to represent teaching quality as students experienced it; known to vary with class size, timetable slot and module difficulty, so it is comparable only within a subject and level; not to be used for any decision about an individual teacher without the response rate and the class size beside it.') \
+   'The director asks for one sentence about salary for the results page. Write the sentence you would put on the page. Then write the sentence you would refuse to write, and say what is wrong with it.',
+   'I would write: among the 1,912 participants who were placed, the mean salary was 63,140. I would refuse to write: the average salary of FPF participants was 63,140. The second sentence has no denominator in it, so a reader takes it to describe all 5,000 enrolled, and across all 5,000 the figure is 24,145 once the 3,088 without a job are counted at zero. Neither number is wrong. The first is the one a reader can check, because it says who is in the group it describes.') \
 + resp(
-   'The FPF director, a funder, and a prospective participant each ask how well the programme places people. Give each of them one of the three figures from 3.2, say why that one, and say what each would wrongly conclude from one of the other two.',
-   'The prospective participant should be given 38.24 percent, because they are deciding whether to enrol and they want to know what happens to people who enrol. Given 75.52 percent they would conclude that three quarters of people who join get full-time work, which is wrong by a wide margin. The funder should be given 28.88 percent, since a funder is usually paying for full-time employment as the outcome and wants it as a share of everybody paid for. Given 75.52 percent they would conclude that the programme converts its intake far more effectively than it does. The director needs all three, and specifically 75.52 percent alongside 38.24, because the gap between them is the operational question: whether the problem is placing people at all or placing them into full-time work. Given only 38.24 percent the director could not tell which of the two to work on.') \
+   'The director wants attendance used as the engagement measure in next year&#39;s reporting, and proposes paying trainers a bonus for raising it. Advise her. Say what attendance does and does not record, who it describes badly, and what would happen to the number once the bonus exists.',
+   'Attendance records one of the many ways a participant can be engaged, the one a register already captured. It does not record asking questions, helping other participants, coming back after failing, or doing the optional reading. It describes badly anyone with shift work or caring responsibilities, who may be engaged and rarely present, and those are among the people the programme most wants to help. On the bonus: attendance would rise, because trainers would concentrate on the thing being paid for, and once it is the target it is no longer evidence about engagement. If a bonus is attached to anything it should be the outcome the programme is actually buying, and if she wants engagement measured she needs more than the one form a register happens to capture.') \
 + resp(
-   'A hospital records a column called readmitted, Yes or No. Write the four decisions that had to be settled before anybody could fill it in, and for each one describe a way two careful analysts could disagree and still both be right.',
-   'Definition: readmitted for anything, or only for a condition related to the original admission? One analyst counts a fall at home, the other does not, and both can defend it depending on whether the question is about patient outcomes or about the quality of the original treatment. Instrument: taken from this hospital\'s own records, or from a regional system? A patient readmitted to a different hospital is invisible in the first and counted in the second. Rules: does a planned follow-up procedure count as a readmission, and does a patient who arrives at the emergency department and is sent home after four hours count as admitted? Timing: within thirty days of discharge, or ninety? The thirty-day window is conventional, the ninety-day window includes slower failures, and the two produce different rates from the same patients. None of the four choices appears anywhere in a column named readmitted, so two hospitals reporting their readmission rates may be reporting numbers that were never comparable.') + """
+   'The funder asks FPF to report the same placement figure as three other programmes it funds, so that the four can be compared. Write the questions you would need answered about the other three before that comparison means anything.',
+   'What counts as employment: any paid work, or only work related to the training? How was it established: self-reported by the participant, confirmed by the employer, or taken from a payroll record? What are the rules at the edges: does somebody who starts a job and leaves after three weeks count, and does part-time count? At what point was it measured: three months after finishing, six, or twelve? And what is the denominator: everybody who enrolled, everybody who completed, or everybody still contactable? Two programmes that agree completely about what employment means will still report different numbers if they answered any of these differently, and none of the answers appears in a column called employed.') + """
 </section>
 """
+
 
 PAGE = {
     'file': 'part3.html', 'nav': 'part3',
