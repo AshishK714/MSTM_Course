@@ -89,10 +89,10 @@ practice = """
 + kc(P, 3,
    'Which of these could you find out from this file?',
    ['How many rural people considered FPF and did not enrol',
-    'How many participants left before an outcome was recorded',
+    'How many people enrolled but dropped out before the file was built',
     'How many rural participants enrolled and were not placed',
     'How rural people who never travelled to a centre would do'],
-   2, 'The first, second and fourth describe people who are not rows at all. The third is a subtraction inside the table, 518 less 215, which is 303.') \
+   2, 'The first, second and fourth describe people who are not rows at all, and somebody who dropped out before the file was built was never given a row to count. The third is a subtraction inside the table, 518 less 215, which is 303.') \
 + kc(P, 4,
    'The 3,088 blank cells in the salary column took seconds to count. What does that check fail to establish?',
    ['How many of the 5,000 participants have no salary recorded',
@@ -109,11 +109,11 @@ practice = """
    1, 'The number changed because the filter changed. The work of the programme need not have changed at all, and the two years describe different groups of rural people.') \
 + kc(P, 6,
    'An employer tells FPF it prefers participants who travelled to attend, because the travel shows commitment. Is that reasoning sound?',
-   ['No, because travel measures distance rather than commitment',
-    'No, because it penalises participants who live near a centre',
+   ['No, because commitment is a feeling and only a self-report can measure it',
+    'No, because asking the applicant directly would give the same information',
     'Yes, because travelling was costly and hard to fake',
-    'Yes, because the travelling participants earned more on average'],
-   2, 'A costly action is evidence, because someone unwilling to pay the cost would not have taken it. The reasoning runs one way only: travelling suggests commitment, and not travelling does not show a lack of it. B describes a real cost of the policy, but the question is whether the stated reasoning is sound, not whether the policy is fair.') \
+    'Yes, because travelling participants were placed more often than they otherwise would be'],
+   2, 'A costly action is evidence, because someone unwilling to pay the cost would not have taken it. The reasoning runs one way only: travelling suggests commitment, and not travelling does not show a lack of it. A and B both have it backwards: a self-report is the cheap thing anyone can produce, which is exactly why asking does not separate applicants. D is a claim about what the travel did to the outcome, which this file cannot establish.') \
 + score() + """
 <h3>Write it out</h3>
 <p>The same situation. There is no single correct answer to these. Write yours first, then compare.</p>

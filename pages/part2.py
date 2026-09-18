@@ -100,9 +100,9 @@ practice = """
    'A colleague computes that 92.03 percent of the employed had been mentored, and calls it strong evidence for mentorship. What is wrong with that?',
    ['The arithmetic is wrong; the correct figure is 87.80 percent',
     'It should have been computed on all 5,000 rather than 2,323',
-    'Every group in this table is between 88 and 92 percent mentored',
-    'It compares the mentored with the employed, which are different groups'],
-   2, 'The denominator is an outcome. 2,072 of the 2,323 in this table were mentored, 89.19 percent; among the not employed the figure is 87.80 percent and among the employed 92.03 percent, so it would be high whatever mentorship did. A is wrong: 704 of 765 really is 92.03 percent, and the colleague&#39;s arithmetic being right is the point. B is wrong because the director asked about High School participants, so 2,323 is the right population and widening it would answer a different question. D misdescribes the error, because the colleague reported one percentage rather than comparing two groups.') \
+    'Nearly nine in ten in this table were mentored, whatever their outcome',
+    'The figure should have been computed separately for each track'],
+   2, 'The denominator is an outcome. 2,072 of the 2,323 in this table were mentored, 89.19 percent; among the not employed it is 87.80 percent and among the employed 92.03, so the figure would be high whatever mentorship did. A is wrong: 704 of 765 really is 92.03 percent, and the colleague&#39;s arithmetic being right is the point. B is wrong because the director asked about High School participants, so 2,323 is the right population, and widening it would not repair a denominator that is an outcome. D would not help either, since the same fault appears inside every track.') \
 + kc(P, 3,
    'The director asks for the same comparison for rural participants. What should you tell her?',
    ['It can be done, but the rural groups will be small',
@@ -111,7 +111,7 @@ practice = """
     'No rural participant went unmentored, so there is no comparison'],
    3, 'All 637 unmentored participants are urban. A group supports the comparison only when it contains both mentored and unmentored members.') \
 + kc(P, 4,
-   'Someone proposes replacing this pivot with one row per education level, covering all 5,000 participants, to make the report shorter. Which of these would the new table not answer?',
+   'Someone proposes replacing this pivot with one row per education level, giving employed and not employed counts for all 5,000 participants, to make the report shorter. Which of these would the new table not answer?',
    ['Which education level had the highest employment rate',
     'Whether mentored participants were placed more often',
     'How many participants there are at each education level',
@@ -122,8 +122,8 @@ practice = """
    ['No, because mentorship does not vary within a single person',
     'Yes, by ranking participants on attendance and digital literacy',
     'Yes, provided the sample is large enough to support it',
-    'No, because the file records education but not motivation'],
-   0, 'To decide for one named person you would need what happened to that person with mentorship and without it. Only one of the two was ever observed.') \
+    'No, because the file records motivation but not education at enrolment'],
+   0, 'To decide for one named person you would need what happened to that person with mentorship and without it, and only one of the two was ever observed. No sample size repairs that. D has the file backwards: education at enrolment is recorded and motivation is not.') \
 + kc(P, 6,
    'She now wants to offer mentorship separately for each of ten modules. The file has one row for each of the 5,000 participants. What stops her?',
    ['Ten modules would need ten separate pivot tables',

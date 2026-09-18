@@ -95,15 +95,15 @@ practice = """
    ['It has been used first as a fact, then as a dimension',
     'It has been used incorrectly in one of the two places',
     'It has changed from a signal into an outcome between them',
-    'It has been converted from a percentage into a category'],
-   0, 'The values never changed. In the first use the column is the thing being measured; in the second it is the thing being sliced by. Both uses are legitimate, and the role it plays for the decision, signal rather than outcome, is the same in both.') \
+    'It has been recorded more finely, changing from banded to continuous'],
+   0, 'The values never changed, and nothing was re-recorded, so D has the direction backwards: splitting into higher and lower attenders is coarser, not finer. In the first use the column is the thing being measured; in the second it is the thing being sliced by. Both uses are legitimate, and the role it plays for the decision, signal rather than outcome, is the same in both.') \
 + kc(P, 5,
    'Which of these four can be added up across participants without producing a meaningless number?',
    ['employer_partnership_strength, once its levels are coded 1 to 4',
     'attendance_pct, because every value is on the same percentage scale',
-    'location_category, by counting rural as one and urban as zero',
+    'location_category, by coding rural as one and urban as two and adding the codes',
     'salary, because two salaries together make a wage bill'],
-   3, 'Salary totals to something real. A rate cannot be totalled, an ordered category has no equal steps, and a dimension is not a quantity at all.') \
+   3, 'Salary totals to something real. A rate cannot be totalled, an ordered category has no equal steps, and adding arbitrary codes for rural and urban gives a number that counts nothing.') \
 + kc(P, 6,
    'FPF switches from the mentorship decision to the reporting decision. Which of these items now does no work?',
    ['salary, because funders are not told what participants earn',

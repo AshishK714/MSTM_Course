@@ -133,12 +133,12 @@ practice = """
 ]) + '<p>The mean salary of the 1,912 placed participants is 63,140. Three other people want a number from this page: a funder who pays only for full-time work, a prospective participant deciding whether to enrol, and a rival programme that has published its own figure.</p>') + """
 <p>Six questions that mark themselves, then three to write out.</p>
 """ + kc(P, 1,
-   'The prospective participant wants to know what happens to somebody who enrols. Which figure answers that, and out of what?',
+   'The prospective participant wants to know the chance of being placed in any employment after enrolling. Which figure answers that, and out of what?',
    ['38.24 percent, out of the 5,000 enrolled',
     '75.52 percent, out of the 1,912 who were placed',
     '28.88 percent, out of the 5,000, counting only full-time work',
-    '61.76 percent, out of the 5,000, the share with no salary'],
-   0, '1,912 of 5,000 is 38.24 percent. The denominator has to be everybody who enrolled, because that is the group the participant is about to join.') \
+    '61.76 percent, out of the 3,088 whose salary was left blank'],
+   0, '1,912 of 5,000 is 38.24 percent. The denominator has to be everybody who enrolled, because that is the group the participant is about to join. D pairs a real figure with a denominator that did not produce it: 61.76 percent is 3,088 out of 5,000, and out of the 3,088 the share with no salary is all of them.') \
 + kc(P, 2,
    'The funder paid for all 5,000 enrolments and counts only full-time work as a result. Work that figure out from the table.',
    ['75.52 percent, out of those placed',

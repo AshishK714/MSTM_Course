@@ -116,7 +116,7 @@ practice = """
     'Roughly half the placed participants were paid nothing'],
    0, 'A mean is pulled by values far from the centre and a median is not. With only 44.9 percent earning above the mean, the mean is not describing a typical person.') \
 + kc(P, 2,
-   'The director wants one figure for what a placed participant might expect to earn. Which should she use?',
+   'The director wants one figure for what a typical placed participant earns. Which should she use?',
    ['The mean, 63,140, because it uses every salary in the group',
     'The median, 60,128, with half above and half below',
     'The largest salary, 236,319, as the figure to aim at',
@@ -124,11 +124,11 @@ practice = """
    1, 'Half the placed participants earn above the median and half below. The mean answers a different question, which is what the total wage bill divided by the count comes to.') \
 + kc(P, 3,
    'She adds a sentence on the spread. Which is the safest to print?',
-   ['Salaries run from 16,609 to 236,319',
+   ['Salaries run from 16,609 to 236,319, so a typical one is near the middle of that',
     'Salaries vary by about 25,204 either side of the mean',
     'Eight in ten placed participants earn between 33,637 and 94,447',
     'The mean and the median are close, so the spread must be quite narrow'],
-   2, 'The mid-80 percent range comes from the tenth and ninetieth percentiles and is not moved by one very large salary. The full range is decided by two people.') \
+   2, 'The mid-80 percent range comes from the tenth and ninetieth percentiles and is not moved by one very large salary. The full range is decided by two people, and the middle of it, about 126,000, is nowhere near the mean or the median.') \
 + kc(P, 4,
    'The report says mean attendance was 93.13 percent. Using the attendance table, what is wrong with that as a description of a typical participant?',
    ['It is too high, because 943 participants attended 90 percent or less',
@@ -139,7 +139,7 @@ practice = """
 + kc(P, 5,
    'Which chart would have made the problem in the attendance figure plain fastest?',
    ['A bar chart of mean attendance by track',
-    'A scatterplot of attendance against salary for the placed',
+    'A scatterplot of mean attendance against mean salary for each track',
     'A line chart of attendance over the course',
     'A histogram of attendance across all 5,000'],
    3, 'In a histogram every value appears on the page arranged by how often it occurs, so two separate peaks are visible at once. A bar chart of means would give three bars near 93, and the two groups would not appear at all, as they do not in the mean.') \
