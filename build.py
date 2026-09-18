@@ -110,16 +110,26 @@ WATCH = ['sit', 'sits', 'reached', 'reaches', 'landed', 'lands', 'carries', 'car
          'imagine', 'that said', 'on the other hand', 'however, others']
 
 
-def kc(page, n, q, opts, correct, why):
-    """opts: list of four option strings; correct: index of the right one."""
+def kc(page, n, q, opts, correct, why, notes=None):
+    """opts: list of four option strings; correct: index of the right one.
+    notes: optional list of four, one per option, saying why that option is right or wrong.
+    The summary and the four notes both appear once the student has answered."""
     qid = '%s-k%d' % (page, n)
     KC_LOG.append((qid, opts, correct))
     letters = 'ABCD'
     o = ''.join('<button class="opt" data-a="%d"><span class="ltr">%s</span><span>%s</span></button>'
                 % (i, letters[i], t) for i, t in enumerate(opts))
+    each = ''
+    if notes:
+        if len(notes) != len(opts):
+            raise SystemExit('%s: %d notes for %d options' % (qid, len(notes), len(opts)))
+        each = '<ol class="why-opts">%s</ol>' % ''.join(
+            '<li%s><span class="ltr">%s</span><span>%s</span></li>'
+            % (' class="ok"' if i == correct else '', letters[i], t) for i, t in enumerate(notes))
     return ('<div class="kc" data-id="%s" data-h="%s"><span class="tag">Practice %d</span>'
-            '<p class="q">%s</p><div class="opts">%s</div><div class="fb"><b>Why:</b> %s</div></div>\n'
-            % (qid, fnv('%s:%d' % (qid, correct)), n, q, o, why))
+            '<p class="q">%s</p><div class="opts">%s</div>'
+            '<div class="fb"><b>Why:</b> %s%s</div></div>\n'
+            % (qid, fnv('%s:%d' % (qid, correct)), n, q, o, why, each))
 
 
 def resp(prompt, model):

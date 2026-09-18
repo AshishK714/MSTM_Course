@@ -37,56 +37,88 @@ checks = """
     'One bike during the quarter, with its trips summarised',
     'One trip that ended at a docking station',
     'One ride taken by a member, whether or not it ended at a dock'],
-   2, 'The file was built from dock returns, and the 3,100 street recoveries are rides of a kind that produced no row. A row is not a member and not a bike either: one member and one bike each appear on many rows.') \
+   2, 'The file was built from dock returns, and the 3,100 street recoveries are rides of a kind that produced no row. A row is not a member and not a bike either: one member and one bike each appear on many rows.',
+   ['One member appears on many rows, one for each trip taken.',
+    'One bike appears on many rows too, and nothing in the file summarises a bike.',
+    'The file was built from dock returns, so what a row records is a trip that ended at a dock.',
+    'A ride that ended anywhere else produced no row. The 3,100 street recoveries are rides of that kind.']) \
 + kc(P, 2,
    'Verdance wants to decide, for each station and each hour, whether to send a van. What does that decision need?',
    ['One row per station and hour, which this file can be folded into',
     'One row per bike, which this file does not contain',
     'One row per member, which this file does not contain',
     'Nothing more; 412,000 trips is enough for any question about stations'],
-   0, 'Each trip has a start station and a start time recorded on it, so the trips can be counted into station-hours. The finer rows already exist, which is what makes the coarser table available.') \
+   0, 'Each trip has a start station and a start time recorded on it, so the trips can be counted into station-hours. The finer rows already exist, which is what makes the coarser table available.',
+   ['Each trip has a start station and a start time on it, so the trips can be counted into station-hours.',
+    'A bike row could be built from these trips as well, and a bike is the wrong unit for this decision.',
+    'A member row could be built too, and a member is the wrong unit for sending a van.',
+    'The decision needs rows at the level the decision varies, which is the station and the hour, and no number of trips supplies that on its own.']) \
 + kc(P, 3,
    'Verdance reports trips per bike per day, which is 3.77. For the council\'s decision, what role does that figure play?',
    ['An outcome for the council, which is paying for the trips themselves',
     'A signal, watched because the thing the council wants arrives later',
     'Context, because Verdance cannot change how often bikes are used',
     'A mechanism, because it explains why members keep their membership'],
-   1, 'The council wants trips shifted out of cars, and that is not in the file. Trips per bike is watched instead, and it can be raised by shrinking the fleet. A mechanism is something that happens inside a person, so D is the wrong kind of thing: a count is not a reason a member rides again.') \
+   1, 'The council wants trips shifted out of cars, and that is not in the file. Trips per bike is watched instead, and it can be raised by shrinking the fleet. A mechanism is something that happens inside a person, so D is the wrong kind of thing: a count is not a reason a member rides again.',
+   ['The council is buying car trips replaced, not trips as such, so trips are not wanted for their own sake.',
+    'What the council wants is not in the file, so this is watched instead, and it can be raised by shrinking the fleet.',
+    'Verdance can change it, by rebalancing, by pricing and by the size of the fleet.',
+    'A mechanism is something that happens inside a person. A count is not a reason a member rides again.']) \
 + kc(P, 4,
    'A councillor asks how much the scheme is used per member. What should the report do?',
    ['Divide by the 1,200 bikes, which are what the council pays for',
     'Divide by the 11,040 who rode, and print 37.3 trips each',
     'Divide by the 18,400 registered, because that is who it is for',
     'Give either figure, and say which denominator produced it'],
-   3, '412,000 over 18,400 is 22.4 and over 11,040 is 37.3. Both are honest and they answer different questions. What is not honest is printing one without saying which.') \
+   3, '412,000 over 18,400 is 22.4 and over 11,040 is 37.3. Both are honest and they answer different questions. What is not honest is printing one without saying which.',
+   ['That gives trips per bike, which answers a question about the fleet rather than about members.',
+    '37.3 is right, and a reader given it alone would not learn that 7,360 members did not ride at all.',
+    '22.4 is right too, and a reader given it alone would not learn that the people who do ride ride far more often.',
+    'Both are honest and they answer different questions. What is not honest is printing one without saying which.']) \
 + kc(P, 5,
    'Duration is measured from the moment the bike leaves one dock to the moment it enters another. What does that measure include?',
    ['Only the time the member was riding the bike',
     'Time the bike was stopped and locked partway through',
     'The time the member waited for a bike to become free',
     'Time the bike spent being moved between stations by van'],
-   1, 'Nothing in the measurement separates riding from standing. A member who stops for twenty minutes produces a long trip, and so does a member who rides for twenty minutes. The wait for a bike happens before the bike leaves the dock, so C is outside the measured interval, and van moves are logged separately, so D is not in this column at all.') \
+   1, 'Nothing in the measurement separates riding from standing. A member who stops for twenty minutes produces a long trip, and so does a member who rides for twenty minutes. The wait for a bike happens before the bike leaves the dock, so C is outside the measured interval, and van moves are logged separately, so D is not in this column at all.',
+   ['Nothing in the measurement separates riding from standing.',
+    'A member who stops for twenty minutes produces a long trip, and so does one who rides for twenty minutes.',
+    'The clock starts when the bike leaves the dock, so any wait before that is outside the interval.',
+    'Van moves are logged separately and produce no trip row.']) \
 + kc(P, 6,
    'The 3,100 street recoveries produced no trip row. What follows for a figure computed from the file?',
    ['It is wrong, and should be recomputed once those trips have been added in',
     'It is unaffected, because 3,100 is small against 412,000',
     'It describes trips that ended at a dock, which is a narrower group',
     'It overstates duration, because those trips were the longest ones'],
-   2, 'Those rides are not rows, so nothing computed from the file can describe them. They cannot be added back either, because no end time was ever recorded.') \
+   2, 'Those rides are not rows, so nothing computed from the file can describe them. They cannot be added back either, because no end time was ever recorded.',
+   ['They cannot be added back, because no end time was ever recorded for them.',
+    'What counts is that the figures describe a group narrower than the label suggests.',
+    'Those rides are not rows, so nothing computed from the file describes them.',
+    'Nothing is known about how long they lasted, which is the whole difficulty.']) \
 + kc(P, 7,
    'Mean duration is 16.3 minutes and the median is 11. Using the duration table, what is the best account of that gap?',
    ['A recording error in the longer trips has inflated the mean',
     'Most trips last about 16 minutes, with a few much shorter and a few longer',
     'Duration is recorded in whole minutes, which raises the mean',
     'There are two groups of trips, and 16.3 describes neither well'],
-   3, '289,000 trips run 4 to 14 minutes and 123,000 run 25 to 45. 16.3 is between the two groups, and no trip in the file lasts 16 minutes.') \
+   3, '289,000 trips run 4 to 14 minutes and 123,000 run 25 to 45. 16.3 is between the two groups, and no trip in the file lasts 16 minutes.',
+   ['Nothing suggests an error. The long trips are a real group of 123,000.',
+    'This is the single-centre reading that the table rules out. No trip in the file lasts 16 minutes.',
+    'Rounding to whole minutes does not move a mean by five.',
+    '289,000 trips run 4 to 14 minutes and 123,000 run 25 to 45, so 16.3 is between the two groups.']) \
 + kc(P, 8,
    'Verdance proposes one chart for the council showing mean duration by month. What would the council not be able to see?',
    ['Whether the mean in April was higher than the mean in June',
     'That the trips fall into two groups of very different length',
     'Which of the three months had the longest mean trip',
     'The direction of the change in mean duration across the quarter'],
-   1, 'A mean per month is three numbers, so A, C and D can all be read straight off the chart. The two groups are inside every month, and they are visible at once in a histogram of duration.') \
+   1, 'A mean per month is three numbers, so A, C and D can all be read straight off the chart. The two groups are inside every month, and they are visible at once in a histogram of duration.',
+   ['Read the April bar against the June bar and you have it.',
+    'The two groups are inside every month. A histogram of duration would make them visible at once.',
+    'Whichever of the three bars is tallest answers this.',
+    'Reading the three bars from left to right gives the direction of the change.']) \
 + score() + """
 </section>
 """

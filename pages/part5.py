@@ -114,42 +114,66 @@ practice = """
     'The salaries are evenly spread between 16,609 and 236,319',
     'Most placed participants earn more than 63,140 a year',
     'Roughly half the placed participants were paid nothing'],
-   0, 'A mean is pulled by values far from the centre and a median is not. With only 44.9 percent earning above the mean, the mean is not describing a typical person.') \
+   0, 'A mean is pulled by values far from the centre and a median is not. With only 44.9 percent earning above the mean, the mean is not describing a typical person.',
+   ['A mean is pulled by values far from the centre and a median is not, and only 44.9 percent earn above the mean.',
+    'An even spread would put the mean near 126,000, and the mean and median together.',
+    '44.9 percent do, which is a minority.',
+    'The smallest salary in the group is 16,609. Nobody placed was paid nothing.']) \
 + kc(P, 2,
    'The director wants one figure for what a typical placed participant earns. Which should she use?',
    ['The mean, 63,140, because it uses every salary in the group',
     'The median, 60,128, with half above and half below',
     'The largest salary, 236,319, as the figure to aim at',
     'The standard deviation, because it describes the whole spread'],
-   1, 'Half the placed participants earn above the median and half below. The mean answers a different question, which is what the total wage bill divided by the count comes to.') \
+   1, 'Half the placed participants earn above the median and half below. The mean answers a different question, which is what the total wage bill divided by the count comes to.',
+   ['It does use every salary, and that is why a few very large ones pull it above what a typical participant earns. It is the right figure for the total wage bill.',
+    'Half of the placed participants earn more and half less, and unlike the mean it is not pulled up by the few very large salaries.',
+    'The largest value describes one person rather than the group.',
+    'A spread figure rather than a centre, so it answers a different question.']) \
 + kc(P, 3,
    'She adds a sentence on the spread. Which is the safest to print?',
    ['Salaries run from 16,609 to 236,319, so a typical one is near the middle of that',
     'Salaries vary by about 25,204 either side of the mean',
     'Eight in ten placed participants earn between 33,637 and 94,447',
     'The mean and the median are close, so the spread must be quite narrow'],
-   2, 'The mid-80 percent range comes from the tenth and ninetieth percentiles and is not moved by one very large salary. The full range is decided by two people, and the middle of it, about 126,000, is nowhere near the mean or the median.') \
+   2, 'The mid-80 percent range comes from the tenth and ninetieth percentiles and is not moved by one very large salary. The full range is decided by two people, and the middle of it, about 126,000, is nowhere near the mean or the median.',
+   ['The two figures are right and the conclusion drawn from them is wrong. The middle of that range is about 126,000, nowhere near the mean or the median.',
+    'This treats the spread as symmetric about the mean, which it is not, and it understates the top badly.',
+    'The tenth and ninetieth percentiles, so eight in ten fall between them, and one very large salary does not move either figure.',
+    'Centre and spread are separate. The standard deviation is 25,204 on a mean of 63,140.']) \
 + kc(P, 4,
    'The report says mean attendance was 93.13 percent. Using the attendance table, what is wrong with that as a description of a typical participant?',
    ['It is too high, because 943 participants attended 90 percent or less',
     'It should have been the median, which is the correct centre to report',
     'It falls between two groups and describes neither of them',
     'It was computed across 5,000 rather than across the 1,912 placed'],
-   2, '943 participants peak at 83 percent and 4,047 peak at 96. The mean is above everyone in the first group and below most of the second.') \
+   2, '943 participants peak at 83 percent and 4,047 peak at 96. The mean is above everyone in the first group and below most of the second.',
+   ['The count is right, and so is the direction for those 943. The fault is that it names one side only: for most of the 4,047 in the upper group the mean is too low.',
+    'The median is 95, which falls inside the upper group and describes the 943 no better.',
+    '943 peak at 83 and 4,047 peak at 96, so the mean is above everyone in the first group and below most of the second.',
+    'Attendance is about all participants, so 5,000 is the right population.']) \
 + kc(P, 5,
    'Which chart would have made the problem in the attendance figure plain fastest?',
    ['A bar chart of mean attendance by track',
     'A scatterplot of mean attendance against mean salary for each track',
     'A line chart of attendance over the course',
     'A histogram of attendance across all 5,000'],
-   3, 'In a histogram every value appears on the page arranged by how often it occurs, so two separate peaks are visible at once. A bar chart of means would give three bars near 93, and the two groups would not appear at all, as they do not in the mean.') \
+   3, 'In a histogram every value appears on the page arranged by how often it occurs, so two separate peaks are visible at once. A bar chart of means would give three bars near 93, and the two groups would not appear at all, as they do not in the mean.',
+   ['Three bars near 93, which reproduces the problem rather than exposing it.',
+    'Aggregating to three track means removes the shape you are looking for.',
+    'There is no time column here, and a trend line would tell you nothing about the shape of the column.',
+    'Every value appears, arranged by how often it occurs, so the two peaks and the gap between them are visible at once.']) \
 + kc(P, 6,
    'A colleague reports that attendance correlates with placement at -0.0496 and concludes there is no relationship between them. What is the flaw?',
    ['The correlation should have been computed among the placed only',
     'A figure near zero also fits a relationship that rises then falls',
     'A negative correlation always means the relationship is backwards',
     'Correlation cannot be computed on a column recorded as a percentage'],
-   1, 'A single figure near zero is consistent with several different pictures. Drawing the scatterplot separates them; the correlation on its own cannot.') \
+   1, 'A single figure near zero is consistent with several different pictures. Drawing the scatterplot separates them; the correlation on its own cannot.',
+   ['Placement is one of the two columns. Among the placed it does not vary, so there is nothing to correlate.',
+    'A correlation measures straight-line association, and a relationship that rises and then falls averages out to near zero.',
+    'The word always is too strong, and at -0.0496 the sign carries almost no information.',
+    'A percentage is a number. Nothing prevents the calculation.']) \
 + score() + """
 <h3>Write it out</h3>
 <p>The same situation. There is no single correct answer to these. Write yours first, then compare.</p>

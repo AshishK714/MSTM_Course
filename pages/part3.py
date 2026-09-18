@@ -138,42 +138,66 @@ practice = """
     '75.52 percent, out of the 1,912 who were placed',
     '28.88 percent, out of the 5,000, counting only full-time work',
     '61.76 percent, out of the 3,088 whose salary was left blank'],
-   0, '1,912 of 5,000 is 38.24 percent. The denominator has to be everybody who enrolled, because that is the group the participant is about to join. D pairs a real figure with a denominator that did not produce it: 61.76 percent is 3,088 out of 5,000, and out of the 3,088 the share with no salary is all of them.') \
+   0, '1,912 of 5,000 is 38.24 percent. The denominator has to be everybody who enrolled, because that is the group the participant is about to join. D pairs a real figure with a denominator that did not produce it: 61.76 percent is 3,088 out of 5,000, and out of the 3,088 the share with no salary is all of them.',
+   ['1,912 of 5,000. The denominator is everybody who enrolled, which is the group the participant is about to join.',
+    'Correct arithmetic on the wrong group: its denominator is the people who were already placed.',
+    'The right denominator with a narrower numerator. The participant did not ask only about full-time work.',
+    'A figure paired with a denominator that did not produce it. 61.76 percent is 3,088 out of 5,000, and out of the 3,088 the share with no salary is all of them.']) \
 + kc(P, 2,
    'The funder paid for all 5,000 enrolments and counts only full-time work as a result. Work that figure out from the table.',
    ['75.52 percent, out of those placed',
     '38.24 percent, out of everyone enrolled',
     '28.88 percent, out of all 5,000 enrolled',
     '24.48 percent, the placements that were not full-time'],
-   2, '1,444 out of 5,000 is 28.88 percent. Dividing 1,444 by the 1,912 placed instead gives 75.52 percent, which answers a different question.') \
+   2, '1,444 out of 5,000 is 28.88 percent. Dividing 1,444 by the 1,912 placed instead gives 75.52 percent, which answers a different question.',
+   ['The right numerator on the wrong denominator. The funder paid for all 5,000.',
+    'The right denominator with the wrong numerator. This counts any employment, not full-time.',
+    'The funder counts only full-time work, so the numerator is 1,444, and it paid for every enrolment, so the denominator is 5,000.',
+    '468 of 1,912, the share of placements that were not full-time. It answers neither half of the question.']) \
 + kc(P, 3,
    'The rival programme reports 75.52 percent. Is that figure dishonest?',
    ['Yes, because it leaves out the people who were not placed',
     'Yes, because a full-time share should always be out of everyone',
     'No, and it describes the quality of placements',
     'No, because all three figures come to the same thing in the end'],
-   2, 'It is correct arithmetic and it describes placement quality. It becomes misleading only when it is offered as the answer to what happens to somebody who enrols.') \
+   2, 'It is correct arithmetic and it describes placement quality. It becomes misleading only when it is offered as the answer to what happens to somebody who enrols.',
+   ['Every subgroup figure leaves somebody out. Exclusion on its own is not dishonesty.',
+    'There is no such rule. The denominator follows the question being asked.',
+    '1,444 of 1,912 is a well-defined measure of placement quality. It misleads only when offered as the answer to what happens to somebody who enrols.',
+    'They are three different quantities: 75.52 percent is out of the 1,912 placed, while 38.24 and 28.88 are both out of the 5,000 enrolled.']) \
 + kc(P, 4,
    'A colleague proposes filling the 3,088 blank salary cells with zero, so the column can be averaged across all 5,000. What happens to the reported mean?',
    ['It stays at 63,140, because the zeros cancel out',
     'It falls to 24,145 and describes nobody who was paid',
     'It cannot be computed, because zero is not a valid salary',
     'It rises, because the denominator gets larger than before'],
-   1, 'The 1,912 salaries total about 120.7 million. Divided by 5,000 rather than by 1,912 that is 24,145. Those cells are blank for exactly the 3,088 who were not employed, so the new figure describes a group that mixes wages with the absence of a wage.') \
+   1, 'The 1,912 salaries total about 120.7 million. Divided by 5,000 rather than by 1,912 that is 24,145. Those cells are blank for exactly the 3,088 who were not employed, so the new figure describes a group that mixes wages with the absence of a wage.',
+   ['Zeros do not cancel. They pull the mean down.',
+    'The 1,912 salaries total about 120.7 million, and divided by 5,000 that is 24,145. No participant was paid 24,145; it is a mean over a group that mixes wages with the absence of a wage.',
+    'The calculation runs and returns a number. That is the danger: the result is meaningless rather than impossible.',
+    'A larger denominator with zeros added lowers the mean rather than raising it.']) \
 + kc(P, 5,
    'The director proposes a readiness score, made by averaging the two columns in the second table. From the ranges and standard deviations given, what does that score mostly measure?',
    ['Attendance, because its values are the larger of the two',
     'Both equally, because both are recorded as percentages',
     'Neither, because averaging two percentages cancels them out',
     'Digital literacy, which varies more than twice as widely'],
-   3, 'A range of 49 against 24, and a standard deviation of 11.88 against 5.21. In the average of the two, about 84 percent of the variation comes from digital literacy.') \
+   3, 'A range of 49 against 24, and a standard deviation of 11.88 against 5.21. In the average of the two, about 84 percent of the variation comes from digital literacy.',
+   ['The contribution depends on how widely a column varies, not on how large its values are.',
+    'Sharing a percent sign is not sharing a scale.',
+    'Averaging cancels nothing. It produces a score in which one column accounts for most of the variation.',
+    'A range of 49 against 24 and a standard deviation of 11.88 against 5.21, so about 84 percent of the variation is digital literacy.']) \
 + kc(P, 6,
    'The board asks whether placement could be raised by improving attendance. Attendance correlates with placement at -0.0496. What is the most defensible reply?',
    ['Yes, and the effect will be small but worth having',
     'No, because these figures prove attendance and placement are unrelated',
     'No, because nothing here supports it and attendance only stands in for engagement',
     'Placement should be dropped as a measure of whether it worked'],
-   2, 'Attendance was recorded because a register already existed. Nobody checked whether it measures engagement, and the correlation is -0.0496, near zero and slightly negative, so nothing here supports acting on it. B goes too far: a correlation near zero in one file is not proof that no relationship exists, it is a reason not to act on this one.') \
+   2, 'Attendance was recorded because a register already existed. Nobody checked whether it measures engagement, and the correlation is -0.0496, near zero and slightly negative, so nothing here supports acting on it. B goes too far: a correlation near zero in one file is not proof that no relationship exists, it is a reason not to act on this one.',
+   ['The correlation is negative and near zero, and a correlation would not license a causal claim in any case.',
+    'This goes too far. A figure near zero in one file is not proof that no relationship exists.',
+    'Attendance was recorded because a register already existed, and at -0.0496 nothing here supports acting on it.',
+    'Nothing in the correlation bears on whether placement is the right outcome to want.']) \
 + score() + """
 <h3>Write it out</h3>
 <p>The same situation. There is no single correct answer to these. Write yours first, then compare.</p>

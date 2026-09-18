@@ -78,42 +78,66 @@ practice = """
     'The rural figures are computed from 518 people and 215 placements',
     'The two mean salaries are not adjusted for differences in living costs',
     'A placement rate and a mean salary should not be read together'],
-   0, 'Travelling to a city cost time and money, so only some rural people were willing to pay it. If the cost is removed, rural people who were unwilling to pay it will enrol, and the file has no record of them. B is a real caution, and it appears in the model answer below, but 518 enrolments and 215 placements are enough to compare. C and D are about how the figures should be read, not about who is in the file.') \
+   0, 'Travelling to a city cost time and money, so only some rural people were willing to pay it. If the cost is removed, rural people who were unwilling to pay it will enrol, and the file has no record of them. B is a real caution, and it appears in the model answer below, but 518 enrolments and 215 placements are enough to compare. C and D are about how the figures should be read, not about who is in the file.',
+   ['The 518 rural rows passed a filter, and the centre removes that filter, so their rates do not carry to a new intake.',
+    'A real caution, and it appears in the model answer below, but 518 enrolments and 215 placements are enough to compare.',
+    'A genuine caveat on the salary column, and it leaves the placement rate untouched, so it is not the strongest objection.',
+    'There is no such rule. Both figures were computed on stated bases.']) \
 + kc(P, 2,
    'The identifiers run from P0001 to P5000 with no gaps. What does checking that establish?',
    ['That the 5,000 are representative of the district FPF serves',
     'That nobody was removed from the file after it was built',
     'That everybody who applied to the programme has a row',
     'That the rural and urban groups can be compared directly'],
-   1, 'If the sequence is unbroken, no row was deleted after the file was built. That is all you learn, and you learn nothing about who never entered it.') \
+   1, 'If the sequence is unbroken, no row was deleted after the file was built. That is all you learn, and you learn nothing about who never entered it.',
+   ['From complete identifiers you learn nothing about who enrolled in the first place.',
+    'If the sequence is unbroken, no row was deleted after the file was assembled, and that is all you learn.',
+    'The file is of people who enrolled. Anybody who applied and did not enrol was never given an identifier.',
+    'Identifier integrity has no bearing on whether two self-selected groups are comparable.']) \
 + kc(P, 3,
    'Which of these could you find out from this file?',
    ['How many rural people considered FPF and did not enrol',
     'How many people enrolled but dropped out before the file was built',
     'How many rural participants enrolled and were not placed',
     'How rural people who never travelled to a centre would do'],
-   2, 'The first, second and fourth describe people who are not rows at all, and somebody who dropped out before the file was built was never given a row to count. The third is a subtraction inside the table, 518 less 215, which is 303.') \
+   2, 'The first, second and fourth describe people who are not rows at all, and somebody who dropped out before the file was built was never given a row to count. The third is a subtraction inside the table, 518 less 215, which is 303.',
+   ['They have no rows, and nothing in the file records that they existed.',
+    'Somebody who dropped out before the file was built was never given a row to count.',
+    '518 less 215, which is 303, read straight off the table.',
+    'A counterfactual about people the file excludes by construction.']) \
 + kc(P, 4,
    'The 3,088 blank cells in the salary column took seconds to count. What does that check fail to establish?',
    ['How many of the 5,000 participants have no salary recorded',
     'What share of the 5,000 the blank cells are',
     'That all 3,088 blanks are in the salary column',
     'Anything about the people who are not in the file at all'],
-   3, 'Counting the blanks gives you A and B directly, 3,088 and 61.76 percent, and C as well, since you counted them in that one column. A blank cell means there was no job to report, and blank cells can be counted. The file has no record of the people who are not in it, and that is the harder question.') \
+   3, 'Counting the blanks gives you A and B directly, 3,088 and 61.76 percent, and C as well, since you counted them in that one column. A blank cell means there was no job to report, and blank cells can be counted. The file has no record of the people who are not in it, and that is the harder question.',
+   ['Counting the blank cells gives this directly: there are 3,088 of them.',
+    'This follows from the same count: 3,088 out of 5,000 is 61.76 percent.',
+    'This follows too, since the blanks were counted in the salary column and nowhere else.',
+    'Nothing counted inside a file bears on who is outside it, and that is the harder question.']) \
 + kc(P, 5,
    'Suppose the rural centre opens and the rural placement rate falls to 36 percent in the following year. What is the most defensible reading?',
    ['The centre made rural participants worse off than they were before',
     'The new rural intake includes people the travel cost kept out',
     'The 41.51 percent must have been computed incorrectly',
     'Rural recruitment should be reduced back to its old level'],
-   1, 'The number changed because the filter changed. The work of the programme need not have changed at all, and the two years describe different groups of rural people.') \
+   1, 'The number changed because the filter changed. The work of the programme need not have changed at all, and the two years describe different groups of rural people.',
+   ["Nobody's outcome is shown to have worsened. What changed is who now enrols.",
+    'The number changed because the filter changed, and the two years describe different groups of rural people.',
+    '215 of 518 is 41.51 percent. The arithmetic was never in doubt.',
+    'A recommendation built on the same misreading as A.']) \
 + kc(P, 6,
    'An employer tells FPF it prefers participants who travelled to attend, because the travel shows commitment. Is that reasoning sound?',
    ['No, because commitment is a feeling and only a self-report can measure it',
     'No, because asking the applicant directly would give the same information',
     'Yes, because travelling was costly and hard to fake',
     'Yes, because travelling participants were placed more often than they otherwise would be'],
-   2, 'A costly action is evidence, because someone unwilling to pay the cost would not have taken it. The reasoning runs one way only: travelling suggests commitment, and not travelling does not show a lack of it. A and B both have it backwards: a self-report is the cheap thing anyone can produce, which is exactly why asking does not separate applicants. D is a claim about what the travel did to the outcome, which this file cannot establish.') \
+   2, 'A costly action is evidence, because someone unwilling to pay the cost would not have taken it. The reasoning runs one way only: travelling suggests commitment, and not travelling does not show a lack of it. A and B both have it backwards: a self-report is the cheap thing anyone can produce, which is exactly why asking does not separate applicants. D is a claim about what the travel did to the outcome, which this file cannot establish.',
+   ['This has it backwards. A self-report is the cheap thing anyone can produce.',
+    'Asking fails for the same reason. Every applicant says they are committed.',
+    'Somebody unwilling to pay the cost would not have travelled, so having travelled is informative.',
+    'A claim about what the travel did to the outcome, which this file cannot establish.']) \
 + score() + """
 <h3>Write it out</h3>
 <p>The same situation. There is no single correct answer to these. Write yours first, then compare.</p>

@@ -75,42 +75,66 @@ practice = """
     'A signal, because it is watched instead of the real outcome',
     'An outcome, because FPF exists to provide mentorship to people',
     'Context, because it was settled before the participant enrolled'],
-   0, 'FPF decides who receives mentorship, so it is the lever. It is not something watched in place of an outcome, and it is not fixed before enrolment. FPF does not exist to provide mentorship either; it provides mentorship so that participants find work. Part 2 follows the same decision into the file.') \
+   0, 'FPF decides who receives mentorship, so it is the lever. It is not something watched in place of an outcome, and it is not fixed before enrolment. FPF does not exist to provide mentorship either; it provides mentorship so that participants find work. Part 2 follows the same decision into the file.',
+   ['FPF chooses who receives mentorship, so it is the thing FPF can do more or less of.',
+    'A signal is watched in place of an outcome that arrives too late. Nobody watches mentorship to find out how the programme is doing; FPF sets it.',
+    'FPF does not exist to produce mentorship. It provides mentorship so that participants find work, so it fails the one-question test.',
+    'Mentorship is assigned during the programme, and it is the one thing in this decision FPF can move.']) \
 + kc(P, 2,
    'Regional unemployment is published quarterly and is not in the file. What is it for the mentorship decision?',
    ['A signal, because it can be watched every quarter',
     'An outcome, because reducing it is what FPF exists to do',
     'Context, because it shapes the result and FPF cannot move it',
     'Irrelevant, because a decision can only use what is in the file'],
-   2, 'FPF cannot move regional unemployment within its planning horizon, and it shapes how many participants find work whatever the programme does. Something can be watched every quarter without being a signal, because a signal stands in for an outcome FPF is trying to produce. And a decision may use anything that bears on it, whether or not it was recorded in the file.') \
+   2, 'FPF cannot move regional unemployment within its planning horizon, and it shapes how many participants find work whatever the programme does. Something can be watched every quarter without being a signal, because a signal stands in for an outcome FPF is trying to produce. And a decision may use anything that bears on it, whether or not it was recorded in the file.',
+   ['Being published every quarter makes it easy to watch. A signal has to stand in for an outcome FPF is trying to produce, and this does not.',
+    'FPF places its own participants. It could not move the regional rate at its size, and nobody funds it to.',
+    'It shapes how many participants find work, and FPF cannot change it within a year.',
+    'A decision may use anything that bears on it. Being outside the file makes a figure harder to get, not irrelevant.']) \
 + kc(P, 3,
    'Apply the one-question test to attendance_pct. Which is right?',
    ['An outcome, because attending is worth having for its own sake',
     'A signal, because nobody wants attendance if it leads nowhere',
     'A fact for one decision and an outcome for the other',
     'Neither, because it is recorded as a percentage rather than a count'],
-   1, 'Nobody runs a programme in order to produce attendance, so it fails the one-question test and is not an outcome. It is watched because it is meant to stand in for engagement, which is what Part 3 examines. It is a fact in the table, but that is a separate question from the role it plays. The unit makes no difference either, because the one-question test asks what you want the item for, not how it was recorded.') \
+   1, 'Nobody runs a programme in order to produce attendance, so it fails the one-question test and is not an outcome. It is watched because it is meant to stand in for engagement, which is what Part 3 examines. It is a fact in the table, but that is a separate question from the role it plays. The unit makes no difference either, because the one-question test asks what you want the item for, not how it was recorded.',
+   ['Nobody funds a programme in order to produce attendance, so it fails the one-question test.',
+    'It is watched early because the outcome, a job, arrives months later.',
+    "Attendance is a fact in both decisions, and an outcome in neither. The reporting decision's outcomes are placement and salary.",
+    'How a value was recorded has no bearing on the role it plays. A count and a percentage can each be a signal.']) \
 + kc(P, 4,
    'In one internal memo, FPF writes that average attendance was 93.13 percent. In a second memo it compares placement between higher and lower attenders. What has happened to attendance_pct?',
    ['It has been used first as a fact, then as a dimension',
     'It has been used incorrectly in one of the two places',
     'It has changed from a signal into an outcome between them',
     'It has been recorded more finely, changing from banded to continuous'],
-   0, 'The values never changed, and nothing was re-recorded, so D has the direction backwards: splitting into higher and lower attenders is coarser, not finer. In the first use the column is the thing being measured; in the second it is the thing being sliced by. Both uses are legitimate, and the role it plays for the decision, signal rather than outcome, is the same in both.') \
+   0, 'The values never changed, and nothing was re-recorded, so D has the direction backwards: splitting into higher and lower attenders is coarser, not finer. In the first use the column is the thing being measured; in the second it is the thing being sliced by. Both uses are legitimate, and the role it plays for the decision, signal rather than outcome, is the same in both.',
+   ['The same values are reported in one memo and used to split participants in the other.',
+    'Both uses are legitimate. That is the point: the role belongs to the pairing of column and question.',
+    'Placement is the outcome in both memos. Nothing about attendance moved between signal and outcome.',
+    'This has the direction backwards. Splitting into higher and lower attenders is coarser than the percentage, not finer, and nothing was re-recorded.']) \
 + kc(P, 5,
    'Which of these four can be added up across participants without producing a meaningless number?',
    ['employer_partnership_strength, once its levels are coded 1 to 4',
     'attendance_pct, because every value is on the same percentage scale',
     'location_category, by coding rural as one and urban as two and adding the codes',
     'salary, because two salaries together make a wage bill'],
-   3, 'Salary totals to something real. A rate cannot be totalled, an ordered category has no equal steps, and adding arbitrary codes for rural and urban gives a number that counts nothing.') \
+   3, 'Salary totals to something real. A rate cannot be totalled, an ordered category has no equal steps, and adding arbitrary codes for rural and urban gives a number that counts nothing.',
+   ['Its levels are ordered, so they can be ranked, and nothing establishes that the step from low to high is the same size as the step from high to very high.',
+    "A percentage was already divided once. Adding two of them gives a number whose denominator is nobody's.",
+    'Rural and urban have no order, so codes of one and two are arbitrary and their total counts nothing.',
+    'Salary is an amount on a common scale with a real zero, so two of them add to a third amount that means something.']) \
 + kc(P, 6,
    'FPF switches from the mentorship decision to the reporting decision. Which of these items now does no work?',
    ['salary, because funders are not told what participants earn',
     'education, because the report is not broken down by education',
     'mentorship, because the report is not broken down by who was mentored',
     'None of them; both decisions need all eight items'],
-   2, 'The report is broken down by education and by nothing else, so it never compares the mentored with the unmentored. Salary and education are both in it. For the mentorship decision, mentorship is the whole point.') \
+   2, 'The report is broken down by education and by nothing else, so it never compares the mentored with the unmentored. Salary and education are both in it. For the mentorship decision, mentorship is the whole point.',
+   ['Average salary of those placed is one of the two figures the report gives.',
+    'The report is broken down by education, so education is the dimension it slices by.',
+    'The report gives placement rate and average salary by education, and nothing else, so it never compares the mentored with the unmentored.',
+    'Five of the eight do no work in the report. Mentorship is the one that was the whole point of the other decision.']) \
 + score() + """
 <h3>Write it out</h3>
 <p>The same situation. There is no single correct answer to these. Write yours first, then compare.</p>

@@ -95,42 +95,66 @@ practice = """
     '61 out of 765, the share of the employed who had gone unmentored',
     '704 out of 765, the share of the employed who were mentored',
     '704 out of 2,323, the share of everybody who was both'],
-   0, 'Read forward from the thing FPF controls. That gives 33.98 percent against 24.30 percent for the unmentored, a gap of 9.68 points.') \
+   0, 'Read forward from the thing FPF controls. That gives 33.98 percent against 24.30 percent for the unmentored, a gap of 9.68 points.',
+   ['The denominator is the group FPF can act on, so you can read it forward: 33.98 percent against 24.30 for the unmentored.',
+    'The denominator is an outcome. It describes who the employed turn out to be, and FPF cannot assign employment.',
+    'The same fault, and this is the figure the next question is about: 92.03 percent, high because almost everybody was mentored.',
+    'A joint share of everybody. There is no second group on the same denominator, so it compares nothing.']) \
 + kc(P, 2,
    'A colleague computes that 92.03 percent of the employed had been mentored, and calls it strong evidence for mentorship. What is wrong with that?',
    ['The arithmetic is wrong; the correct figure is 87.80 percent',
     'It should have been computed on all 5,000 rather than 2,323',
     'Nearly nine in ten in this table were mentored, whatever their outcome',
     'The figure should have been computed separately for each track'],
-   2, 'The denominator is an outcome. 2,072 of the 2,323 in this table were mentored, 89.19 percent; among the not employed it is 87.80 percent and among the employed 92.03, so the figure would be high whatever mentorship did. A is wrong: 704 of 765 really is 92.03 percent, and the colleague&#39;s arithmetic being right is the point. B is wrong because the director asked about High School participants, so 2,323 is the right population, and widening it would not repair a denominator that is an outcome. D would not help either, since the same fault appears inside every track.') \
+   2, 'The denominator is an outcome. 2,072 of the 2,323 in this table were mentored, 89.19 percent; among the not employed it is 87.80 percent and among the employed 92.03, so the figure would be high whatever mentorship did. A is wrong: 704 of 765 really is 92.03 percent, and the colleague&#39;s arithmetic being right is the point. B is wrong because the director asked about High School participants, so 2,323 is the right population, and widening it would not repair a denominator that is an outcome. D would not help either, since the same fault appears inside every track.',
+   ['The arithmetic is right. 704 of 765 really is 92.03 percent, and that is the point.',
+    'The director asked about High School participants, so 2,323 is the right population, and widening it would not repair a denominator that is an outcome.',
+    '2,072 of the 2,323 were mentored, 89.19 percent; among the not employed 87.80 and among the employed 92.03. The figure would be high whatever mentorship did.',
+    'The same fault would appear inside every track, because the denominator would still be an outcome.']) \
 + kc(P, 3,
    'The director asks for the same comparison for rural participants. What should you tell her?',
    ['It can be done, but the rural groups will be small',
     'It will show a larger gap, because rural learners travel further',
     'Rural and urban have to be combined before the gap can be computed',
     'No rural participant went unmentored, so there is no comparison'],
-   3, 'All 637 unmentored participants are urban. A group supports the comparison only when it contains both mentored and unmentored members.') \
+   3, 'All 637 unmentored participants are urban. A group supports the comparison only when it contains both mentored and unmentored members.',
+   ['The rural unmentored group is empty rather than merely small, and no sample size repairs a cell with nobody in it.',
+    'This guesses at a mechanism, and it assumes a comparison that cannot be computed at all.',
+    'Combining them is what the original table already does. It removes the question rather than answering it.',
+    'All 637 unmentored participants are urban, so there is no rural unmentored group to compare against.']) \
 + kc(P, 4,
    'Someone proposes replacing this pivot with one row per education level, giving employed and not employed counts for all 5,000 participants, to make the report shorter. Which of these would the new table not answer?',
    ['Which education level had the highest employment rate',
     'Whether mentored participants were placed more often',
     'How many participants there are at each education level',
     'What share of all 5,000 participants ended up employed'],
-   1, 'Mentored and unmentored participants would be combined in each education row, so the difference between them would no longer appear. The other three are answerable from the three education rows.') \
+   1, 'Mentored and unmentored participants would be combined in each education row, so the difference between them would no longer appear. The other three are answerable from the three education rows.',
+   ['Education is still a row and employment is still a column, so this is read straight off.',
+    'Mentored and unmentored participants would be combined in each education row, so the difference between them would no longer appear.',
+    'That is the row total, the number of participants at that education level.',
+    'Sum the three education rows to get 1,912, then divide by 5,000.']) \
 + kc(P, 5,
    'The director asks whether the file can tell her which individual participants to give mentorship to next year. What is the honest answer?',
    ['No, because mentorship does not vary within a single person',
     'Yes, by ranking participants on attendance and digital literacy',
     'Yes, provided the sample is large enough to support it',
     'No, because the file records motivation but not education at enrolment'],
-   0, 'To decide for one named person you would need what happened to that person with mentorship and without it, and only one of the two was ever observed. No sample size repairs that. D has the file backwards: education at enrolment is recorded and motivation is not.') \
+   0, 'To decide for one named person you would need what happened to that person with mentorship and without it, and only one of the two was ever observed. No sample size repairs that. D has the file backwards: education at enrolment is recorded and motivation is not.',
+   ['To decide for one named person you need what happened to that person both with mentorship and without it, and only one of the two was observed.',
+    'Ranking on correlates is not an assignment rule the file supports, and attendance is recorded after the programme has started.',
+    'Sample size never turns a group comparison into a prediction about one person. This is the trap in the question.',
+    'The file has it the other way round: education at enrolment is recorded, and motivation is not.']) \
 + kc(P, 6,
    'She now wants to offer mentorship separately for each of ten modules. The file has one row for each of the 5,000 participants. What stops her?',
    ['Ten modules would need ten separate pivot tables',
     'The file has no row for a participant in a module',
     'The counts in each module would be too small to compare',
     'Module-level mentorship was never offered, so there is no precedent'],
-   1, 'The decision has 5,000 participants times ten modules, so 50,000 units, against 5,000 rows. Everything in the file is constant within a participant, so nothing in it separates one module from another.') \
+   1, 'The decision has 5,000 participants times ten modules, so 50,000 units, against 5,000 rows. Everything in the file is constant within a participant, so nothing in it separates one module from another.',
+   ['A single table with a module column would do, if the rows existed.',
+    'The decision has 5,000 participants times ten modules, and the file has 5,000 rows, every value constant within a participant.',
+    'A counting objection assumes the rows exist. There is nothing to count at module level.',
+    'The obstacle is the structure of the file, which has no row finer than a participant.']) \
 + score() + """
 <h3>Write it out</h3>
 <p>The same situation. There is no single correct answer to these. Write yours first, then compare.</p>
