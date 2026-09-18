@@ -78,6 +78,9 @@ resp(prompt, model answer), score().
    in-class activity on denominators". Reading Notes and Homeworks are named by number.
 5. Every number is computed from the CSV files, never recalled or copied from a slide. Compute first,
    then write. The figures below were verified during planning; verify them again before use.
+   Spread is computed over the whole data, not as a sample (population standard deviation, ddof=0).
+   That is what AV's figures use: salary 25,204, digital literacy 11.88, attendance 5.21.
+   For a range, report the mid-80% range, the 10th to the 90th percentile.
 6. Nothing is said twice across parts. Where two sources cover one idea, use the clearer example and
    name the other in the "Where this was covered" line.
 7. Practice uses the examples students already know. The exam will use new ones.

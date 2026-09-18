@@ -86,7 +86,7 @@ s7 = sec('s7', '3.7', 'Scale', """
 <p>FPF proposes a single readiness score for each learner, made by averaging attendance_pct and digital_lit_score. Both are percentages, so the calculation looks safe.</p>
 """ + table(['Column', 'Min', 'Max', 'Range', 'Standard deviation'], [
     ['attendance_pct', '76', '100', '24', '5.21'],
-    ['digital_lit_score', '51', '100', '49', '11.89'],
+    ['digital_lit_score', '51', '100', '49', '11.88'],
 ]) + """
 <p>The two columns are not on the same scale. Digital literacy varies more than twice as widely as attendance, so in the average of the two, about 84 percent of the variation comes from digital literacy alone. A learner's attendance would barely move the readiness score. Nobody intended to weight one column four times as heavily as the other, and a reader of the readiness score cannot tell from it that this happened.</p>
 <p>Both columns end in a percent sign, and neither column name records what the percent is of. Attendance is a percentage of sessions available. Digital literacy is a percentage of marks on an assessment. Two columns that use the percent sign are not therefore on the same scale.</p>
@@ -129,7 +129,7 @@ practice = """
     ['Rows with salary left blank', '3,088'],
 ], txt=True) + table(['Column', 'Min', 'Max', 'Standard deviation', 'Standing in for'], [
     ['attendance_pct', '76', '100', '5.21', 'engagement'],
-    ['digital_lit_score', '51', '100', '11.89', 'capability'],
+    ['digital_lit_score', '51', '100', '11.88', 'capability'],
 ]) + '<p>The mean salary of the 1,912 placed participants is 63,140. Three other people want a number from this page: a funder who pays only for full-time work, a prospective participant deciding whether to enrol, and a rival programme that has published its own figure.</p>') + """
 <p>Six questions that mark themselves, then three to write out.</p>
 """ + kc(P, 1,
@@ -166,7 +166,7 @@ practice = """
     'Both equally, because both are recorded as percentages',
     'Neither, because averaging two percentages cancels them out',
     'Digital literacy, which varies more than twice as widely'],
-   3, 'A range of 49 against 24, and a standard deviation of 11.89 against 5.21. In the average of the two, about 84 percent of the variation comes from digital literacy.') \
+   3, 'A range of 49 against 24, and a standard deviation of 11.88 against 5.21. In the average of the two, about 84 percent of the variation comes from digital literacy.') \
 + kc(P, 6,
    'The board asks whether placement could be raised by improving attendance. Attendance correlates with placement at -0.0496. What is the most defensible reply?',
    ['Yes, and the effect will be small but worth having',
