@@ -9,7 +9,7 @@ PARTS = [
      'What does one row represent, and did the comparison choose it?',
      ['The unit chain: decision, analysis, observation', 'The comparison decides the level',
       'The ladder: programme, group, individual', 'Conditioning: grand, column and row percent',
-      'Grain in a real file', 'Two things called granularity']),
+      'Grain in a file somebody else built', 'Two things are called granularity']),
     ('part3.html', 'Part 3', 'What a column measures',
      'What does this number stand in for, and what did that leave out?',
      ['Structural blanks are not missing data', 'Denominators', 'What can be added up',
@@ -64,7 +64,7 @@ body = f"""
 <h2><span class="n">Scope</span>What the midterm covers</h2>
 <p>Five ideas. Every question on the paper belongs to one of them. Most questions ask you to apply one of the five questions below to a dataset you are shown.</p>
 {table(['Part', 'Idea', 'The question'], [[p, t, q] for f, p, t, q, s in PARTS], txt=True)}
-<p>Everything in the five parts is examinable. The closing page is short and shows how the five parts are connected. Read it last.</p>
+<p>Everything in the five parts is examinable, and so is the closing, which only draws them together. The appendix is examinable as far as what many trials do to an average, and no further.   The closing page is short and shows how the five parts are connected. Read it last.</p>
 </section>
 
 
@@ -72,7 +72,7 @@ body = f"""
 <h2><span class="n">Standard</span>What a good answer looks like</h2>
 <p>The midterm is marked on the same standard as the homework. The question is whether the reason you give supports the conclusion you reach. A correct conclusion with no reason, or with a reason that does not support it, scores below an incorrect conclusion supported by sound reasoning from the information given.</p>
 <p>Most questions can be answered in two to four sentences. In a good answer you name the idea that applies, state what it does to the number or the decision in the question, and stop. Definitions on their own do not score. Listing every idea from the course in the hope that one applies does not score either.</p>
-<p>If a question asks you to choose between two numbers, two levels or two columns, it is usually asking you to choose for a named decision-maker. Say who is deciding and what they are deciding, and the choice usually becomes clear.</p>
+<p>If a question asks you to choose between two numbers, two levels or two columns, it is usually asking you to choose for a named decision-maker. Part 2 practice question 1 is exactly this move: three percentages from one table, and only one of them is addressed to somebody who can act. Say who is deciding and what they are deciding, and the choice usually becomes clear.</p>
 </section>
 
 <section id="contents">

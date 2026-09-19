@@ -14,7 +14,7 @@ s1 = sec('s1', '1.1', 'A programme converts activities into outcomes', """
     ['Activity', 'the work the organisation does, and the lever it can pull', 'running a mock-interview workshop'],
     ['Signal', 'what you watch instead of the outcome, because the outcome arrives too late to steer by', 'the share of enrolled participants who finish'],
     ['Outcome', 'what the organisation exists to produce, wanted for its own sake', 'a graduate moving into a better role two years on'],
-    ['Context', 'what shapes the result and cannot be moved within the planning horizon', 'whether a participant has childcare available'],
+    ['Context', 'what shapes the result and cannot be moved within the period the current plan covers, about a year for FPF', 'whether a participant has childcare available'],
     ['Mechanism', 'what has to happen inside a person between the activity and the result', 'coming to believe the qualification is worth finishing'],
 ], txt=True) + """
 <p>Sorting them decides what you will act on, what you will watch, and what you will have to work around.</p>
@@ -32,7 +32,7 @@ s2 = sec('s2', '1.2', 'Signal and outcome', """
 + src('Homework 1, items 11 and 15, and the one-question test on the five roles sheet.'))
 
 s3 = sec('s3', '1.3', 'A role is not a property of a column', """
-<p>The same item plays different roles depending on who is looking, and Homework 1 was built around that. Participant satisfaction is a signal to somebody running the programme and closer to an outcome for the participant feeling it. An economic downturn is context for FPF and the outcome a regional funder is judged on.</p>
+<p>The same item plays different roles depending on who is looking, and Homework 1 was built around that. Participant satisfaction is a signal to somebody running the programme and closer to an outcome for the participant feeling it. The level of regional employment is context for FPF, which cannot move it, and the outcome a regional funder is judged on directly.</p>
 <p>The same is true inside a file. Take attendance_pct in the FPF data. Ask what average attendance was, and the answer is 93.13 percent: the column is the thing being measured. Now ask whether participants who attended more were placed more often. To answer that you sort participants into higher and lower attenders and compare placement between the two groups. The column is now the thing you are slicing by, and placement is what is being measured.</p>
 <p>Nothing about the column changed. The values are identical in both questions. What changed is the question, and with it the job the column is doing.</p>
 <p>This is why a column cannot be labelled once and filed. The label belongs to the pairing of a column with a decision, and if three decision-makers work from one file, the same columns are labelled three different ways.</p>
@@ -46,7 +46,7 @@ s4 = sec('s4', '1.4', 'Facts and dimensions', """
     ['Dimensions', 'track, education, gender, mentorship, location_category, employer_partnership_strength'],
 ], txt=True) + """
 <p>The rule that follows is about what may be added. Counts and amounts add: two salaries make a total, two placements make a count. Dimensions do not: adding a track to an education level produces nothing. Rates are the case to watch, because they are facts you may not total. A group of 20 attending 90 percent and a group of 5 attending 80 percent do not make 170 percent, which is nobody's attendance. The denominator, the group a percentage is about, differs between them, so you have to go back to the counts: 18 sessions and 4 give 22 out of 25, which is 88 percent.</p>
-<p>Partnership strength needs care. Its levels are ordered from very low to very high, so it can be put in order, and being able to rank it does not make the steps between its levels equal. Two further columns, employment type and sector, were recorded only for participants who were employed, so those blanks follow from the value in another column rather than from anything going wrong.</p>
+<p>Partnership strength needs care. Its levels are ordered from very low to very high, so it can be put in order, and being able to rank it does not make the steps between its levels equal. Two further columns, employment type and sector, were recorded only for participants who were employed. Blanks produced by the value in another column like that are called structural blanks, and Part 3 takes them up.</p>
 <p>Both of those are taken further in Part 3. What belongs here is the habit of asking, of any column, whether it is the thing being measured or the thing you are cutting by, because the answer decides what arithmetic is allowed on it.</p>
 """ + ask('Is this column the thing being measured, or the thing I am cutting by, and what does that permit?')
 + src('the in-class table of facts and dimensions in the FPF file; Reading Note 3, section 2. Part 3 covers ordered categories and structural blanks.'))
@@ -97,7 +97,7 @@ practice = """
     'A signal, because nobody wants attendance if it leads nowhere',
     'A fact for one decision and an outcome for the other',
     'Neither, because it is recorded as a percentage rather than a count'],
-   1, 'Nobody runs a programme in order to produce attendance, so it fails the one-question test and is not an outcome. It is watched because it is meant to stand in for engagement, which is what Part 3 examines. It is a fact in the table, but that is a separate question from the role it plays. The unit makes no difference either, because the one-question test asks what you want the item for, not how it was recorded.',
+   1, 'Nobody runs a programme in order to produce attendance, so it fails the one-question test and is not an outcome. It is watched because it is meant to stand in for engagement, which is what Part 3 examines. It is a fact in the table, but that is a separate question from the role it plays. Roles do move with who is asking, as 1.3 showed, and both decisions here belong to FPF; a participant asked about their own attendance might answer differently. The unit makes no difference either, because the one-question test asks what you want the item for, not how it was recorded.',
    ['Nobody funds a programme in order to produce attendance, so it fails the one-question test.',
     'It is watched early because the outcome, a job, arrives months later.',
     "Attendance is a fact in both decisions, and an outcome in neither. The reporting decision's outcomes are placement and salary.",

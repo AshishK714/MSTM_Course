@@ -24,21 +24,22 @@ s2 = sec('s2', '3.2', 'Denominators', """
 ]) + """
 <p>Nobody lied and nobody made an error. Only the denominator changed. Choosing between the three is a decision about which claim FPF is making, and it is made by a person, not by the data.</p>
 <p>The third figure is the most flattering, and it is honest. It is the right number if the question is about the quality of the placements that happened. It is the wrong number if the question is what happens to somebody who enrols, because most of the people who enrolled are not in its denominator.</p>
-<p>The same choice appears in the salary column. Among the 1,912 employed participants the mean salary is 63,140. Across all 5,000 enrolled, counting those with no job as zero, it is 24,145. Whoever writes a funder report that says "average salary" without saying which one has made a choice and has not recorded it.</p>
+<p>The same choice appears in the salary column. Among the 1,912 employed participants the mean salary is 63,140. Across all 5,000 enrolled, counting those with no job as zero, it is 24,145, because the same total pay is divided by 5,000 rather than by 1,912. Whoever writes a funder report that says "average salary" without saying which one has made a choice and has not recorded it.</p>
 <p>The working habit is to write the denominator into the sentence rather than the footnote. A rate reported without its denominator is a claim that the reader has no way to check.</p>
 """ + ask('What is the denominator here, and would the claim still be made if it had to be said aloud?')
 + src('the in-class activity on three honest placement rates; Reading Note 2 on denominators; Reading Note 1, section 6.'))
 
 s3 = sec('s3', '3.3', 'What can be added up', """
 <p>Averaging a set of group rates, while ignoring how many people are in each group, was done five times in class on the same file. The true placement rate is 38.24 percent every time.</p>
-""" + table(['Slice by', 'Mean of the group rates', 'How far out', 'Smallest group'], [
+""" + table(['Grouping column', 'Mean of the group rates', 'Difference from 38.24, in points', 'Smallest group'], [
     ['gender', '53.72%', '+15.48', '13'],
     ['location', '39.68%', '+1.44', '518'],
     ['education', '39.63%', '+1.39', '1,263'],
     ['track', '37.99%', '-0.25', '738'],
     ['employer partnership strength', '38.21%', '-0.03', '1,141'],
 ]) + """
-<p>The same mistake was made five times and the damage ranges from fifteen percentage points to three hundredths of one. What separates them is the group sizes. Gender has a group of 13 counted as heavily as a group of 2,763. Partnership strength has four groups of roughly 1,200 each, so weighting them equally happens to be close to weighting them by size.</p>
+<p>The same mistake was made five times and the damage ranges from fifteen percentage points to three hundredths of one. What separates them is how unequal the group sizes are. Gender has a group of 13 counted as heavily as one of 2,763, a ratio of more than two hundred to one. Partnership strength has four groups of roughly 1,200 each, so weighting them equally happens to be close to weighting them by size. It is the spread of the sizes that matters, not the smallest on its own.</p>
+<p>The gender row is worth following through. The three groups are placed at 39.75 percent of 2,224 women, 36.81 percent of 2,763 men, and 84.62 percent of the 13 who preferred not to say. Averaging those three rates gives 53.72, which is 15.48 points above the true 38.24, because it gives the group of 13 the same say as the group of 2,763.</p>
 <p>The last row is the one a reader is most likely to be misled by. Anyone who tried this method only on partnership strength would conclude it was sound, and would carry it to the next question, where the groups are not equal.</p>
 <p>Rates can be combined, but because a rate is a quotient, combining them means recovering the counts underneath them and dividing once at the end. Totals and counts can be added across any grouping. Rates and percentages were already divided, and adding them divides again by something nobody chose.</p>
 """ + ask('Are the groups I am averaging over the same size, and what does the answer become if I weight them by how many people are in each?')
@@ -61,25 +62,25 @@ s4 = sec('s4', '3.4', 'The chain of decisions behind one column', """
 s5 = sec('s5', '3.5', 'What a measure records and what it leaves out', """
 <p>FPF wants to know whether its learners are engaged. Asked in class to list the ways a learner could show engagement, the room produced eight without difficulty: turning up, asking questions, helping other learners, finishing work early, coming back after failing, emailing the trainer, staying late, and doing the optional reading.</p>
 <p>One of those eight was recorded. The FPF file has attendance_pct and nothing else from the list.</p>
-<p>Nobody measured engagement badly. Somebody chose one of the eight ways it is visible and recorded that one. A concept like engagement is visible in many ways, a measure records some of them, and the rest are never recorded at all. The seven that were left out are not missing from the file in any way you could detect, because the file has no column for them at all.</p>
+<p>Nobody measured engagement badly. Somebody chose one of the eight ways it is visible and recorded that one. A concept like engagement is visible in many ways, a measure records some of them, and the rest are never recorded at all. The seven that were left out are absent in a way no check will find. They are not blank cells in a column; there is no column, so nothing in the file records that they were ever candidates.</p>
 <p>The useful next question is who the chosen measure describes badly. Attendance describes badly any learner with shift work or caring responsibilities. Such a learner may be highly engaged and rarely present, and their attendance figure will be low, so anyone reading it will take them for disengaged. They are also, in a programme like this one, among the people the programme most wants to help, so on this measure the people it exists to serve appear to be its problem cases.</p>
-<p>Ask the same question of any measure by asking whether it would come out differently if a different sample of the concept had been taken. A different Tuesday. A different five questions. If the answer is yes, the number describes the sample and not the concept.</p>
+<p>Ask the same question of any measure by asking whether it would come out differently if a different sample of the concept had been taken. Would attendance look different if the register had been taken in a different month, or if the course had met on different days? If the answer is yes, the number describes the sample and not the concept.</p>
 """ + ask('In how many ways is this concept visible, how many were recorded, and who does the recorded one describe badly?')
 + src('the in-class activity on everything engagement could have been; the instructor notes on proxies.'))
 
 s6 = sec('s6', '3.6', 'Proxies, and why being recordable is not being a good measure', """
 <p>Four columns in the FPF file were put in front of the class with the question of how much to trust each one. Three of them stand in for something that was never measured, and each of those three was then checked against whether the participant was placed.</p>
-""" + table(['Column', 'Standing in for', 'Relationship with placement'], [
+""" + table(['Column', 'Standing in for', 'Correlation with placement'], [
     ['attendance_pct', 'engagement', '-0.0496'],
     ['digital_lit_score', 'capability', '0.0445'],
-    ['instr_student_ratio', 'the attention a learner received', '0.0315'],
-    ['employed', 'nothing; it is the outcome itself', 'not applicable'],
+    ['instr_student_ratio', 'the attention a learner received, so higher means more staff per learner', '0.0315'],
+    ['employed', 'nothing, because it is the outcome itself', 'not applicable, and it is here as the contrast'],
 ]) + """
 <p>The figures in the last column are correlations. A correlation runs from -1 to 1: at 1 the two columns move together exactly, at -1 exactly against each other, and at 0 there is no straight-line relationship between them. All three of these are near zero. Attendance is slightly negative, so higher attendance goes with very slightly lower placement, and the other two barely move at all. Nothing here shows these columns tracking the outcome the programme exists to produce.</p>
 <p>Two cautions on reading that. A correlation near zero rules out a straight-line relationship and not every relationship, and attendance runs only from 76 to 100, which is a narrow range in which to find one at all. Neither caution rescues the column; both are reasons to distrust a number nobody checked before using it.</p>
 <p>The reason all three are in the file is that they could be recorded. An attendance register already existed, a score was already being collected, a ratio could be calculated from numbers the administration already held. Nobody checked that any of them measures what it is being used for, because being recordable and being a good measure are separate properties and only the first one is obvious at the time.</p>
 <p>The instruction from class is not to rely on the label the column arrives with. Whenever a proxy is used, three statements are owed: what it is intended to represent, what it might miss, and how those limitations could change the conclusion. If the three cannot be written, the proxy is not ready to be used.</p>
-<p>One further warning. A proxy that is also used as a target stops being a good measure. If FPF paid its trainers a bonus based on attendance, attendance would rise and would stop being evidence about engagement, because effort would move to the measure.</p>
+<p>One further warning, known as Goodhart's law. A proxy that is also used as a target stops being even the imperfect evidence it was. If FPF paid its trainers a bonus based on attendance, attendance would rise and would stop being evidence about engagement, because effort would move to the measure.</p>
 """ + ask('What is this column standing in for, and has anybody checked that it does?')
 + src('the in-class activity ranking four columns by trust; Reading Note 2, section 7, on proxies.'))
 
@@ -104,13 +105,13 @@ s8 = sec('s8', '3.8', 'Comparability', """
 ]) + """
 <p>Which is the stronger candidate? The question cannot be answered as posed. An employer selecting on current capability should prefer A. Somebody evaluating the teaching should notice that B gained twenty-three points against two. A scholarship committee weighing distance travelled may reach a third conclusion. None of these numbers changes, and the correct summary changes with the decision.</p>
 <p>Putting two things on the same footing is itself a decision, and sometimes the file does not contain what the decision requires. Among the placed participants, the 215 from rural areas earn a mean salary of 68,172 and the 1,697 from urban areas earn 62,503. Treating the first as the better outcome assumes the two amounts buy the same things. Housing, transport and living costs differ between rural areas and cities, and none of them is in this file.</p>
-<p>That assumption cannot be checked from the data, and no calculation on these columns will supply it. It has to be settled outside the file, or the comparison has to be abandoned. Saying that rural placements pay 5,669 more is reporting arithmetic and calling it a finding.</p>
+<p>That assumption cannot be checked from the data, and no calculation on these columns will supply it. It has to be settled outside the file, or the comparison has to be abandoned. Saying that rural placements pay 5,669 more is a finding about nominal salary, offered as though it were one about outcomes.</p>
 """ + ask('Are these two numbers on the same footing, and is what it would take to put them on one anywhere in this file?')
 + src('Reading Note 2, section 9, for the two learners; the in-class activity on rural and urban salaries. Part 4 covers who ended up in the rural group; Part 5 covers what happens to this comparison when education is held still.'))
 
 s9 = sec('s9', '3.9', 'Write it down', """
 <p>Everything in this part is a decision that somebody made and nobody recorded. The four questions behind employed, the eight ways of being engaged of which one was recorded, the choice of denominator, the scale a percentage is a percentage of. None of it is in the file, and all of it is needed to use the file.</p>
-<p>The place it belongs is a data dictionary: one entry per column, saying what the column is meant to represent, how it was collected, what its values mean, and, for a proxy, the three statements owed under 3.6. The FPF case came with one.</p>
+<p>The place it belongs is a data dictionary: one entry per column, saying what the column is meant to represent, how it was collected, what its values mean, and, for a proxy, the three statements owed under 3.6. The FPF case came with a dictionary, and it gives the columns and their values. What it does not give is any of the decisions this part has been about, which is why those had to be reconstructed by argument.</p>
 <p>Derived columns need this most, because they have no existence outside the decision that made them. A readiness score built by averaging two percentages is exactly the averaging in 3.7, and six months later the only difference between a defensible column and an indefensible one is whether somebody wrote down how it was built. Write the entry when you build the column, because that is the only moment at which you still know.</p>
 <p>The other half of the habit is to ask for the dictionary when you receive data. If none exists, the questions in this part are the ones to ask, and the answers should be written down by you.</p>
 """ + ask('If I hand this column to somebody in a year, what will they need to know that is not in its name?')
