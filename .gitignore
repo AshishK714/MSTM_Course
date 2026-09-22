@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 sources/
+
+# exam material: never publish
+exam/
