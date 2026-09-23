@@ -37,9 +37,14 @@ def fnv(s: str) -> str:
 
 # ---------- content helpers ----------
 
-def sec(anchor, number, title, inner):
-    return ('<section id="%s"><h2><span class="n">Section %s</span>%s</h2>\n%s</section>\n'
-            % (anchor, number, title, inner))
+def sec(anchor, number, title, inner, muted=False):
+    """muted=True collapses the section behind its heading and labels it as off the exam.
+    Uses <details>, so it needs no script, keeps its anchor, and prints closed."""
+    if muted:
+        return ('<section id="%s" class="muted"><details><summary>'
+                '<span class="n">Section %s<i>not on the midterm</i></span>%s</summary>' + chr(10) +
+                '%s</details></section>' + chr(10)) % (anchor, number, title, inner)
+    return ('<section id="%s"><h2><span class="n">Section %s</span>%s</h2>' + chr(10) + '%s</section>' + chr(10)) % (anchor, number, title, inner)
 
 
 def ask(text):

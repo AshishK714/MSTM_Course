@@ -170,6 +170,17 @@ svg.hist{width:100%;height:160px;display:block}
 .sim-chart .axis{display:flex;justify-content:space-between;font-family:var(--sans);font-size:.7rem;color:var(--soft);border-top:1px solid var(--rule);padding-top:.25rem}
 .sim-note{font-family:var(--sans);font-size:.78rem;color:var(--soft);margin:.6rem 0 0}
 
+/* sections collapsed off the exam */
+.muted details{border-top:1px solid var(--rule);margin:3rem 0 0}
+.muted summary{list-style:none;cursor:pointer;font-weight:500;font-size:1.62rem;line-height:1.22;padding:1.2rem 0 .9rem;color:var(--soft)}
+.muted summary::-webkit-details-marker{display:none}
+.muted summary::after{content:"Show";font-family:var(--sans);font-size:.72rem;font-weight:600;color:var(--accent);border:1px solid var(--rule);border-radius:4px;padding:.2rem .5rem;margin-left:.6rem;white-space:nowrap;vertical-align:middle}
+.muted details[open] summary::after{content:"Hide"}
+.muted summary .n{font-family:var(--sans);font-size:.71rem;font-weight:600;color:var(--accent);display:block;margin-bottom:.28rem;letter-spacing:.04em}
+.muted summary .n i{font-style:normal;color:var(--soft);background:var(--rule-soft);border-radius:3px;padding:.1rem .4rem;margin-left:.5rem;letter-spacing:.02em}
+.muted details[open] summary{color:var(--ink)}
+@media print{.muted details{display:none}}
+
 </style>
 </head>
 <body>
@@ -186,10 +197,10 @@ svg.hist{width:100%;height:160px;display:block}
 <li><a href="#s2">5.2 Centre, spread, and which centre</a></li>
 <li><a href="#s3">5.3 When one mean represents nobody</a></li>
 <li><a href="#s4">5.4 Spread is a constructed measure</a></li>
-<li><a href="#s5">5.5 A continuous world recorded in steps</a></li>
-<li><a href="#s6">5.6 Two columns, three ways</a></li>
-<li><a href="#s7">5.7 Three columns, and the reversal</a></li>
-<li><a href="#s8">5.8 Choosing a chart</a></li>
+<li><a href="#s5">5.5 A continuous world recorded in steps (not on the midterm)</a></li>
+<li><a href="#s6">5.6 Two columns, three ways (not on the midterm)</a></li>
+<li><a href="#s7">5.7 Three columns, and the reversal (not on the midterm)</a></li>
+<li><a href="#s8">5.8 Choosing a chart (not on the midterm)</a></li>
 <li><a href="#practice">Practice</a></li>
 </ol></nav>
 <main>
@@ -238,7 +249,7 @@ svg.hist{width:100%;height:160px;display:block}
 <div class="box principle"><h4>The question to ask</h4><p>What does this measure assume about which differences are worse, and would I defend that assumption here?</p></div>
 <p class="src">Where this was covered: Reading Note 3, sections 6 and 7, on building the spread measure.</p>
 </section>
-<section id="s5"><h2><span class="n">Section 5.5</span>A continuous world recorded in steps</h2>
+<section id="s5" class="muted"><details><summary><span class="n">Section 5.5<i>not on the midterm</i></span>A continuous world recorded in steps</summary>
 
 <p>Most things vary continuously and are recorded at separated points, because recording finely costs more. Part 2 set that out for one file. Here it matters for what you may do with the result.</p>
 <p>Counting and grouping are available for any recorded value. Ranking needs an order. Adding and averaging need the steps between values to be equal, which is exactly what an ordered category does not give you. Nothing says the gap between a satisfaction rating of 1 and 2 is the same as the gap between 4 and 5, and if you relabelled the top rating 10 instead of 5 the mean would move while no respondent changed their mind. That is what averaging ratings assumes and cannot get.</p>
@@ -246,8 +257,8 @@ svg.hist{width:100%;height:160px;display:block}
 <p>Banding can be right. When the world has a real threshold in it, a band with its edge at that threshold records something true, which is the Titanic case from Part 2 and the reason ages fixed by law behave the same way. When there is no threshold and the bands were chosen for convenience, the variation inside each band is lost and nothing is gained.</p>
 <div class="box principle"><h4>The question to ask</h4><p>Does this scale support the operation I am about to perform on it, and was its coarseness chosen for a reason?</p></div>
 <p class="src">Where this was covered: the in-class discussion of variable types, grading scales across countries and survey scales; Reading Note 3, section 8. Part 2 covers the recording choice itself.</p>
-</section>
-<section id="s6"><h2><span class="n">Section 5.6</span>Two columns, three ways</h2>
+</details></section>
+<section id="s6" class="muted"><details><summary><span class="n">Section 5.6<i>not on the midterm</i></span>Two columns, three ways</summary>
 
 <p>One column at a time gives you centre and spread. Two columns let you ask whether they move together, and there are three ways to look, chosen by what kind of columns they are.</p>
 <div class="tw"><table class="txt"><thead><tr><th>The two columns</th><th>What to build</th><th>What you read</th></tr></thead><tbody><tr><td>Both categories</td><td>a crosstab</td><td>the rates, read in the direction you control</td></tr><tr><td>One category, one number</td><td>a group comparison</td><td>the centre and spread within each group</td></tr><tr><td>Both numbers</td><td>a scatterplot</td><td>the shape, including shapes a single figure does not distinguish</td></tr></tbody></table></div>
@@ -257,8 +268,8 @@ svg.hist{width:100%;height:160px;display:block}
 <p>In a crosstab you hold the row category still; in a group comparison you hold the group still. A scatterplot is different, because every pair is drawn and nothing is held still. That is why it is the one to start with when both columns are numbers: it commits you to no summary in advance, so it cannot hide a shape the way a summary can.</p>
 <div class="box principle"><h4>The question to ask</h4><p>Which of the three does this pair of columns call for, and have I looked at the shape before computing a single figure?</p></div>
 <p class="src">Where this was covered: Reading Note 3, section 9.</p>
-</section>
-<section id="s7"><h2><span class="n">Section 5.7</span>Three columns, and why the third can reverse the answer</h2>
+</details></section>
+<section id="s7" class="muted"><details><summary><span class="n">Section 5.7<i>not on the midterm</i></span>Three columns, and why the third can reverse the answer</summary>
 
 <p>Four trainers, one hundred participants each. The placement rates rank them cleanly.</p>
 <div class="tw"><table><thead><tr><th>Trainer</th><th>Placed overall</th><th>Within Bachelors</th><th>Within High School</th><th>Bachelors, of their 100</th></tr></thead><tbody><tr><td>Okonkwo</td><td>68%</td><td>75%</td><td>40%</td><td>80</td></tr><tr><td>Haddad</td><td>66%</td><td>80%</td><td>45%</td><td>60</td></tr><tr><td>Silva</td><td>64%</td><td>85%</td><td>50%</td><td>40</td></tr><tr><td>Mensah</td><td>62%</td><td>90%</td><td>55%</td><td>20</td></tr></tbody></table></div>
@@ -270,8 +281,8 @@ svg.hist{width:100%;height:160px;display:block}
 <div class="lostbox"><b>What this leaves out</b>A reversal is evidence that the third column matters to the comparison. It does not show that the third column is the right one to hold still, and it does not prove the finer answer is the true one. There is no rule that says when to stop adding columns. What settles it is an argument about the situation: the tier was assigned by a triage desk before either team saw the ticket, so holding it still compares like with like. Had the teams labelled their own tickets, holding the label still would have removed part of what you were trying to measure, because how a team classifies its work is part of how it works.</div>
 <div class="box principle"><h4>The question to ask</h4><p>Is there a third column that decides who ended up in each group, and what happens to the comparison when I hold it still?</p></div>
 <p class="src">Where this was covered: the in-class trainer comparison; Homework 3, where the same reversal appears between the All rows and the tier rows; Reading Note 3, section 10.</p>
-</section>
-<section id="s8"><h2><span class="n">Section 5.8</span>Choosing a chart</h2>
+</details></section>
+<section id="s8" class="muted"><details><summary><span class="n">Section 5.8<i>not on the midterm</i></span>Choosing a chart</summary>
 
 <p>The chart follows from the same question as the summary: how many columns, and of what kind. One number over categories is a bar chart. One number's distribution is a histogram, and a histogram of the attendance column in 5.3 would have made the two groups plain at once. Two numbers are a scatterplot. A quantity over time is a line.</p>
 <p>The choice that does the damage is the one made for appearance. In a bar chart whose axis starts partway up, a small difference looks large. A pie chart of seven slices is unreadable, because the eye judges angles and areas badly, and a pie chart of two is no more informative than one sentence. If the points have no order between them, a line drawn through them will be read as a trend that is not there.</p>
@@ -279,7 +290,7 @@ svg.hist{width:100%;height:160px;display:block}
 <p>The test before drawing is to say what the reader should be able to see, then check that the chart makes that thing the most visible part of the picture. If the thing you want seen is a difference between two groups, and the eye goes to the overall height of the bars instead, the chart is not answering the question you drew it for.</p>
 <div class="box principle"><h4>The question to ask</h4><p>What should a reader see here, and is that what the eye goes to first?</p></div>
 <p class="src">Where this was covered: Reading Note 3, section 11.</p>
-</section>
+</details></section>
 
 <section id="practice">
 <h2><span class="n">Practice</span>Check yourself</h2>
@@ -288,7 +299,7 @@ svg.hist{width:100%;height:160px;display:block}
 <div class="tw"><table><thead><tr><th>Attendance of all 5,000</th><th>Participants</th></tr></thead><tbody><tr><td>76 to 90 percent</td><td>943</td></tr><tr><td>91 percent</td><td>10</td></tr><tr><td>92 to 100 percent</td><td>4,047</td></tr></tbody></table></div>
 <p>Mean attendance is 93.13 percent and the median is 95. The lower attendance group peaks at 83 percent and the upper group at 96.</p></div>
 
-<p>Six questions that mark themselves, then three to write out.</p>
+<p>Six questions that mark themselves, then three to write out. Questions 5 and 6, and the third written task, belong to sections 5.5 to 5.8 and are not on the midterm. They are worth doing anyway.</p>
 <div class="kc" data-id="p5-k1" data-h="bd43c507"><span class="tag">Practice 1</span><p class="q">The mean salary is 3,012 above the median. What can you infer from that gap about the shape of the salaries?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>A few large salaries are stretching the top of the range</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>The salaries are evenly spread between 16,609 and 236,319</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>Most placed participants earn more than 63,140 a year</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>Roughly half the placed participants were paid nothing</span></button></div><div class="fb"><b>Why:</b> A mean is pulled by values far from the centre and a median is not. With only 44.9 percent earning above the mean, the mean is not describing a typical person.<ol class="why-opts"><li class="ok"><span class="ltr">A</span><span>A mean is pulled by values far from the centre and a median is not, and only 44.9 percent earn above the mean.</span></li><li><span class="ltr">B</span><span>An even spread would put the mean near 126,000, and the mean and median together.</span></li><li><span class="ltr">C</span><span>44.9 percent do, which is a minority.</span></li><li><span class="ltr">D</span><span>The smallest salary in the group is 16,609. Nobody placed was paid nothing.</span></li></ol></div></div>
 <div class="kc" data-id="p5-k2" data-h="6167a169"><span class="tag">Practice 2</span><p class="q">The director wants one figure for what a typical placed participant earns. Which should she use?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>The mean, 63,140, because it uses every salary in the group</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>The median, 60,128, with half above and half below</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>The largest salary, 236,319, as the figure to aim at</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>The standard deviation, because it describes the whole spread</span></button></div><div class="fb"><b>Why:</b> Half the placed participants earn above the median and half below. The mean answers a different question, which is what the total wage bill divided by the count comes to.<ol class="why-opts"><li><span class="ltr">A</span><span>It does use every salary, and that is why a few very large ones pull it above what a typical participant earns. It is the right figure for the total wage bill.</span></li><li class="ok"><span class="ltr">B</span><span>Half of the placed participants earn more and half less, and unlike the mean it is not pulled up by the few very large salaries.</span></li><li><span class="ltr">C</span><span>The largest value describes one person rather than the group.</span></li><li><span class="ltr">D</span><span>A spread figure rather than a centre, so it answers a different question.</span></li></ol></div></div>
 <div class="kc" data-id="p5-k3" data-h="64f54b97"><span class="tag">Practice 3</span><p class="q">She adds a sentence on the spread. Which is the safest to print?</p><div class="opts"><button class="opt" data-a="0"><span class="ltr">A</span><span>Salaries run from 16,609 to 236,319, so a typical one is near the middle of that</span></button><button class="opt" data-a="1"><span class="ltr">B</span><span>Salaries vary by about 25,204 either side of the mean</span></button><button class="opt" data-a="2"><span class="ltr">C</span><span>Eight in ten placed participants earn between 33,637 and 94,447</span></button><button class="opt" data-a="3"><span class="ltr">D</span><span>The mean and the median are close, so the spread must be quite narrow</span></button></div><div class="fb"><b>Why:</b> The mid-80 percent range comes from the tenth and ninetieth percentiles and is not moved by one very large salary. The full range is decided by two people, and the middle of it, about 126,000, is nowhere near the mean or the median.<ol class="why-opts"><li><span class="ltr">A</span><span>The two figures are right and the conclusion drawn from them is wrong. The middle of that range is about 126,000, nowhere near the mean or the median.</span></li><li><span class="ltr">B</span><span>This treats the spread as symmetric about the mean, which it is not, and it understates the top badly.</span></li><li class="ok"><span class="ltr">C</span><span>The tenth and ninetieth percentiles, so eight in ten fall between them, and one very large salary does not move either figure.</span></li><li><span class="ltr">D</span><span>Centre and spread are separate. The standard deviation is 25,204 on a mean of 63,140.</span></li></ol></div></div>

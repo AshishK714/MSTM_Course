@@ -24,8 +24,10 @@ PARTS = [
      'What did this summary leave out, and would the decision change if I could see it?',
      ['Why summarise at all', 'Centre, spread, and which centre',
       'Percentiles, and the column with two clusters', 'Spread is a constructed metric',
-      'Types, and a continuous world recorded in discrete steps', 'Two columns, three ways',
-      'Three columns, and why the third can reverse the answer', 'Choosing a chart']),
+      'Types, and a continuous world recorded in discrete steps (not on the midterm)',
+      'Two columns, three ways (not on the midterm)',
+      'Three columns, and why the third can reverse the answer (not on the midterm)',
+      'Choosing a chart (not on the midterm)']),
 ]
 
 def card(f, label, title, text, secs=None):

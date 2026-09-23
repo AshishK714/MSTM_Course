@@ -50,7 +50,7 @@ s5 = sec('s5', '5.5', 'A continuous world recorded in steps', """
 <p>The scale itself is a decision somebody made. A company choosing between a 1 to 3, a 1 to 5 and a 1 to 10 satisfaction scale is choosing how much of the variation in what customers feel is recorded in the file. Grading works the same way, and the granularity differs by country, which is worth asking about: a system with a handful of grades and one with a fine percentage scale are recording the same student differently, and neither is simply better.</p>
 <p>Banding can be right. When the world has a real threshold in it, a band with its edge at that threshold records something true, which is the Titanic case from Part 2 and the reason ages fixed by law behave the same way. When there is no threshold and the bands were chosen for convenience, the variation inside each band is lost and nothing is gained.</p>
 """ + ask('Does this scale support the operation I am about to perform on it, and was its coarseness chosen for a reason?')
-+ src('the in-class discussion of variable types, grading scales across countries and survey scales; Reading Note 3, section 8. Part 2 covers the recording choice itself.'))
++ src('the in-class discussion of variable types, grading scales across countries and survey scales; Reading Note 3, section 8. Part 2 covers the recording choice itself.'), muted=True)
 
 s6 = sec('s6', '5.6', 'Two columns, three ways', """
 <p>One column at a time gives you centre and spread. Two columns let you ask whether they move together, and there are three ways to look, chosen by what kind of columns they are.</p>
@@ -63,7 +63,7 @@ s6 = sec('s6', '5.6', 'Two columns, three ways', """
 <p>That is a mistake worth avoiding. A correlation is a single number between -1 and 1 that measures how close two columns come to a straight-line relationship, with 0 meaning no straight-line relationship at all. Attendance correlates with placement at -0.0496, and a figure that close to zero is consistent with several different pictures: no relationship, or a relationship that rises and then falls, which averages out to nothing. The correlation does not distinguish them. The scatterplot does.</p>
 <p>In a crosstab you hold the row category still; in a group comparison you hold the group still. A scatterplot is different, because every pair is drawn and nothing is held still. That is why it is the one to start with when both columns are numbers: it commits you to no summary in advance, so it cannot hide a shape the way a summary can.</p>
 """ + ask('Which of the three does this pair of columns call for, and have I looked at the shape before computing a single figure?')
-+ src('Reading Note 3, section 9.'))
++ src('Reading Note 3, section 9.'), muted=True)
 
 s7 = sec('s7', '5.7', 'Three columns, and why the third can reverse the answer', """
 <p>Four trainers, one hundred participants each. The placement rates rank them cleanly.</p>
@@ -79,7 +79,7 @@ s7 = sec('s7', '5.7', 'Three columns, and why the third can reverse the answer',
 <p>Homework 3 was the same shape, and the name for it is Simpson's paradox. Each team closed 32 tickets. Team A resolved 71.9 percent of its 32 within the service level, the time the firm promises a customer, against Team B's 65.6, so Team A looks better. Within Complex tickets Team B is ahead, 58.3 against 50.0, and within Simple tickets Team B is ahead again, 87.5 against 79.2. The reason is the split: 24 of Team B's 32 were Complex against 8 of Team A's.</p>
 """ + lost('A reversal is evidence that the third column matters to the comparison. It does not show that the third column is the right one to hold still, and it does not prove the finer answer is the true one. There is no rule that says when to stop adding columns. What settles it is an argument about the situation: the tier was assigned by a triage desk before either team saw the ticket, so holding it still compares like with like. Had the teams labelled their own tickets, holding the label still would have removed part of what you were trying to measure, because how a team classifies its work is part of how it works.')
 + ask('Is there a third column that decides who ended up in each group, and what happens to the comparison when I hold it still?')
-+ src('the in-class trainer comparison; Homework 3, where the same reversal appears between the All rows and the tier rows; Reading Note 3, section 10.'))
++ src('the in-class trainer comparison; Homework 3, where the same reversal appears between the All rows and the tier rows; Reading Note 3, section 10.'), muted=True)
 
 s8 = sec('s8', '5.8', 'Choosing a chart', """
 <p>The chart follows from the same question as the summary: how many columns, and of what kind. One number over categories is a bar chart. One number's distribution is a histogram, and a histogram of the attendance column in 5.3 would have made the two groups plain at once. Two numbers are a scatterplot. A quantity over time is a line.</p>
@@ -87,7 +87,7 @@ s8 = sec('s8', '5.8', 'Choosing a chart', """
 <p>Every chart is a summary, so everything in this part applies to it. A bar chart of mean attendance by track would give three bars at 93.3, 93.2 and 93.0 percent, because each track holds both attendance groups in much the same proportions. The two groups would not appear at all, as they do not in the mean. A chart of a mean is the same mean, drawn larger.</p>
 <p>The test before drawing is to say what the reader should be able to see, then check that the chart makes that thing the most visible part of the picture. If the thing you want seen is a difference between two groups, and the eye goes to the overall height of the bars instead, the chart is not answering the question you drew it for.</p>
 """ + ask('What should a reader see here, and is that what the eye goes to first?')
-+ src('Reading Note 3, section 11.'))
++ src('Reading Note 3, section 11.'), muted=True)
 
 practice = """
 <section id="practice">
@@ -109,7 +109,7 @@ practice = """
     ['91 percent', '10'],
     ['92 to 100 percent', '4,047'],
 ]) + '<p>Mean attendance is 93.13 percent and the median is 95. The lower attendance group peaks at 83 percent and the upper group at 96.</p>') + """
-<p>Six questions that mark themselves, then three to write out.</p>
+<p>Six questions that mark themselves, then three to write out. Questions 5 and 6, and the third written task, belong to sections 5.5 to 5.8 and are not on the midterm. They are worth doing anyway.</p>
 """ + kc(P, 1,
    'The mean salary is 3,012 above the median. What can you infer from that gap about the shape of the salaries?',
    ['A few large salaries are stretching the top of the range',
@@ -197,8 +197,10 @@ PAGE = {
     'dek': 'What did this summary leave out, and would the decision change if I could see it?',
     'toc': [('s1', '5.1 Why summarise at all'), ('s2', '5.2 Centre, spread, and which centre'),
             ('s3', '5.3 When one mean represents nobody'), ('s4', '5.4 Spread is a constructed measure'),
-            ('s5', '5.5 A continuous world recorded in steps'), ('s6', '5.6 Two columns, three ways'),
-            ('s7', '5.7 Three columns, and the reversal'), ('s8', '5.8 Choosing a chart'),
+            ('s5', '5.5 A continuous world recorded in steps (not on the midterm)'),
+            ('s6', '5.6 Two columns, three ways (not on the midterm)'),
+            ('s7', '5.7 Three columns, and the reversal (not on the midterm)'),
+            ('s8', '5.8 Choosing a chart (not on the midterm)'),
             ('practice', 'Practice')],
     'body': intro + s1 + s2 + s3 + s4 + s5 + s6 + s7 + s8 + practice,
     'prev': ('part4.html', 'Part 4. Who is in the file'),

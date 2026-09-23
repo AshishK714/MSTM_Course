@@ -7,12 +7,12 @@ intro = """
 """
 
 s1 = sec('s1', 'C.1', 'Conditioning, in four places', """
-<p>Conditioning is choosing what to hold constant so that what varies becomes visible. It appears four times in this guide, under a different name each time.</p>
+<p>Conditioning is choosing what to hold constant so that what varies becomes visible. It appears four times in this guide, under a different name each time. The fourth, in 5.7, is not on this midterm, and it is listed because it is the same move.</p>
 """ + table(['Where it appeared', 'What is held constant', 'What becomes visible'], [
     ['Choosing what one row is (2.1)', 'everything folded into the row', 'differences between rows, and nothing finer'],
     ['Choosing the level to decide at (2.3)', 'the group a participant belongs to', 'whether mentorship works differently inside different groups'],
     ['Choosing the percentage direction (2.4)', 'the group you can act on', 'what tends to follow when you act on it'],
-    ['Holding a third column still (5.7)', 'a column distributed unevenly across the groups compared', 'whether the first comparison survives'],
+    ['Holding a third column still (5.7, not on the midterm)', 'a column distributed unevenly across the groups compared', 'whether the first comparison survives'],
 ]) + """
 <p>In each case something is deliberately frozen. Choosing a row, you freeze whatever was folded into it. Comparing within one education level, you freeze education, so the difference you read is not a difference in schooling. Reading a row percentage, you freeze the row group and read across it. Splitting by tier, you freeze the difficulty of the work.</p>
 <p>Conditioning can also fail, and three of the four fail the same way: you hold one column still and the thing you wanted to compare turns out not to vary inside it. For 2.3, hold location at rural and mentorship does not vary, because all 637 of the participants who went without mentorship are urban. For 2.4, take a row percentage across a group whose members all had the same outcome and there is nothing to read across. For 5.7, hold the tier still and a team that handled only one tier has an empty cell in the other.</p>

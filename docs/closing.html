@@ -170,6 +170,17 @@ svg.hist{width:100%;height:160px;display:block}
 .sim-chart .axis{display:flex;justify-content:space-between;font-family:var(--sans);font-size:.7rem;color:var(--soft);border-top:1px solid var(--rule);padding-top:.25rem}
 .sim-note{font-family:var(--sans);font-size:.78rem;color:var(--soft);margin:.6rem 0 0}
 
+/* sections collapsed off the exam */
+.muted details{border-top:1px solid var(--rule);margin:3rem 0 0}
+.muted summary{list-style:none;cursor:pointer;font-weight:500;font-size:1.62rem;line-height:1.22;padding:1.2rem 0 .9rem;color:var(--soft)}
+.muted summary::-webkit-details-marker{display:none}
+.muted summary::after{content:"Show";font-family:var(--sans);font-size:.72rem;font-weight:600;color:var(--accent);border:1px solid var(--rule);border-radius:4px;padding:.2rem .5rem;margin-left:.6rem;white-space:nowrap;vertical-align:middle}
+.muted details[open] summary::after{content:"Hide"}
+.muted summary .n{font-family:var(--sans);font-size:.71rem;font-weight:600;color:var(--accent);display:block;margin-bottom:.28rem;letter-spacing:.04em}
+.muted summary .n i{font-style:normal;color:var(--soft);background:var(--rule-soft);border-radius:3px;padding:.1rem .4rem;margin-left:.5rem;letter-spacing:.02em}
+.muted details[open] summary{color:var(--ink)}
+@media print{.muted details{display:none}}
+
 </style>
 </head>
 <body>
@@ -194,8 +205,8 @@ svg.hist{width:100%;height:160px;display:block}
 <p>One move runs through Parts 2 and 5, and the five questions below run through all five parts.</p>
 <section id="s1"><h2><span class="n">Section C.1</span>Conditioning, in four places</h2>
 
-<p>Conditioning is choosing what to hold constant so that what varies becomes visible. It appears four times in this guide, under a different name each time.</p>
-<div class="tw"><table><thead><tr><th>Where it appeared</th><th>What is held constant</th><th>What becomes visible</th></tr></thead><tbody><tr><td>Choosing what one row is (2.1)</td><td>everything folded into the row</td><td>differences between rows, and nothing finer</td></tr><tr><td>Choosing the level to decide at (2.3)</td><td>the group a participant belongs to</td><td>whether mentorship works differently inside different groups</td></tr><tr><td>Choosing the percentage direction (2.4)</td><td>the group you can act on</td><td>what tends to follow when you act on it</td></tr><tr><td>Holding a third column still (5.7)</td><td>a column distributed unevenly across the groups compared</td><td>whether the first comparison survives</td></tr></tbody></table></div>
+<p>Conditioning is choosing what to hold constant so that what varies becomes visible. It appears four times in this guide, under a different name each time. The fourth, in 5.7, is not on this midterm, and it is listed because it is the same move.</p>
+<div class="tw"><table><thead><tr><th>Where it appeared</th><th>What is held constant</th><th>What becomes visible</th></tr></thead><tbody><tr><td>Choosing what one row is (2.1)</td><td>everything folded into the row</td><td>differences between rows, and nothing finer</td></tr><tr><td>Choosing the level to decide at (2.3)</td><td>the group a participant belongs to</td><td>whether mentorship works differently inside different groups</td></tr><tr><td>Choosing the percentage direction (2.4)</td><td>the group you can act on</td><td>what tends to follow when you act on it</td></tr><tr><td>Holding a third column still (5.7, not on the midterm)</td><td>a column distributed unevenly across the groups compared</td><td>whether the first comparison survives</td></tr></tbody></table></div>
 
 <p>In each case something is deliberately frozen. Choosing a row, you freeze whatever was folded into it. Comparing within one education level, you freeze education, so the difference you read is not a difference in schooling. Reading a row percentage, you freeze the row group and read across it. Splitting by tier, you freeze the difficulty of the work.</p>
 <p>Conditioning can also fail, and three of the four fail the same way: you hold one column still and the thing you wanted to compare turns out not to vary inside it. For 2.3, hold location at rural and mentorship does not vary, because all 637 of the participants who went without mentorship are urban. For 2.4, take a row percentage across a group whose members all had the same outcome and there is nothing to read across. For 5.7, hold the tier still and a team that handled only one tier has an empty cell in the other.</p>

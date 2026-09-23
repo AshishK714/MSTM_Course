@@ -76,7 +76,7 @@ s6 = sec('s6', '2.6', 'Two things are called granularity', """
 <p>In the FPF file, salary is recorded to the currency unit, attendance to the whole percentage point, and prior experience as one of two bands, one to three years and four years or more, so eighteen and thirty-four months are alike.</p>
 <p>Both go one way only: rows can be combined and salaries banded, and neither can be undone. You choose the row granularity, because you choose the comparison. The column granularity you inherit, and can only coarsen: whoever built the system chose it.</p>
 """ + ask('Was this value recorded finely enough for the distinction I am about to draw with it?')
-+ src('the in-class discussion of variable types, of recording age, and of the swimming and legal cutoffs in the Titanic example; Part 5 works through when a band matches the world and when it hides something.'))
++ src('the in-class discussion of variable types, of recording age, and of the swimming and legal cutoffs in the Titanic example; Part 5 works through when a band matches the world and when it hides something, in a section that is not on the midterm.'))
 
 practice = """
 <section id="practice">

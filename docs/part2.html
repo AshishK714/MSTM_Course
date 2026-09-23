@@ -170,6 +170,17 @@ svg.hist{width:100%;height:160px;display:block}
 .sim-chart .axis{display:flex;justify-content:space-between;font-family:var(--sans);font-size:.7rem;color:var(--soft);border-top:1px solid var(--rule);padding-top:.25rem}
 .sim-note{font-family:var(--sans);font-size:.78rem;color:var(--soft);margin:.6rem 0 0}
 
+/* sections collapsed off the exam */
+.muted details{border-top:1px solid var(--rule);margin:3rem 0 0}
+.muted summary{list-style:none;cursor:pointer;font-weight:500;font-size:1.62rem;line-height:1.22;padding:1.2rem 0 .9rem;color:var(--soft)}
+.muted summary::-webkit-details-marker{display:none}
+.muted summary::after{content:"Show";font-family:var(--sans);font-size:.72rem;font-weight:600;color:var(--accent);border:1px solid var(--rule);border-radius:4px;padding:.2rem .5rem;margin-left:.6rem;white-space:nowrap;vertical-align:middle}
+.muted details[open] summary::after{content:"Hide"}
+.muted summary .n{font-family:var(--sans);font-size:.71rem;font-weight:600;color:var(--accent);display:block;margin-bottom:.28rem;letter-spacing:.04em}
+.muted summary .n i{font-style:normal;color:var(--soft);background:var(--rule-soft);border-radius:3px;padding:.1rem .4rem;margin-left:.5rem;letter-spacing:.02em}
+.muted details[open] summary{color:var(--ink)}
+@media print{.muted details{display:none}}
+
 </style>
 </head>
 <body>
@@ -264,7 +275,7 @@ svg.hist{width:100%;height:160px;display:block}
 <p>In the FPF file, salary is recorded to the currency unit, attendance to the whole percentage point, and prior experience as one of two bands, one to three years and four years or more, so eighteen and thirty-four months are alike.</p>
 <p>Both go one way only: rows can be combined and salaries banded, and neither can be undone. You choose the row granularity, because you choose the comparison. The column granularity you inherit, and can only coarsen: whoever built the system chose it.</p>
 <div class="box principle"><h4>The question to ask</h4><p>Was this value recorded finely enough for the distinction I am about to draw with it?</p></div>
-<p class="src">Where this was covered: the in-class discussion of variable types, of recording age, and of the swimming and legal cutoffs in the Titanic example; Part 5 works through when a band matches the world and when it hides something.</p>
+<p class="src">Where this was covered: the in-class discussion of variable types, of recording age, and of the swimming and legal cutoffs in the Titanic example; Part 5 works through when a band matches the world and when it hides something, in a section that is not on the midterm.</p>
 </section>
 
 <section id="practice">

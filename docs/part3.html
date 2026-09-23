@@ -170,6 +170,17 @@ svg.hist{width:100%;height:160px;display:block}
 .sim-chart .axis{display:flex;justify-content:space-between;font-family:var(--sans);font-size:.7rem;color:var(--soft);border-top:1px solid var(--rule);padding-top:.25rem}
 .sim-note{font-family:var(--sans);font-size:.78rem;color:var(--soft);margin:.6rem 0 0}
 
+/* sections collapsed off the exam */
+.muted details{border-top:1px solid var(--rule);margin:3rem 0 0}
+.muted summary{list-style:none;cursor:pointer;font-weight:500;font-size:1.62rem;line-height:1.22;padding:1.2rem 0 .9rem;color:var(--soft)}
+.muted summary::-webkit-details-marker{display:none}
+.muted summary::after{content:"Show";font-family:var(--sans);font-size:.72rem;font-weight:600;color:var(--accent);border:1px solid var(--rule);border-radius:4px;padding:.2rem .5rem;margin-left:.6rem;white-space:nowrap;vertical-align:middle}
+.muted details[open] summary::after{content:"Hide"}
+.muted summary .n{font-family:var(--sans);font-size:.71rem;font-weight:600;color:var(--accent);display:block;margin-bottom:.28rem;letter-spacing:.04em}
+.muted summary .n i{font-style:normal;color:var(--soft);background:var(--rule-soft);border-radius:3px;padding:.1rem .4rem;margin-left:.5rem;letter-spacing:.02em}
+.muted details[open] summary{color:var(--ink)}
+@media print{.muted details{display:none}}
+
 </style>
 </head>
 <body>
@@ -289,7 +300,7 @@ svg.hist{width:100%;height:160px;display:block}
 <p>Putting two things on the same footing is itself a decision, and sometimes the file does not contain what the decision requires. Among the placed participants, the 215 from rural areas earn a mean salary of 68,172 and the 1,697 from urban areas earn 62,503. Treating the first as the better outcome assumes the two amounts buy the same things. Housing, transport and living costs differ between rural areas and cities, and none of them is in this file.</p>
 <p>That assumption cannot be checked from the data, and no calculation on these columns will supply it. It has to be settled outside the file, or the comparison has to be abandoned. Saying that rural placements pay 5,669 more is a finding about nominal salary, offered as though it were one about outcomes.</p>
 <div class="box principle"><h4>The question to ask</h4><p>Are these two numbers on the same footing, and is what it would take to put them on one anywhere in this file?</p></div>
-<p class="src">Where this was covered: Reading Note 2, section 9, for the two learners; the in-class activity on rural and urban salaries. Part 4 covers who ended up in the rural group; Part 5 covers what happens to this comparison when education is held still.</p>
+<p class="src">Where this was covered: Reading Note 2, section 9, for the two learners; the in-class activity on rural and urban salaries. Part 4 covers who ended up in the rural group; Part 5 covers what happens to this comparison when education is held still, in a section that is not on the midterm.</p>
 </section>
 <section id="s9"><h2><span class="n">Section 3.9</span>Write it down</h2>
 

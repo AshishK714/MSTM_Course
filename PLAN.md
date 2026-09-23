@@ -98,6 +98,10 @@ Practice: a new filter scenario; what would change if the filter were removed; t
 
 ### Part 5. Summarising, and what it costs
 
+Sections 5.5 to 5.8 are collapsed on the page and labelled as not on this midterm, on AV's
+instruction of 22 September. They remain in the guide and open on a click. The closing still
+names 5.7 as the fourth instance of conditioning and says it is off the exam.
+
 | # | Section | Example | Source |
 |---|---|---|---|
 | 5.1 | Why summarise, and the question to carry | Five thousand values to two; what did this leave out | RN3 §1, HBS class report |
